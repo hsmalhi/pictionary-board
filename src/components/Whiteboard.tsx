@@ -72,11 +72,10 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
     [isPainting, mousePosition]
   );
 
+  document.ontouchmove = function(event) {
+    event.preventDefault();
+  };
   useEffect(() => {
-    document.ontouchmove = function(event) {
-      event.preventDefault();
-    };
-
     if (!canvasRef.current) {
       return;
     }
@@ -155,12 +154,6 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
 
   return (
     <Fragment>
-      <script>{`
-    function myFunction(index, row) {
-        return index;
-    }
-`}</script>
-
       <canvas ref={canvasRef} height={height} width={width} />
       <button className="clear-button" onClick={clearImage}>
         Clear Button
