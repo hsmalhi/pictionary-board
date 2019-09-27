@@ -1,4 +1,11 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+  Fragment
+} from "react";
+import "./styles/Whiteboard.scss";
 
 //Customizabe canvas
 interface CanvasProps {
@@ -14,13 +21,19 @@ type Coordinate = {
 //Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
-  const canvasRef = useRef<HTMLCanvasElement>(null);
+  let canvasRef = useRef<HTMLCanvasElement>(null);
   //Checks for the state of the thing this is used in some functions
   const [isPainting, setIsPainting] = useState(false);
   //Checks the mouse position via Coordinate
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
     undefined
   );
+
+  const clearImage = function() {
+    const canvas: HTMLCanvasElement = canvasRef.current;
+    const ctx = canvas.getContext("2d");
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+  };
 
   //Once the mouse is pressed down, we use this callback and then if the coordinates are true we will get the mouse poistion via coordiantes and set setispainting to true
   const startPaint = useCallback(event => {
@@ -60,6 +73,10 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
   );
 
   useEffect(() => {
+    document.ontouchmove = function(event) {
+      event.preventDefault();
+    };
+
     if (!canvasRef.current) {
       return;
     }
@@ -118,9 +135,10 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.lineTo(newMousePosition.x, newMousePosition.y);
       ctx.closePath();
       ctx.stroke();
+      console.log(newMousePosition.x, newMousePosition.y);
     }
   };
- //Draw the initial dot for the painting
+  //Draw the initial dot for the painting
   const drawDot = (MousePosition: Coordinate) => {
     if (!canvasRef.current) {
       return;
@@ -131,15 +149,33 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.beginPath();
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
       ctx.fill();
+      console.log(MousePosition.x, MousePosition.y);
     }
   };
 
-  return <canvas ref={canvasRef} height={height} width={width} />;
+  return (
+    <Fragment>
+      <script>{`
+    function myFunction(index, row) {
+        return index;
+    }
+`}</script>
+
+      <canvas ref={canvasRef} height={height} width={width} />
+      <button className="clear-button" onClick={clearImage}>
+        Clear Button
+      </button>
+    </Fragment>
+  );
 };
 
 Whiteboard.defaultProps = {
-  width: window.innerWidth,
-  height: window.innerHeight
+  width: window.innerWidth * 0.99,
+  height: window.innerHeight * 0.99
 };
 
 export default Whiteboard;
+
+//send over a whole bunch of x/y coordinates
+//everytime someone clicks theres a click event send through the soket, send the current coordinate
+//
