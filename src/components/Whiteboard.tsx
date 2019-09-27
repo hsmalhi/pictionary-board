@@ -6,48 +6,26 @@ const HOOK_SVG =
 const HOOK_PATH = new Path2D(HOOK_SVG);
 const SCALE = 0.3;
 const OFFSET = 80;
-function draw(ctx: any, location: any) {
-  ctx.fillStyle = "deepskyblue";
-  ctx.shadowColor = "dodgerblue";
-  ctx.shadowBlur = 20;
+function draw(ctx, location) {
   ctx.save();
   ctx.scale(SCALE, SCALE);
   ctx.translate(location.x / SCALE - OFFSET, location.y / SCALE - OFFSET);
-  ctx.fill(HOOK_PATH);
+  ctx.stroke(HOOK_PATH);
   ctx.restore();
 }
 
-// our first custom hook
-function usePersistentState(init: any) {
-  const [value, setValue] = React.useState(
-    JSON.parse(localStorage.getItem("draw-app") || init)
+export default function Whiteboard() {
+  const [locations, setLocations] = React.useState(
+    JSON.parse(localStorage.getItem("draw-app")) || []
   );
-  React.useEffect(() => {
-    localStorage.setItem("draw-app", JSON.stringify(value));
-  });
-  return [value, setValue];
-}
-// our second custom hook: a composition of the first custom hook // and React's useEffect + useRef
-function usePersistentCanvas() {
-  const [locations, setLocations] = usePersistentState([]);
-
   const canvasRef = React.useRef(null);
-
   React.useEffect(() => {
-    const canvas: any = canvasRef.current;
+    const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
-    ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
-    locations.forEach(location => {
-      console.log(location);
-      draw(ctx, location);
-    });
+    ctx.clearRect(0, 0, window.innerHeight, window.innerWidth);
+    locations.forEach(location => draw(ctx, location));
   });
 
-  return [locations, setLocations, canvasRef];
-}
-
-export default function Whiteboard(props) {
-  const [locations, setLocations, canvasRef] = usePersistentCanvas();
   function handleCanvasClick(e) {
     const newLocation = { x: e.clientX, y: e.clientY };
     setLocations([...locations, newLocation]);
@@ -55,10 +33,12 @@ export default function Whiteboard(props) {
   function handleClear() {
     setLocations([]);
   }
+  React.useEffect(() => {
+    localStorage.setItem("draw-app", JSON.stringify(locations));
+  });
   function handleUndo() {
     setLocations(locations.slice(0, -1));
   }
-
   return (
     <>
       <div className="controls">
