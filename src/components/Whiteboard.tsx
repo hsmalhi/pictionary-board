@@ -23,11 +23,13 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
   );
 
   //Once the mouse is pressed down, we use this callback and then if the coordinates are true we will get the mouse poistion via coordiantes and set setispainting to true
-  const startPaint = useCallback((event: MouseEvent) => {
+  const startPaint = useCallback(event => {
     const coordinates = getCoordinates(event);
     if (coordinates) {
       setIsPainting(true);
       setMousePosition(coordinates);
+      //Draws a dot immediately when pressed down
+      drawDot(coordinates);
     }
   }, []);
 
@@ -37,21 +39,20 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener("mousedown", startPaint);
+    canvas.addEventListener("touchstart", startPaint);
     return () => {
-      canvas.removeEventListener("mousedown", startPaint);
+      canvas.removeEventListener("touchstart", startPaint);
     };
   }, [startPaint]);
 
+  //Paint callback, it if is painting and the mouse is moved then we will call the drawline function with each new mouse position
   const paint = useCallback(
-    (event: MouseEvent) => {
+    event => {
       if (isPainting) {
         const newMousePosition = getCoordinates(event);
         if (mousePosition && newMousePosition) {
           drawLine(mousePosition, newMousePosition);
           setMousePosition(newMousePosition);
-        } else {
-          drawDot(mousePosition);
         }
       }
     },
@@ -63,9 +64,9 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener("mousemove", paint);
+    canvas.addEventListener("touchmove", paint);
     return () => {
-      canvas.removeEventListener("mousemove", paint);
+      canvas.removeEventListener("touchmove", paint);
     };
   }, [paint]);
 
@@ -79,26 +80,27 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener("mouseup", exitPaint);
-    canvas.addEventListener("mouseleave", exitPaint);
+    canvas.addEventListener("touchend", exitPaint);
+    canvas.addEventListener("touchcancel", exitPaint);
     return () => {
-      canvas.removeEventListener("mouseup", exitPaint);
-      canvas.removeEventListener("mouseleave", exitPaint);
+      canvas.removeEventListener("touchend", exitPaint);
+      canvas.removeEventListener("touchcancel", exitPaint);
     };
   }, [exitPaint]);
 
-  //Function to get the coordinates of the mouse click
-  const getCoordinates = (event: MouseEvent): Coordinate | undefined => {
+  //Function to get the coordinates of the touch
+  const getCoordinates = (event): Coordinate | undefined => {
     if (!canvasRef.current) {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
     return {
-      x: event.pageX - canvas.offsetLeft,
-      y: event.pageY - canvas.offsetTop
+      x: event.touches[0].clientX - canvas.offsetLeft,
+      y: event.touches[0].clientY - canvas.offsetTop
     };
   };
 
+  //Draw a line based on the initial coordinate and the final coordinate
   const drawLine = (
     originalMousePosition: Coordinate,
     newMousePosition: Coordinate
@@ -107,35 +109,28 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
-    const context = canvas.getContext("2d");
-    if (context) {
-      context.strokeStyle = "red";
-      context.lineJoin = "round";
-      context.lineWidth = 5;
-      context.beginPath();
-      context.moveTo(originalMousePosition.x, originalMousePosition.y);
-      context.lineTo(newMousePosition.x, newMousePosition.y);
-      context.closePath();
-      context.stroke();
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
+      ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
+      ctx.lineTo(newMousePosition.x, newMousePosition.y);
+      ctx.closePath();
+      ctx.stroke();
     }
   };
-
+ //Draw the initial dot for the painting
   const drawDot = (MousePosition: Coordinate) => {
     if (!canvasRef.current) {
       return;
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
-    const context = canvas.getContext("2d");
-    if (context) {
-      context.strokeStyle = "red";
-      context.lineJoin = "round";
-      context.lineWidth = 5;
-      context.save();
-      context.translate(MousePosition.x, MousePosition.y);
-      context.restore();
-      context.stroke();
-
-      console.log("running drawdot", MousePosition);
+    const ctx = canvas.getContext("2d");
+    if (ctx) {
+      ctx.beginPath();
+      ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
+      ctx.fill();
     }
   };
 
