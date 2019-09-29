@@ -91,12 +91,26 @@ it('starts a game only when there are enough players', () => {
   const secondName = "Second";
   const secondId = game.addPlayer(secondName);
   
-  expect(game.start()).toBe(false);
+  expect(game.startGame()).toBe(false);
   expect(game.accessStatus).toEqual(Status.Lobby);
 
   const thirdName = "Third";
   const thirdId = game.addPlayer(thirdName);
 
-  expect(game.start()).toBe(true);
+  expect(game.startGame()).toBe(true);
   expect(game.accessStatus).toEqual(Status.RoundStarting);
 })
+
+// it('starts a game and starts the round 10 seconds later', () => {
+//   const game = new Game();
+
+//   game.addPlayer("1");
+//   game.addPlayer("2");
+//   game.addPlayer("3");
+//   game.addPlayer("4");
+  
+//   expect(game.startGame()).toBe(true);
+//   expect(game.accessStatus).toEqual(Status.RoundStarting);
+//   jest.advanceTimersByTime(11*1000);
+//   expect(game.accessStatus).toEqual(Status.RoundOver);
+// })

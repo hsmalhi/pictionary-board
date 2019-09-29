@@ -115,10 +115,23 @@ export default class Game {
   }
 
   startCountdown(): void {
-
+    const intervalId = setInterval(() => {
+      this.timer--;
+      if (this.timer === 0) {
+        clearInterval(intervalId);
+        if (this.status === Status.RoundStarting) {
+          console.log("starting round")
+          this.startRound();
+        } else if (this.status === Status.RoundInProgress) {
+          this.endRound();
+        } else if (this.status === Status.RoundOver) {
+          this.startRound();
+        }
+      }
+    }, 1000)
   }
 
-  start(): boolean {
+  startGame(): boolean {
     if (this.players.length >= 3){
       this.status = Status.RoundStarting;
       this.timer = 10;
@@ -126,5 +139,17 @@ export default class Game {
       return true;
     }
     return false;
+  }
+
+  startRound(): boolean {
+    this.status = Status.RoundInProgress;
+    this.timer = 30;
+    return true;
+  }
+
+  endRound(): boolean {
+    this.status = Status.RoundOver;
+    this.timer = 5;
+    return true;
   }
 }
