@@ -10,21 +10,28 @@ let http = require("http").Server(app);
 // http server.
 let io = require("socket.io")(http);
 
-app.get("/", (req: any, res: any) => {
-  res.sendFile(path.resolve("./src/pages/bigscreen.html"));
-});
-
 // whenever a user connects on port 3000 via
 // a websocket, log that a user has connected
 io.on("connection", function(socket: any) {
   console.log("a user connected");
-  socket.on("message", function(message: any) {
-    console.log(message);
+  socket.join("lobby");
+
+  socket.on("coordinates", function(message: any) {
+    io.to("leader").emit("coordinates1", message);
+  });
+  socket.on("clear", function(message: any) {
+    io.to("leader").emit(message);
+  });
+  socket.on("stop", function(message: any) {
+    console.log("message");
+    io.to("leader").emit(message);
+  });
+  socket.on("lobbymessage", function(message: any) {
+    socket.join("leader");
+    console.log(`the lobby has spoken ${message}`);
   });
 });
 
 const server = http.listen(3001, function() {
   console.log("listening on *:3001");
 });
-
-console.log("hi");

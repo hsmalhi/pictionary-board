@@ -21,10 +21,17 @@ type Coordinate = {
 
 const socket = io("http://localhost:3001");
 
-function sendCoords(mousePosition : Coordinate) {
-  socket.emit("message", `${mousePosition.x}, ${mousePosition.y}`);
+function sendCoords(mousePosition: Coordinate) {
+  socket.emit("coordinates", mousePosition);
 }
 
+function sendClear() {
+  socket.emit("clear", "clear");
+}
+
+function sendStop() {
+  socket.emit("stop", "stop");
+}
 
 //Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height }: CanvasProps) => {
@@ -41,6 +48,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx = canvas.getContext("2d");
     ctx.clearRect(0, 0, canvas.width, canvas.height);
+    sendClear();
   };
 
   //Once the mouse is pressed down, we use this callback and then if the coordinates are true we will get the mouse poistion via coordiantes and set setispainting to true
@@ -56,8 +64,6 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
 
   //This is what starts everything, once the mouse is clicked then it calls start paint which begins the paint process
   useEffect(() => {
-    
-
     if (!canvasRef.current) {
       return;
     }
@@ -99,6 +105,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
   const exitPaint = useCallback(() => {
     setIsPainting(false);
     setMousePosition(undefined);
+    sendStop();
   }, []);
 
   useEffect(() => {
@@ -144,7 +151,6 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.lineTo(newMousePosition.x, newMousePosition.y);
       ctx.closePath();
       ctx.stroke();
-      console.log(newMousePosition.x, newMousePosition.y);
       sendCoords(newMousePosition);
     }
   };
@@ -159,7 +165,6 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.beginPath();
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
       ctx.fill();
-      console.log(MousePosition.x, MousePosition.y);
       sendCoords(MousePosition);
     }
   };
