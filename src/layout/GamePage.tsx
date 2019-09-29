@@ -1,20 +1,12 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Game from "./Game";
 
 const Home: React.FC = () => {
-
-
   return (
     <Fragment>
-      <div>Home</div>
-      <ul>
-        <li>
-          <Link to="/asd">Create Room</Link>
-        </li>
-        <li>
-          <Link to="/asd">Join Room</Link>
-        </li>
-      </ul>
+      <Game side="1"></Game>
+      <Game side="2"></Game>
     </Fragment>
   );
 };

@@ -6,12 +6,13 @@ import React, {
   Fragment
 } from "react";
 import "./styles/Whiteboard.scss";
-import io from "socket.io-client";
+const socket = io("http://localhost:3001");
 
 //Customizabe canvas
 interface CanvasProps {
   width: number;
   height: number;
+  room: string;
 }
 //Coordinates
 type Coordinate = {
@@ -19,22 +20,22 @@ type Coordinate = {
   y: number;
 };
 
-const socket = io("http://localhost:3001");
-
-function sendCoords(mousePosition: Coordinate) {
-  socket.emit("coordinates", mousePosition);
-}
-
-function sendClear() {
-  socket.emit("clear", "clear");
-}
-
-function sendStop() {
-  socket.emit("stop", "stop");
-}
-
 //Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height }: CanvasProps) => {
+  let room = window.location.href.split("/")[5];
+
+  function sendCoords(mousePosition: Coordinate) {
+    socket.emit("coordinates", { mousePosition, room });
+  }
+
+  function sendClear() {
+    socket.emit("clear", room);
+  }
+
+  function sendStop() {
+    socket.emit("stop", room);
+  }
+
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
   let canvasRef = useRef(null);
   //Checks for the state of the thing this is used in some functions
@@ -185,7 +186,3 @@ Whiteboard.defaultProps = {
 };
 
 export default Whiteboard;
-
-//send over a whole bunch of x/y coordinates
-//everytime someone clicks theres a click event send through the soket, send the current coordinate
-//

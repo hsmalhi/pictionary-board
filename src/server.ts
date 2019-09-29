@@ -10,25 +10,26 @@ let http = require("http").Server(app);
 // http server.
 let io = require("socket.io")(http);
 
+let user: any = [];
+
 // whenever a user connects on port 3000 via
 // a websocket, log that a user has connected
 io.on("connection", function(socket: any) {
+  user.push(socket.id);
   console.log("a user connected");
-  socket.join("lobby");
 
+  socket.on("lobbymessage", function(message: any) {
+    socket.join("leader");
+    console.log(`the lobby has spoken ${message}`);
+  });
   socket.on("coordinates", function(message: any) {
     io.to("leader").emit("coordinates1", message);
   });
   socket.on("clear", function(message: any) {
-    io.to("leader").emit(message);
+    io.to("leader").emit("clear",message);
   });
   socket.on("stop", function(message: any) {
-    console.log("message");
-    io.to("leader").emit(message);
-  });
-  socket.on("lobbymessage", function(message: any) {
-    socket.join("leader");
-    console.log(`the lobby has spoken ${message}`);
+    io.to("leader").emit("stop",message);
   });
 });
 

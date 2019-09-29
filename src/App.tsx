@@ -6,7 +6,7 @@ import Whiteboard from "./components/Whiteboard";
 const App: React.FC = () => {
   return (
     <main>
-      <Whiteboard />
+      <Whiteboard room="123" />
     </main>
   );
 };
