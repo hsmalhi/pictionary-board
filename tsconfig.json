@@ -1,8 +1,13 @@
 {
   "compilerOptions": {
+    "isolatedModules": true,
     "skipLibCheck": true,
     "target": "es6",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "noImplicitAny": true,
     "allowJs": true,
     "strictNullChecks": false,
@@ -13,12 +18,15 @@
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
     "outDir": "dist"
   },
-  "include": ["./src/*", "src/**/*"],
-
-  "exclude": ["./node_modules/*"]
+  "include": [
+    "./src/*",
+    "src/**/*"
+  ],
+  "exclude": [
+    "./node_modules/*"
+  ]
 }
