@@ -7,10 +7,15 @@
     "@types/node": "12.7.8",
     "@types/react": "16.9.3",
     "@types/react-dom": "16.9.1",
+    "@types/redux-logger": "^3.0.7",
+    "@types/redux-mock-store": "^1.0.1",
     "@types/webpack-env": "^1.14.0",
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-redux": "^7.1.1",
     "react-scripts": "3.1.2",
+    "redux": "^4.0.4",
+    "redux-logger": "^3.0.6",
     "typescript": "3.6.3"
   },
   "scripts": {
@@ -44,6 +49,7 @@
     "awesome-typescript-loader": "^5.2.1",
     "react-docgen-typescript-loader": "^3.2.1",
     "react-docgen-typescript-webpack-plugin": "^1.1.0",
+    "redux-devtools": "^3.5.0",
     "webpack-env": "^0.8.0"
   }
 }
