@@ -6,6 +6,7 @@ import React, {
   Fragment
 } from "react";
 import "./styles/Whiteboard.scss";
+import io from "socket.io-client";
 
 //Customizabe canvas
 interface CanvasProps {
@@ -18,17 +19,24 @@ type Coordinate = {
   y: number;
 };
 
+const socket = io("http://localhost:3001");
+
+function sendCoords(mousePosition : Coordinate) {
+  socket.emit("message", `${mousePosition.x}, ${mousePosition.y}`);
+}
+
+
 //Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
-  let canvasRef = useRef<HTMLCanvasElement>(null);
+  let canvasRef = useRef(null);
   //Checks for the state of the thing this is used in some functions
   const [isPainting, setIsPainting] = useState(false);
   //Checks the mouse position via Coordinate
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
     undefined
   );
-
+  //Clears the image
   const clearImage = function() {
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx = canvas.getContext("2d");
@@ -48,6 +56,8 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
 
   //This is what starts everything, once the mouse is clicked then it calls start paint which begins the paint process
   useEffect(() => {
+    
+
     if (!canvasRef.current) {
       return;
     }
@@ -105,7 +115,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
   }, [exitPaint]);
 
   //Function to get the coordinates of the touch
-  const getCoordinates = (event): Coordinate | undefined => {
+  const getCoordinates = (event: TouchEvent | undefined) => {
     if (!canvasRef.current) {
       return;
     }
@@ -135,6 +145,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.closePath();
       ctx.stroke();
       console.log(newMousePosition.x, newMousePosition.y);
+      sendCoords(newMousePosition);
     }
   };
   //Draw the initial dot for the painting
@@ -149,6 +160,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
       ctx.fill();
       console.log(MousePosition.x, MousePosition.y);
+      sendCoords(MousePosition);
     }
   };
 
