@@ -7,6 +7,8 @@ import React, {
 } from "react";
 import "./styles/Whiteboard.scss";
 import io from "socket.io-client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
 //Customizabe canvas
 interface CanvasProps {
@@ -168,7 +170,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
     <Fragment>
       <canvas ref={canvasRef} height={height} width={width} />
       <button className="clear-button" onClick={clearImage}>
-        Clear Button
+      <FontAwesomeIcon icon={faTimes} />
       </button>
     </Fragment>
   );
