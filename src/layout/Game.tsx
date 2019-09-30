@@ -12,8 +12,7 @@ interface CanvasProps {
 }
 const socket = io("http://localhost:3001");
 
-socket.emit("lobbymessage", "this is the lobby");
-
+socket.emit("leadersign", { room: 1 });
 //Initializes the whiteboard with these sizes
 const Game = ({ width, height, side }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref

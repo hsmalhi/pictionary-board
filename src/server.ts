@@ -18,18 +18,26 @@ io.on("connection", function(socket: any) {
   user.push(socket.id);
   console.log("a user connected");
 
-  socket.on("lobbymessage", function(message: any) {
-    socket.join("leader");
-    console.log(`the lobby has spoken ${message}`);
+  socket.on("playermessage", function() {
+    socket.join("player");
+  });
+  socket.on("playerguess", function(message: any) {
+    io.to("room").emit("playerguess", message);
+  });
+
+  socket.on("sign", function(message: any) {
+    let roomName = `${message.room}${message.player}`;
+    console.log(roomName);
+    socket.join(message.roomName);
   });
   socket.on("coordinates", function(message: any) {
-    io.to("leader").emit("coordinates1", message);
+    io.to("room").emit("coordinates1", message);
   });
   socket.on("clear", function(message: any) {
-    io.to("leader").emit("clear",message);
+    io.to("room").emit("clear", message);
   });
   socket.on("stop", function(message: any) {
-    io.to("leader").emit("stop",message);
+    io.to("room").emit("stop", message);
   });
 });
 

@@ -13,6 +13,7 @@ interface CanvasProps {
   width: number;
   height: number;
   room: string;
+  side: string;
 }
 //Coordinates
 type Coordinate = {
@@ -23,17 +24,17 @@ type Coordinate = {
 //Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height }: CanvasProps) => {
   let room = window.location.href.split("/")[5];
-
+  let side = "left";
   function sendCoords(mousePosition: Coordinate) {
     socket.emit("coordinates", { mousePosition, room });
   }
 
   function sendClear() {
-    socket.emit("clear", room);
+    socket.emit("clear", room, side);
   }
 
   function sendStop() {
-    socket.emit("stop", room);
+    socket.emit("stop", room, side);
   }
 
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref

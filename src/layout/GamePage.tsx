@@ -5,8 +5,8 @@ import Game from "./Game";
 const Home: React.FC = () => {
   return (
     <Fragment>
-      <Game side="1"></Game>
-      <Game side="2"></Game>
+      <Game side="left"></Game>
+      <Game side="right"></Game>
     </Fragment>
   );
 };

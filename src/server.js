@@ -13,18 +13,25 @@ var user = [];
 io.on("connection", function (socket) {
     user.push(socket.id);
     console.log("a user connected");
-    socket.on("lobbymessage", function (message) {
-        socket.join("leader");
-        console.log("the lobby has spoken " + message);
+    socket.on("playermessage", function () {
+        socket.join("player");
+    });
+    socket.on("playerguess", function (message) {
+        io.to("room").emit("playerguess", message);
+    });
+    socket.on("sign", function (message) {
+        var roomName = "" + message.room + message.player;
+        console.log(roomName);
+        socket.join(message.roomName);
     });
     socket.on("coordinates", function (message) {
-        io.to("leader").emit("coordinates1", message);
+        io.to("room").emit("coordinates1", message);
     });
     socket.on("clear", function (message) {
-        io.to("leader").emit("clear", message);
+        io.to("room").emit("clear", message);
     });
     socket.on("stop", function (message) {
-        io.to("leader").emit("stop", message);
+        io.to("room").emit("stop", message);
     });
 });
 var server = http.listen(3001, function () {
