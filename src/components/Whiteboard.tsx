@@ -6,8 +6,11 @@ import React, {
   Fragment
 } from "react";
 import "./styles/Whiteboard.scss";
-const socket = io("http://localhost:3001");
+import io from "socket.io-client";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
+const socket = io("http://localhost:3001");
 //Customizabe canvas
 interface CanvasProps {
   width: number;
@@ -174,7 +177,7 @@ const Whiteboard = ({ width, height }: CanvasProps) => {
     <Fragment>
       <canvas ref={canvasRef} height={height} width={width} />
       <button className="clear-button" onClick={clearImage}>
-        Clear Button
+      <FontAwesomeIcon icon={faTimes} />
       </button>
     </Fragment>
   );

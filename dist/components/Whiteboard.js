@@ -128,7 +128,7 @@ const Whiteboard = ({ width, height }) => {
     return (<react_1.Fragment>
       <canvas ref={canvasRef} height={height} width={width}/>
       <button className="clear-button" onClick={clearImage}>
-        Clear Button
+      <i class="fal fa-times-circle"></i>      
       </button>
     </react_1.Fragment>);
 };
