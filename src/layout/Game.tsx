@@ -14,7 +14,6 @@ interface CanvasProps {
 //Initializes the whiteboard with these sizes
 const Game = ({ width, height, side, socket }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
-  socket.emit("leadersign", { room: 1 });
 
   let canvasRef = useRef(null);
   let drawingCoordinates: any = [];
@@ -28,7 +27,7 @@ const Game = ({ width, height, side, socket }: CanvasProps) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    socket.on(`coordinates${side}`, function(data: any) {
+    socket.on(`coordinates`, function(data: any) {
       drawDot(data["mousePosition"]);
       drawingCoordinates.push(data["mousePosition"]);
       socket.on("stop", function() {
@@ -78,15 +77,14 @@ const Game = ({ width, height, side, socket }: CanvasProps) => {
 
   return (
     <Fragment>
-      <div>game</div>
-      <canvas ref={canvasRef} height={height} width={width} />
+      <canvas className={side} ref={canvasRef} height={height} width={width} />
     </Fragment>
   );
 };
 
 Game.defaultProps = {
-  width: window.innerWidth * 0.99,
-  height: window.innerHeight * 0.99
+  width: window.innerWidth * 0.4,
+  height: window.innerHeight * 0.8
 };
 
 export default Game;

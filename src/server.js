@@ -19,20 +19,20 @@ io.on("connection", function (socket) {
     });
     socket.on("sign", function (message) {
         var roomName = "" + message.room + message.player;
-        console.log(roomName);
         socket.join(roomName);
+        socket.broadcast.emit('rooms', io.sockets);
     });
     socket.on("coordinates", function (message) {
         var roomName = message.room + "0";
-        io.to(roomName).emit("coordinates", message);
+        socket.broadcast.emit("coordinates", message);
     });
     socket.on("clear", function (message) {
         var roomName = message.room + "0";
-        io.to(roomName).emit("clear", message);
+        socket.emit("clear", message);
     });
     socket.on("stop", function (message) {
         var roomName = message.room + "0";
-        io.to(roomName).emit("stop", message);
+        socket.emit("stop", message);
     });
 });
 var server = http.listen(3001, function () {

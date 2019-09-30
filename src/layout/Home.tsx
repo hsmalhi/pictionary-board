@@ -8,6 +8,8 @@ const Home: React.FC = (props: any) => {
 
   const createRoom = function() {
     props.socket.emit("sign", { room: room, player: 0 });
+    props.socket.emit("getRooms", "abc");
+
   };
 
   const joinRoom = function() {
@@ -21,8 +23,8 @@ const Home: React.FC = (props: any) => {
       <ul>
         <li>
           <button onClick={createRoom}>
-            <Link to={"/lobby/" + room}>Create Room</Link>
           </button>
+            <Link to={"/lobby/" + room}>Create Room</Link>
         </li>
         <li>
           <button onClick={joinRoom}>

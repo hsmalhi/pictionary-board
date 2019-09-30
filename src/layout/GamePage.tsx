@@ -1,15 +1,17 @@
-import React, { Fragment } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import React from "react";
 import Game from "./Game";
+import Word from "../components/Word"
+import "../components/styles/GamePage.scss"
 
 
-const Home: React.FC = (props : any) => {
+const Home: React.FC  = (props : any) => {
 
   return (
-    <Fragment>
-      <Game side="left" socket={props.socket}></Game>
-      <Game side="right" socket={props.socket} ></Game>
-    </Fragment>
+      <div className="flex">
+        <Word word="Star Wars"/>
+      <Game className="left" {...props} side="left" socket={props.socket} ></Game>
+      <Game className="right" {...props} side="right" socket={props.socket} ></Game>
+      </div>
   );
 };
 
