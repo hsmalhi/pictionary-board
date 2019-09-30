@@ -9,10 +9,9 @@ const convertWord = function(word: string) {
   let result = "";
   for (let letter of word) {
     if (letter == " ") {
-      result += " - ";
+      result += "   ";
     } else result += " _ ";
   }
-  console.log(result);
   return result;
 };
 

@@ -3,7 +3,7 @@ import "./App.css";
 import Whiteboard from "./components/Whiteboard";
 import Home from "./layout/Home";
 import Lobby from "./layout/Lobby";
-import GamePage from "./layout/GamePage";
+import GamePage from "./components/GamePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 const socket :any = io("http://localhost:3001");
 
