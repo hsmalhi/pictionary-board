@@ -1,9 +1,9 @@
-import { Role } from '../models/Game'
+import { Role, Status } from '../models/Game'
 
 /*
 * In order to keep track of players
  */  
-let players = 0
+let players: any;
 
 /*
  * We're defining every action name constant here
@@ -13,7 +13,8 @@ let players = 0
 export enum ActionTypes {
   SETUP = 'SETUP',
   ADD_PLAYER = 'ADD_PLAYER',
-  REMOVE_PLAYER = 'REMOVE_PLAYER'
+  REMOVE_PLAYER = 'REMOVE_PLAYER',
+  START_GAME = 'START_GAME'
 }
 
 /*
@@ -30,6 +31,7 @@ export interface SetupAction {
 export interface AddPlayerAction { 
   type: ActionTypes.ADD_PLAYER, 
   payload: {
+    id: number,
     name: string,
     avatar: string, 
     score: number, 
@@ -44,11 +46,31 @@ export interface RemovePlayerAction {
   } 
 }
 
+export interface StartGameAction { 
+  type: ActionTypes.START_GAME, 
+  payload: {
+    status: Status,
+    timer: number
+  } 
+}
+
 /*
  * Define our actions creators
  * We are returning the right Action for each function
  */
 export function setup(): SetupAction {
+  //Represents the ids that have or have not been taken by players yet
+  players = {
+    1: false,
+    2: false,
+    3: false,
+    4: false,
+    5: false,
+    6: false,
+    7: false,
+    8: false
+  };
+
   return {
     type: ActionTypes.SETUP,
     payload: {
@@ -58,22 +80,20 @@ export function setup(): SetupAction {
   }
 }
 
-export function addPlayer(name: string = Role.Main): AddPlayerAction {
-  if (name === Role.Main && players === 0) {
-    return {
-      type: ActionTypes.ADD_PLAYER,
-      payload: {
-        name,
-        avatar: '',
-        score: 0,
-        role: Role.Main
-      }
-    }
+export function addPlayer(name: string): AddPlayerAction {
+  let id = Number(Object.keys(players).find(key => players[key] === false));
+  //If there are no available ids, set it to 999 which the reducer then knows not to add this player
+  if (isNaN(id)) {
+    id = 999;
+  } else {
+    //Reserve the id so the new player can use it
+    players[id] = true;
   }
-  
+
   return {
     type: ActionTypes.ADD_PLAYER,
     payload: {
+      id,
       name,
       avatar: `https://api.adorable.io/avatars/285/${name}@adorable.png`,
       score: 0,
@@ -83,7 +103,8 @@ export function addPlayer(name: string = Role.Main): AddPlayerAction {
 }
 
 export function removePlayer(id: number): RemovePlayerAction {
-  players--;
+  //Free up this id for new players to use
+  players[id] = false;
   
   return {
     type: ActionTypes.REMOVE_PLAYER,
@@ -93,9 +114,19 @@ export function removePlayer(id: number): RemovePlayerAction {
   }
 }
 
+export function startGame(): StartGameAction {
+  return {
+    type: ActionTypes.START_GAME,
+    payload: {
+      status: Status.RoundStarting,
+      timer: 10 
+    }
+  }
+}
+
 /*
  * Define the Action type
  * It can be one of the types defining in our action/todos file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = SetupAction | AddPlayerAction | RemovePlayerAction
+export type Action = SetupAction | AddPlayerAction | RemovePlayerAction | StartGameAction
