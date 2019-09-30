@@ -18,9 +18,8 @@ const Home: React.FC = () => {
   return (
     <Fragment>
       <div className="home-page">
-        <div className="game-title">PartyPic</div>
-        {/* <Header /> */}
-        <div className="create-room">
+        <Header />
+        {/* <div className="create-room">
           <button className="create-room_button" onClick={createRoom}>
             <Link className="create-room_link" to={"/lobby/" + room}> Create Room </Link>
           </button>
@@ -43,7 +42,7 @@ const Home: React.FC = () => {
             <br />
             <input className="join-room_button"onClick={joinRoom} type="submit" name="PLAY" value="PLAY" />
           </form>
-        </div>
+        </div> */}
       </div>
     </Fragment>
   );

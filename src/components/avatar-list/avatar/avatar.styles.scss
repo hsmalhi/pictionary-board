@@ -1,0 +1,17 @@
+.avatar-container {
+  width: 75px;
+  height: 75px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  &:hover {
+    transform: scale(1.10);
+  }
+}
+.avatar-pic{
+  display: inline;
+  margin: 0 auto;
+  margin-left: -25%;
+  height: 100%;
+  width: auto;
+}

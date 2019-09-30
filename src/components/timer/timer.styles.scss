@@ -2,14 +2,18 @@
   position: absolute;
   width: 52px;
   height: 52px;
+  top: 0;
+  right:0;
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
 .countdown-timer__circle circle {
   stroke-dasharray: 151px;
   stroke-dashoffset: 151px;
   stroke-linecap: butt;
-  stroke-width: 4px;
-  stroke: #fd4f57;
+  stroke-width: 5px;
+  stroke: black;
   fill: none;
 }
 
