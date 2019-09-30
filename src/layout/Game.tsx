@@ -21,13 +21,13 @@ const Game = ({ width, height, side, socket }: CanvasProps) => {
     if (!canvasRef.current) {
       return;
     }
-    socket.on("clear", function() {
+    socket.on(`clear${side}`, function() {
       const canvas: HTMLCanvasElement = canvasRef.current;
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    socket.on(`coordinates`, function(data: any) {
+    socket.on(`coordinates${side}`, function(data: any) {
       drawDot(data["mousePosition"]);
       drawingCoordinates.push(data["mousePosition"]);
       socket.on("stop", function() {

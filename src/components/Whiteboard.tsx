@@ -22,12 +22,11 @@ type Coordinate = {
 };
 
 //Initializes the whiteboard with these sizes
-const Whiteboard = ({ width, height, socket }: CanvasProps) => {
+const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   let room = window.location.href.split("/")[4];
-  let side = "left";
 
   function sendCoords(mousePosition: Coordinate) {
-    socket.emit("coordinates", { mousePosition, room })
+    socket.emit("coordinates", { mousePosition, room, side })
   }
 
   function sendClear() {

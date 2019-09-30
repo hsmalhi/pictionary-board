@@ -30,15 +30,15 @@ io.on("connection", function(socket: any) {
 
   socket.on("coordinates", function(message: any) {
     let roomName = `${message.room}0`;
-    io.to(roomName).emit("coordinates", message);
+    io.to(roomName).emit(`coordinates${message.side}`, message);
   });
   socket.on("clear", function(message: any) {
     let roomName = `${message.room}0`;
-    io.to(roomName).emit("clear", message);
+    io.to(roomName).emit(`clear${message.side}`, message);
   });
   socket.on("stop", function(message: any) {
     let roomName = `${message.room}0`;
-    io.to(roomName).emit("stop", message);
+    io.to(roomName).emit(`stop${message.side}`, message);
   });
 });
 
