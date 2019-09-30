@@ -9,13 +9,10 @@ let http = require("http").Server(app);
 // set up socket.io and bind it to our
 // http server.
 let io = require("socket.io")(http);
-
+let rooms: any = {};
 let user: any = [];
 
-// whenever a user connects on port 3000 via
-// a websocket, log that a user has connected
 io.on("connection", function(socket: any) {
-  user.push(socket.id);
   console.log("a user connected");
 
   socket.on("playermessage", function() {
@@ -28,16 +25,20 @@ io.on("connection", function(socket: any) {
   socket.on("sign", function(message: any) {
     let roomName = `${message.room}${message.player}`;
     console.log(roomName);
-    socket.join(message.roomName);
+    socket.join(roomName);
   });
+
   socket.on("coordinates", function(message: any) {
-    io.to("room").emit("coordinates1", message);
+    let roomName = `${message.room}0`;
+    io.to(roomName).emit("coordinates", message);
   });
   socket.on("clear", function(message: any) {
-    io.to("room").emit("clear", message);
+    let roomName = `${message.room}0`;
+    io.to(roomName).emit("clear", message);
   });
   socket.on("stop", function(message: any) {
-    io.to("room").emit("stop", message);
+    let roomName = `${message.room}0`;
+    io.to(roomName).emit("stop", message);
   });
 });
 

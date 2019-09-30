@@ -1,14 +1,18 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-const socket = io("http://localhost:3001");
 
 interface Iprops {
   location: any;
+  socket: any;
 }
 
 const Lobby: React.FC<Iprops> = props => {
   let lobby = props.location.pathname.split("/");
   lobby = lobby[2];
+
+  let id = 0;
+
+  props.socket.emit("sign", { room: lobby, player: 0 });
 
   return (
     <Fragment>

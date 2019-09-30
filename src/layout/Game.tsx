@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useRef } from "react";
-import io from "socket.io-client";
 type Coordinate = {
   x: number;
   y: number;
@@ -9,13 +8,14 @@ interface CanvasProps {
   width: number;
   height: number;
   side: string;
+  socket: any;
 }
-const socket = io("http://localhost:3001");
 
-socket.emit("leadersign", { room: 1 });
 //Initializes the whiteboard with these sizes
-const Game = ({ width, height, side }: CanvasProps) => {
+const Game = ({ width, height, side, socket }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
+  socket.emit("leadersign", { room: 1 });
+
   let canvasRef = useRef(null);
   let drawingCoordinates: any = [];
   useEffect(() => {

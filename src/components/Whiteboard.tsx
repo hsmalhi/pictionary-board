@@ -6,7 +6,6 @@ import React, {
   Fragment
 } from "react";
 import "./styles/Whiteboard.scss";
-const socket = io("http://localhost:3001");
 
 //Customizabe canvas
 interface CanvasProps {
@@ -14,6 +13,7 @@ interface CanvasProps {
   height: number;
   room: string;
   side: string;
+  socket:any;
 }
 //Coordinates
 type Coordinate = {
@@ -22,7 +22,7 @@ type Coordinate = {
 };
 
 //Initializes the whiteboard with these sizes
-const Whiteboard = ({ width, height }: CanvasProps) => {
+const Whiteboard = ({ width, height, socket }: CanvasProps) => {
   let room = window.location.href.split("/")[5];
   let side = "left";
   function sendCoords(mousePosition: Coordinate) {

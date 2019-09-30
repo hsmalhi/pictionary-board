@@ -1,17 +1,17 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-const socket = io("http://localhost:3001");
 
-const Home: React.FC = () => {
+const Home: React.FC = (props: any) => {
   let id = 1;
   let room = "asd";
+  
 
   const createRoom = function() {
-    socket.emit("sign", { room: room, player: 0 });
+    props.socket.emit("sign", { room: room, player: 0 });
   };
 
   const joinRoom = function() {
-    socket.emit("sign", { room: room, player: id });
+    props.socket.emit("sign", { room: room, player: id });
     id++;
   };
 
