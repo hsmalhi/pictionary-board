@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "./avatar/avatar.component";
+import Avatar from 'react-avatar';
 
 //Customizabe canvas
 
