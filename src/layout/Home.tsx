@@ -1,5 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Header } from "../components/header.component";
 
 import "./Home.styles.scss";
 
@@ -18,6 +19,7 @@ const Home: React.FC = () => {
     <Fragment>
       <div className="home-page">
         <div className="game-title">PartyPic</div>
+        <Header />
         <div className="create-room">
           <button id="create-room-button" onClick={createRoom}>
             <Link to={"/lobby/" + room}>Create Room</Link>
