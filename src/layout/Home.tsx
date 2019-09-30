@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import { Header } from "../components/header.component";
+import Header from "../components/header.component";
 
 import "./Home.styles.scss";
 
@@ -19,29 +19,29 @@ const Home: React.FC = () => {
     <Fragment>
       <div className="home-page">
         <div className="game-title">PartyPic</div>
-        <Header />
+        {/* <Header /> */}
         <div className="create-room">
-          <button id="create-room-button" onClick={createRoom}>
-            <Link to={"/lobby/" + room}>Create Room</Link>
+          <button className="create-room_button" onClick={createRoom}>
+            <Link className="create-room_link" to={"/lobby/" + room}> Create Room </Link>
           </button>
         </div>
         <div className="join-room">
-          <form className="join-room-form">
-            <label>
+          <form className="join-room_form">
+            <label className="join-room_label">
               ROOM CODE
-              <input
+              <input className="join-room_input"
                 type="text"
                 name="roomcode"
                 placeholder="ENTER THE ROOM CODE"
               />
             </label>
             <br />
-            <label>
+            <label className="join-room_label">
               NAME
-              <input type="text" name="name" placeholder="ENTER YOUR NAME" />
+              <input className="join-room_input" type="text" name="name" placeholder="ENTER YOUR NAME" />
             </label>
             <br />
-            <input onClick={joinRoom} type="submit" name="PLAY" value="PLAY" />
+            <input className="join-room_button"onClick={joinRoom} type="submit" name="PLAY" value="PLAY" />
           </form>
         </div>
       </div>
