@@ -1,12 +1,16 @@
 import React from "react";
-// import Timer from "../timer/timer.component"
-import "./header.styles.scss";
+import Avatar from "./avatar/avatar.component";
+
+//Customizabe canvas
 
 const Header = () => {
+  
+  return (
   <div>
-    {/* <Avatar/> */}
+    <Avatar/ >
     {/* <Timer /> */}
   </div>
+  )
 };
 
 export default Header;
