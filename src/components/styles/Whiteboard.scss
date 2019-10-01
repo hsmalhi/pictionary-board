@@ -6,6 +6,58 @@ body {
 
 .clear-button {
   position: absolute;
-  top:0;
+  top: 0;
   left: 0;
+}
+
+.box {
+  width: 50px;
+  height: 50px;
+}
+
+.color {
+  // &-x{
+  //   background: x;
+  //   color: x;
+  // }
+
+  &-red {
+    background: red;
+    color: red;
+  }
+  &-black {
+    background: black;
+    color: black;
+  }
+  &-yellow {
+    background: yellow;
+    color: yellow;
+  }
+  &-green {
+    background: green;
+    color: green;
+  }
+  &-blue {
+    background: blue;
+    color: blue;
+  }
+  &-orange {
+    background: orange;
+    color: orange;
+  }
+  &-grey {
+    background: grey;
+    color: grey;
+  }
+  &-purple {
+    background: purple;
+    color: purple;
+  }
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: row;
+  bottom: 0;
+  position: absolute;
 }

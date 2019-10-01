@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import Whiteboard from "./components/Whiteboard";
+import Whiteboard from "./components/whiteboard/Whiteboard";
 import Home from "./layout/Home";
 import Lobby from "./layout/Lobby";
 import GamePage from "./components/GamePage";

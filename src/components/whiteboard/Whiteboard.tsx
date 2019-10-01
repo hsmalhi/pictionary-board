@@ -5,11 +5,12 @@ import React, {
   useState,
   Fragment
 } from "react";
-import "./styles/Whiteboard.scss";
+import "../styles/Whiteboard.scss";
 import io from "socket.io-client";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-
+import { Color, color } from "@storybook/theming";
+import Toolbar from "./Toolbar/Toolbar";
 const socket = io("http://localhost:3001");
 //Customizabe canvas
 interface CanvasProps {
@@ -17,7 +18,7 @@ interface CanvasProps {
   height: number;
   room: string;
   side: string;
-  socket:any;
+  socket: any;
 }
 //Coordinates
 type Coordinate = {
@@ -25,30 +26,33 @@ type Coordinate = {
   y: number;
 };
 
-//Initializes the whiteboard with these sizes
 const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   let room = window.location.href.split("/")[4];
 
+  //Sends coordinates of the mouse to the server while the user is drawing
   function sendCoords(mousePosition: Coordinate) {
-    socket.emit("coordinates", { mousePosition, room, side })
+    socket.emit("coordinates", { mousePosition, room, side });
   }
-
+  //When the pen is lifted sends a stop message to the client
+  function sendStop() {
+    socket.emit("stop", room, side);
+  }
+  //Sends coordinates of the mouse to the server while the user is drawing
   function sendClear() {
     socket.emit("clear", room, side);
   }
 
-  function sendStop() {
-    socket.emit("stop", room, side);
+  function handleColorChange(event: string) {
+    setColor(event);
   }
 
-  //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
   let canvasRef = useRef(null);
-  //Checks for the state of the thing this is used in some functions
   const [isPainting, setIsPainting] = useState(false);
-  //Checks the mouse position via Coordinate
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
     undefined
   );
+  const [color, setColor] = useState("black");
+
   //Clears the image
   const clearImage = function() {
     const canvas: HTMLCanvasElement = canvasRef.current;
@@ -64,7 +68,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       setIsPainting(true);
       setMousePosition(coordinates);
       //Draws a dot immediately when pressed down
-      drawDot(coordinates);
+      drawDot(coordinates, color);
     }
   }, []);
 
@@ -86,7 +90,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       if (isPainting) {
         const newMousePosition = getCoordinates(event);
         if (mousePosition && newMousePosition) {
-          drawLine(mousePosition, newMousePosition);
+          drawLine(mousePosition, newMousePosition, color);
           setMousePosition(newMousePosition);
         }
       }
@@ -94,9 +98,11 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     [isPainting, mousePosition]
   );
 
+  //command to stop scrolling on ios
   document.ontouchmove = function(event) {
     event.preventDefault();
   };
+
   useEffect(() => {
     if (!canvasRef.current) {
       return;
@@ -142,7 +148,8 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   //Draw a line based on the initial coordinate and the final coordinate
   const drawLine = (
     originalMousePosition: Coordinate,
-    newMousePosition: Coordinate
+    newMousePosition: Coordinate,
+    color: string
   ) => {
     if (!canvasRef.current) {
       return;
@@ -150,6 +157,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (ctx) {
+      ctx.strokeStyle = color;
       ctx.lineJoin = "round";
       ctx.lineWidth = 5;
       ctx.beginPath();
@@ -161,7 +169,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     }
   };
   //Draw the initial dot for the painting
-  const drawDot = (MousePosition: Coordinate) => {
+  const drawDot = (MousePosition: Coordinate, color: string) => {
     if (!canvasRef.current) {
       return;
     }
@@ -169,6 +177,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     const ctx = canvas.getContext("2d");
     if (ctx) {
       ctx.beginPath();
+      ctx.strokeStyle = color;
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
       ctx.fill();
       sendCoords(MousePosition);
@@ -179,8 +188,9 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     <Fragment>
       <canvas ref={canvasRef} height={height} width={width} />
       <button className="clear-button" onClick={clearImage}>
-      <FontAwesomeIcon icon={faTimes} />
+        <FontAwesomeIcon icon={faTimes} />
       </button>
+      <Toolbar onColorChange={handleColorChange} />
     </Fragment>
   );
 };
