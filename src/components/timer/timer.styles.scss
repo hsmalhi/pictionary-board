@@ -4,8 +4,9 @@
   height: 52px;
   top: 0;
   right:0;
-  margin-right: 10px;
-  margin-top: 10px;
+  margin-right: 30px;
+  margin-top: 30px;
+  transform: scale(2)
 }
 
 .countdown-timer__circle circle {
@@ -15,6 +16,7 @@
   stroke-width: 5px;
   stroke: black;
   fill: none;
+  scale:2;
 }
 
 .countdown-timer__circle svg {
