@@ -6,6 +6,7 @@ import Lobby from "./layout/Lobby";
 import GamePage from "./components/GamePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Game from "./components/Game";
+import GuessBoard from "../src/components/guessboard/Guessboard.component";
 const socket :any = io("http://localhost:3001");
 
 
@@ -15,6 +16,7 @@ const Routes: React.FC = () => {
     <Router>
       <div>
         <Route exact path="/game/:id" component={(props : any)=><GamePage {...props} socket={socket}/>} />
+        <Route exact path="/guess" component={(props : any)=><GuessBoard/>} />
         <Route exact path="/Game/:roomid/:playerid" component={(props : any)=><Whiteboard {...props} socket={socket} />} />
         {/* <Route exact path="/lobby/:id" component={(props : any)=><Lobby {...props} socket={socket}/>}/> */}
         <Route exact path="/:id" component={(props : any)=><Game {...props} socket={socket}/>}/>
