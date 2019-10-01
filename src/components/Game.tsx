@@ -1,31 +1,45 @@
 import React from 'react';
-import { createStore } from 'redux';
-import { Provider } from 'react-redux'
-import reducer, { initialState } from "../reducers/game"
 import io from "socket.io-client";
+import { setup } from '../actions/game';
+import { connect } from 'react-redux';
 
-const store = createStore(reducer, initialState);
+const mapStateToProps = (state: any) => {
+  return {
+      code: state.game.code,
+      status: state.game.status,
+      timer: state.game.timer,
+      players: state.game.players   
+  };
+}
 
-const socket: any = io("http://localhost:3001");
+function mapDispatchToProps(dispatch: any) {
+  return {
+    setup: (code: string) => dispatch(setup(code))
+  };
+}
 
-const Game: React.FC = () => {
-  socket.on('connect', (socket: any) => {
-    // socket.emit("SETUP");
+const socket: any = io.connect("http://localhost:3002");
 
-    console.log("here");
+const ConnectedGame: React.FC = (props:any) => {
+  socket.on("connect", () => {
+    socket.emit("SETUP");
+  })
 
-    // socket.on("ROOM_CODE", function(roomCode: string) {
-    //   console.log(roomCode);
-    // });
-  });
+  socket.on("ROOM_CREATED", (message: any) => {
+    props.setup(message.code);
+  })
 
   return (
-    <Provider store={store}>
-      <div className="Game">
-        <h1>{store.getState().game.players}</h1>
-      </div>
-    </Provider>
+    <div className="Game">
+      <h1>Hello World!</h1>
+      <p>Code: {props.code}</p>
+      <p>Status: {props.status}</p>
+      <p>Timer: {props.timer}</p>
+      <p>Players: {props.players.length}</p>
+    </div>
   );
 }
+
+const Game = connect(mapStateToProps, mapDispatchToProps)(ConnectedGame);
 
 export default Game;

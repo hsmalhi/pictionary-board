@@ -58,7 +58,7 @@ export interface StartGameAction {
  * Define our actions creators
  * We are returning the right Action for each function
  */
-export function setup(): SetupAction {
+export function setup(code: string): SetupAction {
   //Represents the ids that have or have not been taken by players yet
   players = {
     1: false,
@@ -74,8 +74,7 @@ export function setup(): SetupAction {
   return {
     type: ActionTypes.SETUP,
     payload: {
-      //This will need to be dynamically generated eventually
-      code: 'AAA'
+      code
     }
   }
 }
