@@ -18,14 +18,16 @@ function mapDispatchToProps(dispatch: any) {
   };
 }
 
-const socket: any = io.connect("http://localhost:3002");
+// const socket: any = io.connect("http://localhost:3001");
 
 const ConnectedGame: React.FC = (props:any) => {
-  socket.on("connect", () => {
-    socket.emit("SETUP");
-  })
+  // props.socket.emit("SETUP");
 
-  socket.on("ROOM_CREATED", (message: any) => {
+  // props.socket.on("connect", () => {
+  //   props.socket.emit("SETUP");
+  // })
+
+  props.socket.on("ROOM_CREATED", (message: any) => {
     props.setup(message.code);
   })
 

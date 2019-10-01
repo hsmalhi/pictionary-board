@@ -1,0 +1,24 @@
+.flex {
+  display: flex;
+  justify-content: center;
+  height: 85vh;
+}
+
+.left,
+.right {
+  border-style: solid;
+}
+
+.left {
+  border-width: 5px 0px 5px 5px;
+}
+.right {
+  border-style: solid;
+  border-width: 5px 5px 5px 0px;
+}
+
+.word {
+  position: absolute;
+  font-size: 3em;
+  white-space: pre-wrap;
+}

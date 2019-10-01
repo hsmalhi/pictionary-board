@@ -6,12 +6,13 @@ import * as serviceWorker from './serviceWorker';
 import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import reducer, { initialState } from "./reducers/game"
+import Routes from './Routes';
 
 const store = createStore(reducer, initialState);
 
 ReactDOM.render(
   <Provider store={store}>
-    <App />
+    <Routes />
   </Provider>, document.getElementById('root')
 );
 

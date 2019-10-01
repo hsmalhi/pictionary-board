@@ -1,0 +1,90 @@
+.home-page {
+  /* The image used */
+  background-image: url("https://www.wallpaperflare.com/static/51/555/676/drawing-doodle-wallpaper.jpg");
+
+  /* Full height */
+  height: 100vh;
+  width: 100vw;
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+.create-room{
+  &_button {
+    font-size: 75px;
+    color: black;
+    font-family: "Bubblegum Sans", sans-serif;
+    cursor: pointer;
+    background-color: lightpink;
+    border-radius: 15px;
+  }
+  &_link {
+    text-decoration: none;
+    color: white;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+  }
+  &_button:hover{
+    transform: scale(1.10);
+  }
+}
+
+@media screen and (min-width: 0px) and (max-width: 425px) {
+  .join-room {
+    display: block;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 50%;
+    border-radius: 30px;
+    font-size: 25px;
+    &_form {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      background-color:lightpink;
+      font-family: "Bubblegum Sans", sans-serif;
+      border-radius: 10px;
+      height: 35vh;
+      width: 55vw;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+    &_input{
+      display:block;
+      width: 95%;
+      font-family: "Bubblegum Sans", sans-serif;
+      border-radius: 10px;
+      background-color: lightgrey;
+      font-size: 15px;
+    }
+    &_button{
+      display:block;
+      justify-content:center;
+      width: 100%;
+      font-family: "Bubblegum Sans", sans-serif;
+      border-radius: 10px;
+      background-color: white;
+      font-size: 25px;
+    }
+  }
+  .create-room {
+    display: none;
+  }
+}
+@media screen and (min-width: 426px) {
+  .join-room {
+    display: none;
+  }
+  .create-room {
+    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: sticky;
+    top: 50%;
+  }
+}
