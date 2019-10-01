@@ -1,5 +1,4 @@
 import React, { Fragment, useEffect, useRef } from "react";
-import io from "socket.io-client";
 type Coordinate = {
   x: number;
   y: number;
@@ -9,21 +8,20 @@ interface CanvasProps {
   width: number;
   height: number;
   side: string;
+  socket: any;
 }
-const socket = io("http://localhost:3001");
-
-socket.emit("lobbymessage", "this is the lobby");
 
 //Initializes the whiteboard with these sizes
-const Game = ({ width, height, side }: CanvasProps) => {
+const Game = ({ width, height, side, socket }: CanvasProps) => {
   //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
+
   let canvasRef = useRef(null);
   let drawingCoordinates: any = [];
   useEffect(() => {
     if (!canvasRef.current) {
       return;
     }
-    socket.on("clear", function() {
+    socket.on(`clear${side}`, function() {
       const canvas: HTMLCanvasElement = canvasRef.current;
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -79,15 +77,14 @@ const Game = ({ width, height, side }: CanvasProps) => {
 
   return (
     <Fragment>
-      <div>game</div>
-      <canvas ref={canvasRef} height={height} width={width} />
+      <canvas className={side} ref={canvasRef} height={height} width={width} />
     </Fragment>
   );
 };
 
 Game.defaultProps = {
-  width: window.innerWidth * 0.99,
-  height: window.innerHeight * 0.99
+  width: window.innerWidth * 0.4,
+  height: window.innerHeight * 0.8
 };
 
 export default Game;
