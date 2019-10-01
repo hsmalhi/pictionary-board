@@ -2,22 +2,6 @@ import React, { Fragment } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Header from "../components/header.component";
 import "./Home.styles.scss";
-
-const Home: any= (props: any) => {
-  let id = 1;
-  let room = "asd";
-  
-
-  const createRoom = function() {
-    props.socket.emit("sign", { room: room, player: 0 });
-    props.socket.emit("getRooms", "abc");
-
-  };
-
-  const joinRoom = function() {
-    props.socket.emit("sign", { room: room, player: id });
-    id++;
-  };
   
 const socket = io("http://localhost:3001");
 const Home: React.FC = () => {
@@ -25,6 +9,7 @@ const Home: React.FC = () => {
   let room = "asd";
   const createRoom = function() {
     socket.emit("sign", { room: room, player: 0 });
+    socket.emit("getRooms", "abc");
   };
   const joinRoom = function() {
     socket.emit("sign", { room: room, player: id });
