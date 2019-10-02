@@ -89,12 +89,13 @@ const Home: any = (props: any) => {
               />
             </label>
             <br />
-            <input
+            <button
               className="join-room_button"
-              onClick={validate}
+              onTouchStart={validate}
               name="PLAY"
-              value="PLAY"
-            />
+              value="PLAY">
+              PLAY
+            </button>
           </form>
         </div>
       </div>
