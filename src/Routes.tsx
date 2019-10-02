@@ -7,7 +7,7 @@ import GamePage from "./components/GamePage";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Game from "./components/Game";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
-const socket :any = io("http://localhost:3001");
+const socket :any = io("http://pictionary-server.herokuapp.com/");
 
 const Routes: React.FC = () => {
   return (
