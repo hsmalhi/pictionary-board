@@ -8,15 +8,15 @@ const CentreWrapper = styled.div`
   overflow: hidden;
   position: absolute;
   width: 100%;
-  height: 100%;
+  height: 50vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  font-family: sans-serif;
+  font-family: "Bubblegum Sans", sans-serif;
 `;
 
-const Flag = styled(({ flag, ...props }) => <div {...props}>{flag}</div>)`
+const Word = styled(({ word, ...props }) => <div {...props}>{word}</div>)`
   font-size: 5em;
   line-height: 1em;
   padding: 0;
@@ -39,37 +39,37 @@ const Results = styled(({ score, attempts, ...props }) => (
 const shuffle = (arr: any) => [...arr].sort(() => 0.5 - Math.random());
 
 export default (props: any) => {
-  const [flags, setFlags] = useState(() => shuffle(props.flags));
+  const [words, setWords] = useState(() => shuffle(props.words));
   const [score, setScore] = useState(0);
   const [attempts, setAttempts] = useState(props.attempts);
 
-  const nextFlag = () => {
-    setFlags(flags.length > 1 ? flags.slice(1) : shuffle(props.flags));
+  const nextWord = () => {
+    setWords(words.length > 1 ? words.slice(1) : shuffle(props.words));
     setAttempts(props.attempts);
   };
 
   const onCorrect = () => {
     setScore(score + 1);
-    nextFlag();
+    nextWord();
   };
 
   const onIncorrect = () => {
-    if (attempts > -1) {
+    if (attempts >= 0) {
       setAttempts(attempts + 1);
       return;
     }
 
     setScore(Math.max(0, score - 1));
-    nextFlag();
+    nextWord();
   };
 
-  const [{ emoji, name }] = flags;
+  const [{ emoji, name }] = words;
 
   useEffect(() => props.cheatMode && console.log(name), [name]);
 
   return (
     <CentreWrapper>
-      <Flag flag={emoji} />
+      <Word word={emoji} />
       <AnswerBox
         answer={name}
         onCorrect={onCorrect}

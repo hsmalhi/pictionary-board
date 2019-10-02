@@ -1,22 +1,23 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
 
-const toPlaceholder = (value:any, answer:any) =>
+const toPlaceholder = (value: any, answer: any) =>
   [...value].reduce((placeholder, char) => {
     return placeholder.replace("_", char);
   }, answer.replace(/[^\s]/g, "_"));
 
-const normalise = (value:any) => value.toUpperCase().replace(/[^A-Z]/g, "");
+const normalise = (value: any) => value.toUpperCase().replace(/[^A-Z]/g, "");
 
 const Form = styled.form`
   margin-bottom: 1em;
 `;
 
 const Placeholder = styled.span`
-  font-family: courier;
+  font-family: "Bubblegum Sans", sans-serif;
   padding: 0 0 0.2em 0.2em;
   font-size: 2em;
-  letter-spacing: 0.2em;
+  letter-spacing: 0.2em;    
+  outline: 0 none;
 `;
 
 const HiddenInput = styled.input`
@@ -31,7 +32,6 @@ const HiddenInput = styled.input`
   &:focus + ${Placeholder} {
     box-shadow: 0 0 5px rgba(81, 203, 238, 1);
   }
-  font-family: "Bubblegum Sans", sans-serif;
 `;
 
 interface AnswerProps {
@@ -40,16 +40,16 @@ interface AnswerProps {
   onIncorrect: any;
 }
 
-export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps ) => {
+export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
   const [value, setValue] = useState("");
 
   useEffect(() => setValue(""), [answer]);
 
-  const handleChange = (event:any) => {
+  const handleChange = (event: any) => {
     setValue(normalise(event.target.value));
   };
 
-  const handleSubmit = (event:any) => {
+  const handleSubmit = (event: any) => {
     event.preventDefault();
 
     value === normalise(answer) ? onCorrect() : onIncorrect();

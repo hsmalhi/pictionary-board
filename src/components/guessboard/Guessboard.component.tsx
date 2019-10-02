@@ -2,10 +2,11 @@ import React from "react";
 import Game from "./Game";
 import words from "./words";
 
+import "./guessboard.styles.scss";
 
 const GuessBoard = () => {
   return (
-    <Game flags={words} attempts={0} cheatMode />
+    <Game words={words} attempts={0} cheatMode />
   );
 }
 export default GuessBoard;
