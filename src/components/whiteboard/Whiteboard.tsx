@@ -7,8 +7,8 @@ import React, {
 } from "react";
 import "../styles/Whiteboard.scss";
 import io from "socket.io-client";
-// import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-// import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import { Color, color } from "@storybook/theming";
 import Toolbar from "./Toolbar/Toolbar";
 //Customizabe canvas
@@ -158,7 +158,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     if (ctx) {
       ctx.strokeStyle = color;
       ctx.lineJoin = "round";
-      ctx.lineWidth = 5;
+      ctx.lineWidth = 10;
       ctx.beginPath();
       ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
       ctx.lineTo(newMousePosition.x, newMousePosition.y);
@@ -187,7 +187,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     <Fragment>
       <canvas ref={canvasRef} height={height} width={width} />
       <button className="clear-button" onClick={clearImage}>
-        {/* <FontAwesomeIcon icon={faTimes} /> */}
+        <FontAwesomeIcon icon={faTimes} />
       </button>
       <Toolbar onColorChange={handleColorChange} />
     </Fragment>

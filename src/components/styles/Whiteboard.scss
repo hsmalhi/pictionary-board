@@ -11,15 +11,15 @@ body {
 }
 
 .box {
-  width: 50px;
-  height: 50px;
+  width: 12.5vw;
+  height: 12.5vw;
+  user-select: none;
 }
 
+
+
+
 .color {
-  // &-x{
-  //   background: x;
-  //   color: x;
-  // }
 
   &-red {
     background: red;
@@ -49,9 +49,9 @@ body {
     background: grey;
     color: grey;
   }
-  &-purple {
-    background: purple;
-    color: purple;
+  &-brown {
+    background: brown;
+    color: brown;
   }
 }
 
