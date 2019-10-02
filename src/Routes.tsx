@@ -9,8 +9,6 @@ import Game from "./components/Game";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
 const socket :any = io("http://localhost:3001");
 
-
-
 const Routes: React.FC = () => {
   return (
     <Router>

@@ -12,6 +12,7 @@ let players: any;
  */
 export enum ActionTypes {
   SETUP = 'SETUP',
+  UPDATE_PLAYERS = 'UPDATE_PLAYERS',
   ADD_PLAYER = 'ADD_PLAYER',
   REMOVE_PLAYER = 'REMOVE_PLAYER',
   START_GAME = 'START_GAME'
@@ -26,6 +27,16 @@ export interface SetupAction {
   payload: { 
     code: string
   } 
+}
+
+export interface UpdatePlayersAction { 
+  type: ActionTypes.UPDATE_PLAYERS, 
+  payload: {
+    players: {
+      id: number,
+      name: string 
+    } []
+  }
 }
 
 export interface AddPlayerAction { 
@@ -79,6 +90,16 @@ export function setup(code: string): SetupAction {
   }
 }
 
+export function updatePlayers(players: any[]): UpdatePlayersAction {
+ 
+  return {
+    type: ActionTypes.UPDATE_PLAYERS,
+    payload: {
+      players
+    }
+  }
+}
+
 export function addPlayer(name: string): AddPlayerAction {
   let id = Number(Object.keys(players).find(key => players[key] === false));
   //If there are no available ids, set it to 999 which the reducer then knows not to add this player
@@ -128,4 +149,4 @@ export function startGame(): StartGameAction {
  * It can be one of the types defining in our action/todos file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = SetupAction | AddPlayerAction | RemovePlayerAction | StartGameAction
+export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction
