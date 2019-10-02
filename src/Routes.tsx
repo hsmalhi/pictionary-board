@@ -8,7 +8,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Game from "./components/Game";
 import LobbySetup from "./components/lobby/lobby.component";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
-const socket :any = io("http://pictionary-server.herokuapp.com/");
+const socket :any = io("https://pictionary-server.herokuapp.com/");
 
 const Routes: React.FC = () => {
   return (
