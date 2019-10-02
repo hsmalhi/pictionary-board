@@ -43,6 +43,33 @@ export default function reducer(state: State = initialState, action: Action) {
       }
     }
 
+    case ActionTypes.UPDATE_PLAYERS: {
+      let players: any = [];
+
+      action.payload.players.forEach((player, index) => {
+        if (state.game.players[index]) {
+          players[index] = state.game.players[index]
+        } else {
+          players[index] = {
+            id: player.id,
+            name: player.name,
+            avatar: `https://api.adorable.io/avatars/285/${player.name}@adorable.png`,
+            score: 0,
+            role: Role.None
+          }
+
+        }
+      });
+      console.log(players)
+      return {
+        ...state,
+        game : {
+          ...state.game,
+          players: players
+        }
+      }
+    }
+
     case ActionTypes.ADD_PLAYER: {
       if (action.payload.id === 999) {
         return state

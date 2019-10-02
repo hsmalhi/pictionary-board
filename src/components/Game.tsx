@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import io from "socket.io-client";
-import { setup } from '../actions/game';
+import { setup, updatePlayers } from '../actions/game';
 import { connect } from 'react-redux';
 
 const mapStateToProps = (state: any) => {
@@ -14,22 +14,22 @@ const mapStateToProps = (state: any) => {
 
 function mapDispatchToProps(dispatch: any) {
   return {
-    setup: (code: string) => dispatch(setup(code))
+    setup: (code: string) => dispatch(setup(code)),
+    updatePlayers: (players: any []) => dispatch(updatePlayers(players))
   };
 }
 
-// const socket: any = io.connect("http://localhost:3001");
 
 const ConnectedGame: React.FC = (props:any) => {
-  // props.socket.emit("SETUP");
 
-  // props.socket.on("connect", () => {
-  //   props.socket.emit("SETUP");
-  // })
+  useEffect(() => {
+    const code = window.location.pathname.split("/")[1];
+    props.setup(code);
+  }, []); 
 
-  props.socket.on("ROOM_CREATED", (message: any) => {
-    props.setup(message.code);
-  })
+  props.socket.on("PLAYER_UPDATE", (message: any) => {
+    props.updatePlayers(message.players);
+  });
 
   return (
     <div className="Game">

@@ -8,8 +8,6 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import Game from "./components/Game";
 const socket :any = io("http://localhost:3001");
 
-
-
 const Routes: React.FC = () => {
   return (
     <Router>
