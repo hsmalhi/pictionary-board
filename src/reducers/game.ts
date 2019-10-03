@@ -60,7 +60,7 @@ export default function reducer(state: State = initialState, action: Action) {
 
         }
       });
-      console.log(players)
+      
       return {
         ...state,
         game : {
@@ -118,6 +118,17 @@ export default function reducer(state: State = initialState, action: Action) {
 
       //The player count is too low or too high
       return state
+    }
+
+    case ActionTypes.START_ROUND: {
+      return {
+        ...state,
+        game : {
+          ...state.game,
+          status: action.payload.status,
+          timer: action.payload.timer
+        }
+      }
     }
 
     default:

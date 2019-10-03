@@ -15,7 +15,8 @@ export enum ActionTypes {
   UPDATE_PLAYERS = 'UPDATE_PLAYERS',
   ADD_PLAYER = 'ADD_PLAYER',
   REMOVE_PLAYER = 'REMOVE_PLAYER',
-  START_GAME = 'START_GAME'
+  START_GAME = 'START_GAME',
+  START_ROUND = 'START_ROUND'
 }
 
 /*
@@ -59,6 +60,14 @@ export interface RemovePlayerAction {
 
 export interface StartGameAction { 
   type: ActionTypes.START_GAME, 
+  payload: {
+    status: Status,
+    timer: number
+  } 
+}
+
+export interface StartRoundAction { 
+  type: ActionTypes.START_ROUND, 
   payload: {
     status: Status,
     timer: number
@@ -134,12 +143,22 @@ export function removePlayer(id: number): RemovePlayerAction {
   }
 }
 
-export function startGame(): StartGameAction {
+export function startGame(timer: number): StartGameAction {
   return {
     type: ActionTypes.START_GAME,
     payload: {
       status: Status.RoundStarting,
-      timer: 10 
+      timer
+    }
+  }
+}
+
+export function startRound(timer: number): StartRoundAction {
+  return {
+    type: ActionTypes.START_ROUND,
+    payload: {
+      status: Status.RoundInProgress,
+      timer
     }
   }
 }
@@ -149,4 +168,4 @@ export function startGame(): StartGameAction {
  * It can be one of the types defining in our action/todos file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction
+export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction | StartRoundAction
