@@ -9,7 +9,7 @@ const Home: React.FC  = (props : any) => {
   return (
     <div className="game-page">
       <div className="flex">
-        <Word word="Star Wars"/>
+        <Word word="Battle Ship"/>
       <BoardDisplay className="left" {...props} side="left" socket={props.socket} ></BoardDisplay>
       <BoardDisplay className="right" {...props} side="right" socket={props.socket} ></BoardDisplay>
       </div>
