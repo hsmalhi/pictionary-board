@@ -114,7 +114,7 @@ export function addPlayer(name: string): AddPlayerAction {
     type: ActionTypes.ADD_PLAYER,
     payload: {
       id,
-      name,
+      name: "chen",
       avatar: `https://api.adorable.io/avatars/285/${name}@adorable.png`,
       score: 0,
       role: Role.None

@@ -1,22 +1,21 @@
-.game-board
-{
-	width: 100vw;
-	height: 100vh;
-	margin: 0 auto;
-  background-color: hotpink;
+.game-board {
+  width: 100vw;
+  height: calc(98vh - 100px);
+  margin: 0 auto;
+  background-image: url("https://www.wallpaperflare.com/static/51/555/676/drawing-doodle-wallpaper.jpg");
   color: #fff;
   border: 6px solid lightpink;
   border-radius: 10px;
-	
-	display: grid;
-	grid-template: repeat(3, 1fr) / repeat(3, 1fr);
+
+  display: grid;
+  grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 
-.box
-{
+.box {
+  background-color:hotpink;
   border: 6px solid lightpink;
   justify-self: center;
-  align-self:center;  
+  align-self: center;
   border-radius: 2px;
   font-family: Helvetica;
   font-weight: bold;
@@ -24,4 +23,33 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  &:nth-child(1) {
+    height: 15vh;
+    width: 25vw;
+    order: 5;
+  }
+  &:nth-child(2) {
+    order: 1;
+  }
+  &:nth-child(3) {
+    order: 2;
+  }
+  &:nth-child(4) {
+    order: 3;
+  }
+  &:nth-child(5) {
+    order: 4;
+  }
+  &:nth-child(6) {
+    order: 6;
+  }
+  &:nth-child(7) {
+    order: 7;
+  }
+  &:nth-child(8) {
+    order: 8;
+  }
+  &:nth-child(9) {
+    order: 9;
+  }
 }

@@ -1,11 +1,30 @@
 import React, { Fragment } from "react";
 
-import "./square.styles.scss";
+import Avatar from "../avatar-list/avatar/avatar.component";
 
-const Square = () => {
-  return (
-    <Fragment>
+import "./lobby.styles.scss";
+
+const Square = (props:any) => {
+  if (props.roomcode) {
+    return (
+      <Fragment>
+      <div className="box">Room Code: {props.roomcode}</div>
     </Fragment>
-  );
-}
+    )
+  }
+  if (!props.id || !props.name) {
+    return (
+      <Fragment>
+        <div className="box">Empty</div>
+      </Fragment>
+    );
+  } else {
+    return (
+        <div className="box">
+          <Avatar id={props.id} />
+          {props.name}
+        </div>
+    );
+  }
+};
 export default Square;
