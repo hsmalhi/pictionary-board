@@ -23,5 +23,7 @@ export default interface Game {
     avatar: string;
     score: number;
     role: Role;
-  }[]
+  }[],
+  leftDrawer: number,
+  rightDrawer: number
 }

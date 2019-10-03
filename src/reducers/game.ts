@@ -12,7 +12,9 @@ export const initialState: State = {
     code: '',
     status: Status.Lobby,
     timer: 0,
-    players: []
+    players: [],
+    leftDrawer: null,
+    rightDrawer: null
   }
 }
 
@@ -111,7 +113,9 @@ export default function reducer(state: State = initialState, action: Action) {
           game : {
             ...state.game,
             status: action.payload.status,
-            timer: action.payload.timer
+            timer: action.payload.timer,
+            leftDrawer: action.payload.leftDrawer,
+            rightDrawer: action.payload.rightDrawer
           }
         }
       }
@@ -127,6 +131,28 @@ export default function reducer(state: State = initialState, action: Action) {
           ...state.game,
           status: action.payload.status,
           timer: action.payload.timer
+        }
+      }
+    }
+
+    case ActionTypes.END_ROUND: {
+      return {
+        ...state,
+        game : {
+          ...state.game,
+          status: action.payload.status,
+          leftDrawer: action.payload.leftDrawer,
+          rightDrawer: action.payload.rightDrawer
+        }
+      }
+    }
+
+    case ActionTypes.END_GAME: {
+      return {
+        ...state,
+        game : {
+          ...state.game,
+          status: action.payload.status
         }
       }
     }
