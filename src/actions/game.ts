@@ -66,7 +66,8 @@ export interface StartGameAction {
     status: Status,
     timer: number,
     leftDrawer: number,
-    rightDrawer: number
+    rightDrawer: number,
+    word: string
   } 
 }
 
@@ -84,7 +85,8 @@ export interface EndRoundAction {
     status: Status,
     timer: number,
     leftDrawer: number,
-    rightDrawer: number
+    rightDrawer: number,
+    word: string
   } 
 }
 
@@ -164,14 +166,15 @@ export function removePlayer(id: number): RemovePlayerAction {
   }
 }
 
-export function startGame(timer: number, leftDrawer: number, rightDrawer: number): StartGameAction {
+export function startGame(timer: number, leftDrawer: number, rightDrawer: number, word: string): StartGameAction {
   return {
     type: ActionTypes.START_GAME,
     payload: {
       status: Status.RoundStarting,
       timer,
       leftDrawer,
-      rightDrawer
+      rightDrawer,
+      word
     }
   }
 }
@@ -186,14 +189,15 @@ export function startRound(timer: number): StartRoundAction {
   }
 }
 
-export function endRound(timer: number, leftDrawer: number, rightDrawer: number): EndRoundAction {
+export function endRound(timer: number, leftDrawer: number, rightDrawer: number, word: string): EndRoundAction {
   return {
     type: ActionTypes.END_ROUND,
     payload: {
       status: Status.RoundOver,
       timer,
       leftDrawer,
-      rightDrawer
+      rightDrawer,
+      word
     }
   }
 }

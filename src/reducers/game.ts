@@ -14,7 +14,8 @@ export const initialState: State = {
     timer: 0,
     players: [],
     leftDrawer: null,
-    rightDrawer: null
+    rightDrawer: null,
+    word: null
   }
 }
 
@@ -115,7 +116,8 @@ export default function reducer(state: State = initialState, action: Action) {
             status: action.payload.status,
             timer: action.payload.timer,
             leftDrawer: action.payload.leftDrawer,
-            rightDrawer: action.payload.rightDrawer
+            rightDrawer: action.payload.rightDrawer,
+            word: action.payload.word
           }
         }
       }
@@ -142,7 +144,8 @@ export default function reducer(state: State = initialState, action: Action) {
           ...state.game,
           status: action.payload.status,
           leftDrawer: action.payload.leftDrawer,
-          rightDrawer: action.payload.rightDrawer
+          rightDrawer: action.payload.rightDrawer,
+          word: action.payload.word
         }
       }
     }

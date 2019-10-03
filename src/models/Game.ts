@@ -25,5 +25,6 @@ export default interface Game {
     role: Role;
   }[],
   leftDrawer: number,
-  rightDrawer: number
+  rightDrawer: number,
+  word: string
 }

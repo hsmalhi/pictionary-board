@@ -11,7 +11,8 @@ const mapStateToProps = (state: any) => {
       timer: state.game.timer,
       players: state.game.players,
       leftDrawer: state.game.leftDrawer,
-      rightDrawer: state.game.rightDrawer   
+      rightDrawer: state.game.rightDrawer,
+      word: state.game.word   
   };
 }
 
@@ -19,9 +20,9 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     setup: (code: string) => dispatch(setup(code)),
     updatePlayers: (players: any []) => dispatch(updatePlayers(players)),
-    startGame: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(startGame(timer, leftDrawer, rightDrawer)),
+    startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
     startRound: (timer: number) => dispatch(startRound(timer)),
-    endRound: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(endRound(timer, leftDrawer, rightDrawer)),
+    endRound: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
     endGame: () => dispatch(endGame())
   };
 }
@@ -38,7 +39,7 @@ const ConnectedGame: React.FC = (props:any) => {
     });
   
     props.socket.on("STARTING_GAME", (message: any) => {
-      props.startGame(message.timer, message.leftDrawer, message.rightDrawer);
+      props.startGame(message.timer, message.leftDrawer, message.rightDrawer, message.word);
     });
   
     props.socket.on("ROUND_START", (message: any) => {
@@ -46,7 +47,7 @@ const ConnectedGame: React.FC = (props:any) => {
     });
 
     props.socket.on("ROUND_OVER", (message: any) => {
-      props.endRound(message.timer, message.leftDrawer, message.rightDrawer);
+      props.endRound(message.timer, message.leftDrawer, message.rightDrawer, message.word);
     });
 
     props.socket.on("GAME_OVER", () => {
@@ -71,14 +72,15 @@ const ConnectedGame: React.FC = (props:any) => {
 
   return (
     <div className="Game">
-      {/* <h1>Hello World!</h1>
+      <h1>Hello World!</h1>
       <p>Code: {props.code}</p>
       <p>Status: {props.status}</p>
       <p>Timer: {props.timer}</p>
       <p>Players: {props.players.length}</p>
       <p>Left Drawer: {props.leftDrawer}</p>
       <p>Right Drawer: {props.rightDrawer}</p>
-      {props.players.length >= 4 && <button onClick={() => beginGame()}> Start Game </button>} */}
+      <p>Word: {props.word}</p>
+      {props.players.length >= 4 && <button onClick={() => beginGame()}> Start Game </button>}
       <LobbySetup socket={props.socket}></LobbySetup>
     </div>
   );
