@@ -29,15 +29,16 @@ io.on("connection", function(socket: any) {
   });
 
   socket.on("coordinates", function(message: any) {
-    let roomName = `${message.room}0`;
+    let roomName = `${message.room}`;
+    console.log("HI");
     io.to(roomName).emit(`coordinates${message.side}`, message);
   });
   socket.on("clear", function(message: any) {
-    let roomName = `${message.room}0`;
+    let roomName = `${message.room}`;
     io.to(roomName).emit(`clear${message.side}`, message);
   });
   socket.on("stop", function(message: any) {
-    let roomName = `${message.room}0`;
+    let roomName = `${message.room}`;
     io.to(roomName).emit(`stop${message.side}`, message);
   });
 });
