@@ -1,6 +1,6 @@
 import React, { Fragment, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
-import Header from "../components/header.component";
+import Title from "../components/title/title.component";
 import "./Home.styles.scss";
 
 const Home: any = (props: any) => {
@@ -45,6 +45,8 @@ const Home: any = (props: any) => {
         console.log(message.error);
       } else {
         console.log(message.playerId);
+        console.log(roomCode);
+        console.log(message);
         setPath(roomCode);
       }
     })
@@ -57,7 +59,7 @@ const Home: any = (props: any) => {
   return (
     <Fragment>
       <div className="home-page">
-        <Header />
+        <Title />
         <div className="create-room">
           <button className="create-room_button" onClick={createRoom}>
               Create Room

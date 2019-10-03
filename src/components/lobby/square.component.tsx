@@ -8,15 +8,16 @@ const Square = (props: any) => {
   if (props.roomcode) {
     return (
       <Fragment>
-          <div className="box">
-            <div>Room Code: {props.roomcode}</div>
+        <div className="box">
+          <div>Room Code: {props.roomcode}</div>
 
-            <div><button>Start Game</button></div>
+          <div>
+            <button>Start Game</button>
           </div>
+        </div>
       </Fragment>
     );
-  }
-  if (!props.id || !props.name) {
+  } else if (!props.id || !props.name) {
     return (
       <Fragment>
         <div className="box">Empty</div>

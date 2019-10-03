@@ -1,7 +1,9 @@
 .game-title {
   font-family: "Bubblegum Sans", sans-serif;
   background-color: hotpink;
+  border: 6px solid lightpink;
   font-size: 100px;
   display: flex;
   justify-content: center;
+  z-index:1
 }
