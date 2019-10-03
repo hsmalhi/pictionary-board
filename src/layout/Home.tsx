@@ -11,7 +11,7 @@ const Home: any = (props: any) => {
   const [ roomCode, setRoomCode ] = useState(null);
 
   function roomCodeChange(event: any) {
-    setRoomCode(event.target.value);
+    setRoomCode(event.target.value.toUpperCase());
   }
 
   function nameChange(event: any) {
@@ -34,7 +34,7 @@ const Home: any = (props: any) => {
     }
     
     let message = {
-      code: roomCode.toUpperCase(), 
+      code: roomCode, 
       name: name
     };
 

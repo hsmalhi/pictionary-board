@@ -44,6 +44,15 @@ const ConnectedGame: React.FC = (props:any) => {
   
     props.socket.on("ROUND_START", (message: any) => {
       props.startRound(message.timer);
+      //TEST: This is testing the scoring aspect. Player id 1 should have a max score at the end of the game.
+      if (Number(localStorage.getItem('playerId')) === 1) {
+        const message = {
+          playerId: 1,
+          code: props.code
+        }
+
+        props.socket.emit('SCORE', message)
+      }
     });
 
     props.socket.on("ROUND_OVER", (message: any) => {
