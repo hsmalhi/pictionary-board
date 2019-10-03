@@ -21,7 +21,7 @@ const Home: any = (props: any) => {
     props.socket.emit("SETUP");
 
     props.socket.on("ROOM_CREATED", (message: any) => {
-      console.log(message.code);
+      localStorage.setItem('playerId', message.playerId);
       setPath(message.code);
     })
   };
@@ -44,9 +44,7 @@ const Home: any = (props: any) => {
         //TODO: make this visual
         console.log(message.error);
       } else {
-        console.log(message.playerId);
-        console.log(roomCode);
-        console.log(message);
+        localStorage.setItem('playerId', message.playerId);
         setPath(roomCode);
       }
     })

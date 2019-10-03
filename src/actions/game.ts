@@ -16,7 +16,9 @@ export enum ActionTypes {
   ADD_PLAYER = 'ADD_PLAYER',
   REMOVE_PLAYER = 'REMOVE_PLAYER',
   START_GAME = 'START_GAME',
-  START_ROUND = 'START_ROUND'
+  START_ROUND = 'START_ROUND',
+  END_ROUND = 'END_ROUND',
+  END_GAME = 'END_GAME'
 }
 
 /*
@@ -62,7 +64,9 @@ export interface StartGameAction {
   type: ActionTypes.START_GAME, 
   payload: {
     status: Status,
-    timer: number
+    timer: number,
+    leftDrawer: number,
+    rightDrawer: number
   } 
 }
 
@@ -72,6 +76,23 @@ export interface StartRoundAction {
     status: Status,
     timer: number
   } 
+}
+
+export interface EndRoundAction { 
+  type: ActionTypes.END_ROUND, 
+  payload: {
+    status: Status,
+    timer: number,
+    leftDrawer: number,
+    rightDrawer: number
+  } 
+}
+
+export interface EndGameAction { 
+  type: ActionTypes.END_GAME, 
+  payload: {
+    status: Status
+  }
 }
 
 /*
@@ -143,12 +164,14 @@ export function removePlayer(id: number): RemovePlayerAction {
   }
 }
 
-export function startGame(timer: number): StartGameAction {
+export function startGame(timer: number, leftDrawer: number, rightDrawer: number): StartGameAction {
   return {
     type: ActionTypes.START_GAME,
     payload: {
       status: Status.RoundStarting,
-      timer
+      timer,
+      leftDrawer,
+      rightDrawer
     }
   }
 }
@@ -163,9 +186,30 @@ export function startRound(timer: number): StartRoundAction {
   }
 }
 
+export function endRound(timer: number, leftDrawer: number, rightDrawer: number): EndRoundAction {
+  return {
+    type: ActionTypes.END_ROUND,
+    payload: {
+      status: Status.RoundOver,
+      timer,
+      leftDrawer,
+      rightDrawer
+    }
+  }
+}
+
+export function endGame(): EndGameAction {
+  return {
+    type: ActionTypes.END_GAME,
+    payload: {
+      status: Status.GameOver
+    }
+  }
+}
+
 /*
  * Define the Action type
  * It can be one of the types defining in our action/todos file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction | StartRoundAction
+export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction | StartRoundAction | EndRoundAction | EndGameAction

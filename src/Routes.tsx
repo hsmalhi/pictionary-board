@@ -9,7 +9,7 @@ import Game from "./components/Game";
 import LobbySetup from "./components/lobby/lobby.component";
 import Result from "./components/result/result.component";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
-const socket :any = io("https://pictionary-server.herokuapp.com/");
+const socket :any = io("http://localhost:3001");
 
 const Routes: React.FC = () => {
   return (
