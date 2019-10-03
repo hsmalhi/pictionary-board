@@ -40,19 +40,19 @@
     order: 3;
   }
   &:nth-child(5) {
-    order: 4;
-  }
-  &:nth-child(6) {
     order: 6;
   }
-  &:nth-child(7) {
-    order: 7;
+  &:nth-child(6) {
+    order: 9;
   }
-  &:nth-child(8) {
+  &:nth-child(7) {
     order: 8;
   }
+  &:nth-child(8) {
+    order: 7;
+  }
   &:nth-child(9) {
-    order: 9;
+    order: 4;
   }
 }
 

@@ -10,7 +10,6 @@ const Square = (props: any) => {
       <Fragment>
         <div className="box">
           <div>Room Code: {props.roomcode}</div>
-
           <div>
             <button>Start Game</button>
           </div>

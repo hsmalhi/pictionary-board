@@ -9,12 +9,12 @@ const LobbySetup = () => {
     { id: 0, roomcode: "KXY" },
     { id: 1, name: "Harjot" },
     { id: 2, name: "Ricky" },
-    // { id: 3, name: "Chen" },
-    // { id: 4, name: "Chris" },
-    // { id: 5, name: "Luke" },
-    // { id: 6, name: "Martin" },
-    // { id: 7, name: "Lighthouse" },
-    // { id: 8, name: "Labs" }
+    { id: 3, name: "Chen" },
+    { id: 4, name: "Chris" },
+    { id: 5, name: "Luke" },
+    { id: 6, name: "Martin" },
+    { id: 7, name: "Lighthouse" },
+    { id: 8, name: "Labs" }
   ];
   const empty = Array(9 - props.length).fill("");
   return (
@@ -33,7 +33,6 @@ const LobbySetup = () => {
         {empty.map(() => {
           return <Square />;
         })}
-        {/* <RoomCode id={props.roomcode} /> */}
       </div>
     </Fragment>
   );

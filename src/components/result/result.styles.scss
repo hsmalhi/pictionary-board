@@ -1,6 +1,6 @@
 .result-board {
   background-color: hotpink;
-  overflow: hidden;
+  overflow-x: hidden;
 }
 .wrapper {
   position: absolute;
@@ -12,7 +12,7 @@
   font-family: Abadi MT Condensed;
   text-align: center;
   color: #fff;
-  animation: 80s credits linear infinite;
+  animation: 60s credits linear infinite;
   animation-delay: 1s;
   z-index:-1;
  }
