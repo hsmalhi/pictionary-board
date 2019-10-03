@@ -4,13 +4,17 @@ import Avatar from "../avatar-list/avatar/avatar.component";
 
 import "./lobby.styles.scss";
 
-const Square = (props:any) => {
+const Square = (props: any) => {
   if (props.roomcode) {
     return (
       <Fragment>
-      <div className="box">Room Code: {props.roomcode}</div>
-    </Fragment>
-    )
+          <div className="box">
+            <div>Room Code: {props.roomcode}</div>
+
+            <div><button>Start Game</button></div>
+          </div>
+      </Fragment>
+    );
   }
   if (!props.id || !props.name) {
     return (
@@ -20,10 +24,10 @@ const Square = (props:any) => {
     );
   } else {
     return (
-        <div className="box">
-          <Avatar id={props.id} />
-          {props.name}
-        </div>
+      <div className="box">
+        <Avatar id={props.id} />
+        {props.name}
+      </div>
     );
   }
 };

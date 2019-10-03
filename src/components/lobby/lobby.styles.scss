@@ -7,17 +7,18 @@
   border: 6px solid lightpink;
   border-radius: 10px;
 
+
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
 }
 
 .box {
+  font-family: "Bubblegum Sans", sans-serif;
   background-color:hotpink;
   border: 6px solid lightpink;
   justify-self: center;
   align-self: center;
   border-radius: 2px;
-  font-family: Helvetica;
   font-weight: bold;
   font-size: 2em;
   display: flex;
@@ -27,6 +28,7 @@
     height: 15vh;
     width: 25vw;
     order: 5;
+    flex-direction:column;
   }
   &:nth-child(2) {
     order: 1;
@@ -52,4 +54,18 @@
   &:nth-child(9) {
     order: 9;
   }
+}
+
+button {
+  font-size: 25px;
+  color: black;
+  font-family: "Bubblegum Sans", sans-serif;
+  cursor: pointer;
+  background-color: lightpink;
+  border-radius: 15px;
+  display:inline-block
+}
+
+button:hover{
+  transform: scale(1.10);
 }

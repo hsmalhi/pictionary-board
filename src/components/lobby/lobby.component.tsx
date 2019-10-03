@@ -8,11 +8,11 @@ const LobbySetup = () => {
   const props: any = [
     { id: 0, roomcode: "KXY" },
     { id: 1, name: "Harjot" },
-    { id: 2, name: "Ricky" }
-    // { id: 3, name: "Chen" },
-    // { id: 4, name: "Chris" },
-    // { id: 5, name: "Luke" },
-    // { id: 6, name: "Martin" },
+    { id: 2, name: "Ricky" },
+    { id: 3, name: "Chen" },
+    { id: 4, name: "Chris" },
+    { id: 5, name: "Luke" },
+    { id: 6, name: "Martin" },
     // { id: 7, name: "Lighthouse" },
     // { id: 8, name: "Labs" }
   ];
