@@ -4,7 +4,7 @@ import Word from "./Word"
 import "../components/styles/GamePage.scss"
 
 
-const Home: React.FC  = (props : any) => {
+const LeftRightDisplay: React.FC  = (props : any) => {
 
   return (
     <div className="game-page">
@@ -17,4 +17,4 @@ const Home: React.FC  = (props : any) => {
   );
 };
 
-export default Home;
+export default LeftRightDisplay;
