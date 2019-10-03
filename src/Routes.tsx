@@ -26,7 +26,7 @@ const Routes: React.FC = () => {
         <Route exact
           path="/games/:id/test"
           component={(props: any) => (
-            <WhiteboardDisplay {...props} socket={socket} />
+            <WhiteboardDisplay {...props} socket={socket} word="hi" />
           )}
         />
 

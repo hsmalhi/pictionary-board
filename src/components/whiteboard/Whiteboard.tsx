@@ -147,22 +147,35 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     newMousePosition: Coordinate,
     color: string
   ) => {
+    console.log(newMousePosition);
     if (!canvasRef.current) {
       return;
     }
-    console.log(originalMousePosition);
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    const ctx = canvas.getContext("2d");
-    if (ctx) {
-      ctx.strokeStyle = color;
-      ctx.lineJoin = "round";
-      ctx.lineWidth = 10;
-      ctx.beginPath();
-      ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
-      ctx.lineTo(newMousePosition.x, newMousePosition.y);
-      ctx.closePath();
-      ctx.stroke();
-      sendCoords(newMousePosition);
+    if (
+      originalMousePosition.x < 0 ||
+      originalMousePosition.y < 0 ||
+      newMousePosition.x < 0 ||
+      newMousePosition.y < 0 ||
+      originalMousePosition.x > width ||
+      originalMousePosition.y > height ||
+      newMousePosition.x > width ||
+      newMousePosition.y > height
+    ) {
+      sendStop();
+    } else {
+      const canvas: HTMLCanvasElement = canvasRef.current;
+      const ctx = canvas.getContext("2d");
+      if (ctx) {
+        ctx.strokeStyle = color;
+        ctx.lineJoin = "round";
+        ctx.lineWidth = 10;
+        ctx.beginPath();
+        ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
+        ctx.lineTo(newMousePosition.x, newMousePosition.y);
+        ctx.closePath();
+        ctx.stroke();
+        sendCoords(newMousePosition);
+      }
     }
   };
   //Draw the initial dot for the painting
