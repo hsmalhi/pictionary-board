@@ -23,7 +23,7 @@ const Routes: React.FC = () => {
         <Route exact path="/lobby" component={(props : any)=><LobbySetup/>} />
         <Route exact path="/result" component={(props : any)=><Result/>} />
         <Route exact path="/Game/:roomid/:playerid" component={(props : any)=><Whiteboard {...props} socket={socket} />} />
-        <Route exact
+        <Route  exact
           path="/games/:id/test"
           component={(props: any) => (
             <WhiteboardDisplay {...props} socket={socket} word="hi" />

@@ -6,29 +6,29 @@ const Color = ({ onColorChange }: any) => {
   };
   return (
     <Fragment>
-      <div className="tool color-black box" onClick={setColor("black")}>
+      <div className="tool color-black color-box" onClick={setColor("black")}>
         Black
       </div>
-      <div className="tool color-grey box" onClick={setColor("grey")}>
+      <div className="tool color-grey color-box" onClick={setColor("grey")}>
         Grey
       </div>
-      <div className="tool color-brown box" onClick={setColor("brown")}>
+      <div className="tool color-brown color-box" onClick={setColor("brown")}>
         Brown
       </div>
     
-      <div className="tool color-orange box" onClick={setColor("orange")}>
+      <div className="tool color-orange color-box" onClick={setColor("orange")}>
         Orange
       </div>
-      <div className="tool color-yellow box" onClick={setColor("yellow")}>
+      <div className="tool color-yellow color-box" onClick={setColor("yellow")}>
         Yellow
       </div>
-      <div className="tool color-red box" onClick={setColor("red")}>
+      <div className="tool color-red color-box" onClick={setColor("red")}>
         Red
       </div>
-      <div className="tool color-green box" onClick={setColor("green")}>
+      <div className="tool color-green color-box" onClick={setColor("green")}>
         Green
       </div>
-      <div className="tool color-blue box" onClick={setColor("blue")}>
+      <div className="tool color-blue color-box" onClick={setColor("blue")}>
         Blue
       </div>
     </Fragment>
