@@ -53,6 +53,15 @@
       padding-left: 10px;
       padding-right: 10px;
     }
+    &_input_code{
+      display:block;
+      width: 95%;
+      font-family: "Bubblegum Sans", sans-serif;
+      border-radius: 10px;
+      background-color: lightgrey;
+      font-size: 15px;
+      text-transform: uppercase;
+    }
     &_input{
       display:block;
       width: 95%;

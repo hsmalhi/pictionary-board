@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import io from "socket.io-client";
 import { setup, updatePlayers, startGame, startRound, endRound, endGame } from '../actions/game';
 import { connect } from 'react-redux';
+import LobbySetup from './lobby/lobby.component';
 
 const mapStateToProps = (state: any) => {
   return {
@@ -70,14 +71,15 @@ const ConnectedGame: React.FC = (props:any) => {
 
   return (
     <div className="Game">
-      <h1>Hello World!</h1>
+      {/* <h1>Hello World!</h1>
       <p>Code: {props.code}</p>
       <p>Status: {props.status}</p>
       <p>Timer: {props.timer}</p>
       <p>Players: {props.players.length}</p>
       <p>Left Drawer: {props.leftDrawer}</p>
       <p>Right Drawer: {props.rightDrawer}</p>
-      {props.players.length >= 4 && <button onClick={() => beginGame()}> Start Game </button>}
+      {props.players.length >= 4 && <button onClick={() => beginGame()}> Start Game </button>} */}
+      <LobbySetup socket={props.socket}></LobbySetup>
     </div>
   );
 }

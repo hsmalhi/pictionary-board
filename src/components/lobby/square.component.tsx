@@ -5,7 +5,7 @@ import Avatar from "../avatar-list/avatar/avatar.component";
 import "./lobby.styles.scss";
 
 const Square = (props: any) => {
-  if (props.roomcode) {
+  if (props.id === 0) {
     return (
       <Fragment>
         <div className="box">

@@ -4,6 +4,7 @@ import Title from "../components/title/title.component";
 import "./Home.styles.scss";
 
 const Home: any = (props: any) => {
+  // localStorage.removeItem('playerId');
 
   const [ path, setPath ] = useState(null);
   const [ name, setName ] = useState(null);
@@ -33,7 +34,7 @@ const Home: any = (props: any) => {
     }
     
     let message = {
-      code: roomCode, 
+      code: roomCode.toUpperCase(), 
       name: name
     };
 
@@ -69,9 +70,10 @@ const Home: any = (props: any) => {
               ROOM CODE
               <input
                 onChange={roomCodeChange}
-                className="join-room_input"
+                className="join-room_input_code"
                 type="text"
                 name="roomcode"
+                maxLength={Number(3)}
                 placeholder="ENTER THE ROOM CODE"
                 value={roomCode}
               />
@@ -84,6 +86,7 @@ const Home: any = (props: any) => {
                 className="join-room_input"
                 type="text"
                 name="name"
+                maxLength={Number(10)}
                 placeholder="ENTER YOUR NAME"
                 value={name}
               />
