@@ -110,7 +110,7 @@ const ConnectedGame: React.FC = (props: any) => {
               <button onClick={() => beginGame()}> Start Game </button>
             )}
           </div> */}
-          <LobbySetup socket={props.socket} start={() => beginGame()}></LobbySetup>
+          <LobbySetup start={() => beginGame()}></LobbySetup>
         </div>
       );
     } else {
