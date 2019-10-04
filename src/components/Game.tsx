@@ -219,7 +219,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Result />
+          <Result roomcode={props.code} players={props.players}/>
         </Fragment>
       );
     } else {
