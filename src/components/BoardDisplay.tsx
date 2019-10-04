@@ -21,13 +21,13 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     if (!canvasRef.current) {
       return;
     }
-    socket.on("clear", function() {
+    socket.on(`clear${side}`, function() {
       const canvas: HTMLCanvasElement = canvasRef.current;
       const ctx = canvas.getContext("2d");
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    socket.on("coordinates", function(data: any) {
+    socket.on(`coordinates${side}`, function(data: any) {
       drawDot(data["mousePosition"], data["color"]);
       drawingCoordinates.push(data["mousePosition"]);
       socket.on("stop", function() {
@@ -42,7 +42,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
   });
 
   //Draw the initial dot for the painting
-  const drawDot = (MousePosition: Coordinate, color:string) => {
+  const drawDot = (MousePosition: Coordinate, color: string) => {
     if (!canvasRef.current) {
       return;
     }
@@ -59,7 +59,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
   const drawLine = (
     originalMousePosition: Coordinate,
     newMousePosition: Coordinate,
-    color:string
+    color: string
   ) => {
     if (!canvasRef.current) {
       return;

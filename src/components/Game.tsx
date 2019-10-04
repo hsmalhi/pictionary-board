@@ -13,7 +13,6 @@ import LobbySetup from "./lobby/lobby.component";
 import LeftRightDisplay from "./LeftRightDisplay";
 import DrawingDisplay from "./DrawingDisplay";
 import { Status } from "../../src/models/Game";
-// import Game, { Status, Role } from '../models/Game'
 
 const mapStateToProps = (state: any) => {
   return {
@@ -100,11 +99,13 @@ const ConnectedGame: React.FC = (props: any) => {
         <LobbySetup socket={props.socket}></LobbySetup>
       </div>
     );
-  } else if (props.status === Status.RoundInProgress) {
+  }
+  
+  else if (props.status === Status.RoundInProgress) {
     if (props.leftDrawer === Number(localStorage.getItem('playerId'))) {
-      return <DrawingDisplay socket={props.socket} side="left" />;
+      return <DrawingDisplay socket={props.socket} side="left" word="star" />;
     } else if (props.rightDrawer === Number(localStorage.getItem('playerId'))) {
-      return <DrawingDisplay socket={props.socket} side="right" />;
+      return <DrawingDisplay socket={props.socket} side="right" word="wars" />;
     } else if (Number(localStorage.getItem('playerId')) === 0) {
       return <LeftRightDisplay {...props} socket={props.socket} />;
     } else {

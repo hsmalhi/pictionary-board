@@ -13,7 +13,7 @@ import Toolbar from "./Toolbar/Toolbar";
 interface CanvasProps {
   width: number;
   height: number;
-  room: string;
+  // room: string;
   side: string;
   socket: any;
 }
@@ -24,7 +24,7 @@ type Coordinate = {
 };
 
 const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
-  let room = window.location.href.split("/")[4];
+  let room = window.location.href.split("/")[3].toUpperCase();
 
   let canvasRef = useRef(null);
   const [isPainting, setIsPainting] = useState(false);
@@ -38,11 +38,11 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   }
   //When the pen is lifted sends a stop message to the client
   function sendStop() {
-    socket.emit("stop", room, side);
+    socket.emit("stop", {room, side});
   }
   //Sends coordinates of the mouse to the server while the user is drawing
   function sendClear() {
-    socket.emit("clear", room, side);
+    socket.emit("clear", {room, side});
   }
 
   function handleColorChange(event: string) {
@@ -147,7 +147,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     newMousePosition: Coordinate,
     color: string
   ) => {
-    console.log(newMousePosition);
     if (!canvasRef.current) {
       return;
     }
