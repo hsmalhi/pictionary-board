@@ -4,35 +4,40 @@ import Credit from "./credit.component";
 
 import "./result.styles.scss";
 
-const Result = () => {
-  const props: any = [
-    { id: 0, roomcode: "KXY" },
-    { id: 1, name: "Harjot", score: 5 },
-    { id: 2, name: "Ricky", score: 2 },
-    { id: 3, name: "Chen", score: 6 },
-    { id: 4, name: "Chris", score: 10 },
-    { id: 5, name: "Luke", score: 25 },
-    { id: 6, name: "Martin", score: 20 }
-    // { id: 7, name: "Lighthouse" },
-    // { id: 8, name: "Labs" }
-  ];
-  let propsSorted = props.sort((a: any, b: any) =>
-    a.score > b.score ? -1 : b.score > a.score ? 1 : 0
+const Result = (props: any) => {
+  // const props: any = [
+  //   { id: 0, roomcode: "KXY" },
+  //   { id: 1, name: "Harjot", score: 5 },
+  //   { id: 2, name: "Ricky", score: 2 },
+  //   { id: 3, name: "Chen", score: 6 },
+  //   { id: 4, name: "Chris", score: 10 },
+  //   { id: 5, name: "Luke", score: 25 },
+  //   { id: 6, name: "Martin", score: 20 }
+  //   // { id: 7, name: "Lighthouse" },
+  //   // { id: 8, name: "Labs" }
+  // ];
+  let playersSorted = props.players.sort((a: any, b: any) => {
+      if (a.id === 0) {
+        return -1
+      } else if (b.id === 0) {
+        return 1
+      } else {
+        return (a.score > b.score ? -1 : b.score > a.score ? 1 : 0)
+      }
+    }
   );
 
-  console.log(propsSorted);
   return (
     <Fragment>
-      <Title />
       <div className="result-board">
         <div className="wrapper">
-          {propsSorted.map((person: any) => {
+          {playersSorted.map((player: any) => {
             return (
               <Credit
-                roomcode={person.roomcode}
-                name={person.name}
-                score={person.score}
-                id={person.id}
+                name={player.name}
+                score={player.score}
+                id={player.id}
+                roomcode={props.roomcode}
               />
             );
           })}

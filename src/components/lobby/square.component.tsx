@@ -11,7 +11,7 @@ const Square = (props: any) => {
         <div className="box">
           <div>Room Code: {props.roomcode}</div>
           <div>
-            <button className="start-game-button">Start Game</button>
+            <button className="start-game-button" onClick={props.start}>Start Game</button>
           </div>
         </div>
       </Fragment>

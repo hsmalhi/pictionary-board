@@ -22,7 +22,7 @@ const LeftRightDisplay = (props: LeftRightDisplayProps) => {
         </div>
 
         <div className="word-container">
-          <Word word="Battle Ship" />
+          <Word word={props.word} />
         </div>
         <div className="countdown-container">
           <CountdownTimer
