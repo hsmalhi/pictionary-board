@@ -1,6 +1,6 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, Fragment } from 'react';
 import io from "socket.io-client";
-import { setup, updatePlayers, startGame, startRound, endRound, endGame } from '../actions/game';
+import { setup, updatePlayers, startGame, startRound, endRound, endGame, UpdateScoreAction } from '../actions/game';
 import { connect } from 'react-redux';
 import LobbySetup from './lobby/lobby.component';
 
@@ -23,7 +23,8 @@ const mapDispatchToProps = (dispatch: any) => {
     startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
     startRound: (timer: number) => dispatch(startRound(timer)),
     endRound: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
-    endGame: () => dispatch(endGame())
+    endGame: () => dispatch(endGame()),
+    updateScore: (playerId: number) => dispatch(UpdateScoreAction(playerId))
   };
 }
 
@@ -39,6 +40,7 @@ const ConnectedGame: React.FC = (props:any) => {
     });
   
     props.socket.on("STARTING_GAME", (message: any) => {
+      console.log(props.players);
       props.startGame(message.timer, message.leftDrawer, message.rightDrawer, message.word);
     });
   
@@ -51,7 +53,7 @@ const ConnectedGame: React.FC = (props:any) => {
           code: props.code
         }
 
-        props.socket.emit('SCORE', message)
+        props.socket.emit('SCORE', message);
       }
     });
 
@@ -63,12 +65,17 @@ const ConnectedGame: React.FC = (props:any) => {
       props.endGame();
     });
 
+    props.socket.on("UPDATE_SCORE", (message: any) => {
+      props.updateScore(message.playerId);
+    });
+
     return () => {
       props.socket.off("PLAYER_UPDATE");
       props.socket.off("STARTING_GAME");
       props.socket.off("ROUND_START");
       props.socket.off("ROUND_OVER");
       props.socket.off("GAME_OVER");
+      props.socket.off("UPDATE_SCORE");
     }
   });
 
@@ -79,6 +86,17 @@ const ConnectedGame: React.FC = (props:any) => {
     props.socket.emit("START_GAME", message);
   }
 
+  const renderPlayer = function(player: any) {
+    return (
+      <Fragment>
+        <p>player.id: {player.id}</p>
+        <p>   player.name: {player.name}</p>
+        <p>   player.score: {player.score}</p>
+        <p>   player.correct: {player.correct.toString()}</p>
+      </Fragment>
+    )
+  }
+
   return (
     <div className="Game">
       <h1>Hello World!</h1>
@@ -86,6 +104,7 @@ const ConnectedGame: React.FC = (props:any) => {
       <p>Status: {props.status}</p>
       <p>Timer: {props.timer}</p>
       <p>Players: {props.players.length}</p>
+      {props.players.map((player: any) => renderPlayer(player))}
       <p>Left Drawer: {props.leftDrawer}</p>
       <p>Right Drawer: {props.rightDrawer}</p>
       <p>Word: {props.word}</p>

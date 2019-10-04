@@ -18,11 +18,12 @@ export default interface Game {
   status: Status,
   timer: number,
   players: {
-    id: number;
-    name: string;
-    avatar: string;
-    score: number;
-    role: Role;
+    id: number,
+    name: string,
+    avatar: string,
+    score: number,
+    role: Role,
+    correct: boolean
   }[],
   leftDrawer: number,
   rightDrawer: number,
