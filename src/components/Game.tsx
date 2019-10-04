@@ -15,6 +15,7 @@ import DrawingDisplay from "./DrawingDisplay";
 import { Status } from "../../src/models/Game";
 import Waiting from "./waiting/waiting.component";
 import Title from "./title/title.component";
+import CountdownTimer from "./timer/timer.component";
 
 const mapStateToProps = (state: any) => {
   return {
@@ -146,6 +147,23 @@ const ConnectedGame: React.FC = (props: any) => {
             <button onClick={() => beginGame()}> Start Game </button>
           )}
         </div>
+      );
+    }
+  } else if (props.status == Status.RoundStarting) {
+    if (Number(localStorage.getItem("playerId")) === 0) {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"Game is starting soon"} />
+          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"Game is starting soon"} />
+        </Fragment>
       );
     }
   } else {
