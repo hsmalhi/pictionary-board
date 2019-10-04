@@ -16,6 +16,7 @@ import { Status } from "../../src/models/Game";
 import Waiting from "./waiting/waiting.component";
 import Title from "./title/title.component";
 import CountdownTimer from "./timer/timer.component";
+import GuessBoard from "./guessboard/Guessboard.component";
 
 const mapStateToProps = (state: any) => {
   return {
@@ -135,18 +136,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return <LeftRightDisplay {...props} socket={props.socket} time={45} />;
     } else {
       return (
-        <div className="Game">
-          <h1>Hello World!</h1>
-          <p>Code: {props.code}</p>
-          <p>Status: {props.status}</p>
-          <p>Timer: {props.timer}</p>
-          <p>Players: {props.players.length}</p>
-          <p>Left Drawer: {props.leftDrawer}</p>
-          <p>Right Drawer: {props.rightDrawer}</p>
-          {props.players.length >= 4 && (
-            <button onClick={() => beginGame()}> Start Game </button>
-          )}
-        </div>
+        <GuessBoard/>
       );
     }
   } else if (props.status == Status.RoundStarting) {
@@ -163,6 +153,7 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Game is starting soon"} />
+          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
         </Fragment>
       );
     }
