@@ -17,16 +17,16 @@ const mapStateToProps = (state: any) => {
   };
 }
 
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    // setup: (code: string) => dispatch(setup(code)),
-    updatePlayers: (players: any []) => dispatch(updatePlayers(players)),
-    startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
-    // startRound: (timer: number) => dispatch(startRound(timer)),
-    // endRound: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(endRound(timer, leftDrawer, rightDrawer)),
-    // endGame: () => dispatch(endGame())
-  };
-}
+// const mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     setup: (code: string) => dispatch(setup(code)),
+//     updatePlayers: (players: any []) => dispatch(updatePlayers(players)),
+//     startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
+//     startRound: (timer: number) => dispatch(startRound(timer)),
+//     endRound: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(endRound(timer, leftDrawer, rightDrawer)),
+//     endGame: () => dispatch(endGame())
+//   };
+// }
 
 const ConnectedLobbySetup = (props: any) => {
   // const props: any = [
@@ -77,6 +77,6 @@ const ConnectedLobbySetup = (props: any) => {
   );
 };
 
-const LobbySetup = connect(mapStateToProps, mapDispatchToProps)(ConnectedLobbySetup);
+const LobbySetup = connect(mapStateToProps)(ConnectedLobbySetup);
 
 export default LobbySetup;

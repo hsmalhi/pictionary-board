@@ -4,15 +4,11 @@ import Waiting from "../waiting/waiting.component";
 
 import "./guessboard.styles.scss";
 
-const props: any = {
-  word: "star wars"
-}
-
-const GuessBoard = () => {
+const GuessBoard = (props: any) => {
   return (
     <Fragment>
     <Waiting message={"Waiting for next players"} />
-    <Game word={props.word} cheatMode />
+    <Game word={props.word} onCorrect={props.onCorrect} />
     </Fragment>
   );
 }

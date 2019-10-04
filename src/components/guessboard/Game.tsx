@@ -19,15 +19,12 @@ const CentreWrapper = styled.div`
 export default (props: any) => {
 
   const onCorrect = () => {
-    
+    props.onCorrect();
   };
 
   const onIncorrect = () => {
     // setScore(Math.max(0, score - 1));
   };
-
-
-  useEffect(() => props.cheatMode);
 
   return (
     <CentreWrapper>
