@@ -135,9 +135,7 @@ const ConnectedGame: React.FC = (props: any) => {
     } else if (Number(localStorage.getItem("playerId")) === 0) {
       return <LeftRightDisplay {...props} socket={props.socket} time={45} />;
     } else {
-      return (
-        <GuessBoard/>
-      );
+      return <GuessBoard />;
     }
   } else if (props.status == Status.RoundStarting) {
     if (Number(localStorage.getItem("playerId")) === 0) {
@@ -148,11 +146,20 @@ const ConnectedGame: React.FC = (props: any) => {
           <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
         </Fragment>
       );
+    } else if (
+      props.leftDrawer === Number(localStorage.getItem("playerId")) ||
+      props.rightDrawer === Number(localStorage.getItem("playerId"))
+    ) {
+      <Fragment>
+        <Title />
+        <Waiting message={"You will be drawing!"} />
+        <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+      </Fragment>;
     } else {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Game is starting soon"} />
+          <Waiting message={"You will be guessing!"} />
           <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
         </Fragment>
       );
