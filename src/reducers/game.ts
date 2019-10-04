@@ -14,7 +14,8 @@ export const initialState: State = {
     timer: 0,
     players: [],
     leftDrawer: null,
-    rightDrawer: null
+    rightDrawer: null,
+    word: null
   }
 }
 
@@ -39,7 +40,8 @@ export default function reducer(state: State = initialState, action: Action) {
             name: Role.Main,
             avatar: "",
             score: 0,
-            role: Role.Main
+            role: Role.Main,
+            correct: false
           }]
         }
       }
@@ -57,7 +59,8 @@ export default function reducer(state: State = initialState, action: Action) {
             name: player.name,
             avatar: `https://api.adorable.io/avatars/285/${player.name}@adorable.png`,
             score: 0,
-            role: Role.None
+            role: Role.None,
+            correct: false
           }
 
         }
@@ -115,7 +118,8 @@ export default function reducer(state: State = initialState, action: Action) {
             status: action.payload.status,
             timer: action.payload.timer,
             leftDrawer: action.payload.leftDrawer,
-            rightDrawer: action.payload.rightDrawer
+            rightDrawer: action.payload.rightDrawer,
+            word: action.payload.word
           }
         }
       }
@@ -136,13 +140,23 @@ export default function reducer(state: State = initialState, action: Action) {
     }
 
     case ActionTypes.END_ROUND: {
+      let players = state.game.players.map((player: any) => {
+        return {
+          ...player,
+          correct: false
+        }
+      });
+
       return {
         ...state,
         game : {
           ...state.game,
+          timer: action.payload.timer,
           status: action.payload.status,
           leftDrawer: action.payload.leftDrawer,
-          rightDrawer: action.payload.rightDrawer
+          rightDrawer: action.payload.rightDrawer,
+          word: action.payload.word,
+          players
         }
       }
     }
@@ -153,6 +167,21 @@ export default function reducer(state: State = initialState, action: Action) {
         game : {
           ...state.game,
           status: action.payload.status
+        }
+      }
+    }
+
+    case ActionTypes.UPDATE_SCORE: {
+
+      let players = state.game.players;
+      players[action.payload.playerId].score++;
+      players[action.payload.playerId].correct = true;
+
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          players
         }
       }
     }

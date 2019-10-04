@@ -21,7 +21,7 @@ const mapDispatchToProps = (dispatch: any) => {
   return {
     // setup: (code: string) => dispatch(setup(code)),
     updatePlayers: (players: any []) => dispatch(updatePlayers(players)),
-    startGame: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(startGame(timer, leftDrawer, rightDrawer)),
+    startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
     // startRound: (timer: number) => dispatch(startRound(timer)),
     // endRound: (timer: number, leftDrawer: number, rightDrawer: number) => dispatch(endRound(timer, leftDrawer, rightDrawer)),
     // endGame: () => dispatch(endGame())

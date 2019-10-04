@@ -26,6 +26,8 @@ type Coordinate = {
 const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   let room = window.location.href.split("/")[3].toUpperCase();
 
+
+  console.log(room)
   let canvasRef = useRef(null);
   const [isPainting, setIsPainting] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
