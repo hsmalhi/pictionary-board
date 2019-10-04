@@ -15,7 +15,6 @@ const Color = ({ onColorChange }: any) => {
       <div className="tool color-brown color-box" onClick={setColor("brown")}>
         Brown
       </div>
-    
       <div className="tool color-orange color-box" onClick={setColor("orange")}>
         Orange
       </div>

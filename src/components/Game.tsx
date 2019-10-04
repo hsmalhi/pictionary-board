@@ -100,14 +100,16 @@ const ConnectedGame: React.FC = (props: any) => {
       </div>
     );
   }
-  
-  else if (props.status === Status.RoundInProgress) {
-    if (props.leftDrawer === Number(localStorage.getItem('playerId'))) {
-      return <DrawingDisplay socket={props.socket} side="left" word="star" />;
-    } else if (props.rightDrawer === Number(localStorage.getItem('playerId'))) {
-      return <DrawingDisplay socket={props.socket} side="right" word="wars" />;
-    } else if (Number(localStorage.getItem('playerId')) === 0) {
-      return <LeftRightDisplay {...props} socket={props.socket} />;
+
+  else
+  if (props.status === Status.RoundInProgress) {
+    console.log(props);
+    if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
+      return <DrawingDisplay socket={props.socket} side="left" word="star" time={45} />;
+    } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
+      return <DrawingDisplay socket={props.socket} side="right" word="wars" time={45} />;
+    } else if (Number(localStorage.getItem("playerId")) === 0) {
+      return <LeftRightDisplay {...props} socket={props.socket} time={45} />;
     } else {
       return (
         <div className="Game">
@@ -123,7 +125,7 @@ const ConnectedGame: React.FC = (props: any) => {
           )}
         </div>
       );
-    } 
+    }
   } else {
     return (
       <div className="Game">

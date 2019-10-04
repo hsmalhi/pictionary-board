@@ -9,15 +9,15 @@ import "../styles/Whiteboard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import Toolbar from "./Toolbar/Toolbar";
-//Customizabe canvas
+import { Socket } from "socket.io";
+
 interface CanvasProps {
   width: number;
   height: number;
-  // room: string;
   side: string;
-  socket: any;
+  socket: Socket;
 }
-//Coordinates
+
 type Coordinate = {
   x: number;
   y: number;
@@ -27,22 +27,22 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   let room = window.location.href.split("/")[3].toUpperCase();
 
   let canvasRef = useRef(null);
-  const [isPainting, setIsPainting] = useState(false);
+  const [isPainting, setIsPainting] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
     undefined
   );
-  const [color, setColor] = useState("black");
-  //Sends coordinates of the mouse to the server while the user is drawing
+  const [color, setColor] = useState<string>("black");
+
   function sendCoords(mousePosition: Coordinate) {
     socket.emit("coordinates", { mousePosition, room, side, color });
   }
   //When the pen is lifted sends a stop message to the client
   function sendStop() {
-    socket.emit("stop", {room, side});
+    socket.emit("stop", { room, side });
   }
   //Sends coordinates of the mouse to the server while the user is drawing
   function sendClear() {
-    socket.emit("clear", {room, side});
+    socket.emit("clear", { room, side });
   }
 
   function handleColorChange(event: string) {

@@ -1,4 +1,5 @@
 import React, { Fragment, useEffect, useRef } from "react";
+import { Socket } from "socket.io";
 type Coordinate = {
   x: number;
   y: number;
@@ -8,15 +9,19 @@ interface CanvasProps {
   width: number;
   height: number;
   side: string;
-  socket: any;
+  socket: Socket;
+}
+
+type message = {
+  mousePosition:Coordinate;
+  color:string;
 }
 
 //Initializes the whiteboard with these sizes
 const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
-  //<HTMLCanvasElement> describes the element, we could only jus use userefnull. Useref
 
-  let canvasRef = useRef(null);
-  let drawingCoordinates: any = [];
+  let canvasRef = useRef<HTMLCanvasElement | null>(null);
+  let drawingCoordinates: Array<Coordinate> = [];
   useEffect(() => {
     if (!canvasRef.current) {
       return;
@@ -27,7 +32,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
       ctx.clearRect(0, 0, canvas.width, canvas.height);
     });
 
-    socket.on(`coordinates${side}`, function(data: any) {
+    socket.on(`coordinates${side}`, function(data: message) {
       drawDot(data["mousePosition"], data["color"]);
       drawingCoordinates.push(data["mousePosition"]);
       socket.on("stop", function() {

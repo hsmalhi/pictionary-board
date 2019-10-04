@@ -8,7 +8,7 @@ interface WordProps {
 const convertWord = function(word: string) {
   let result = "";
   for (let letter of word) {
-    if (letter == " ") {
+    if (letter === " ") {
       result += "   ";
     } else result += " _ ";
   }
