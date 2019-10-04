@@ -122,24 +122,31 @@ const ConnectedGame: React.FC = (props: any) => {
           <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
         </Fragment>
       );
+    } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"You will be drawing!"} />
+          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+        </Fragment>
+      );
+    } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"You will be drawing!"} />
+          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+        </Fragment>
+      );
+    } else {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"You will be drawing!"} />
+          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+        </Fragment>
+      );
     }
-    
-  } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
-    return (
-      <Fragment>
-        <Title />
-        <Waiting message={"You will be drawing!"} />
-        <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-      </Fragment>
-    );
-  } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
-    return (
-      <Fragment>
-        <Title />
-        <Waiting message={"You will be drawing!"} />
-        <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-      </Fragment>
-    );
   } else if (props.status === Status.RoundInProgress) {
     console.log(props);
     if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
