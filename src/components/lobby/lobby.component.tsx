@@ -65,6 +65,7 @@ const ConnectedLobbySetup = (props: any) => {
               id={player.id}
               name={player.name}
               roomcode={props.code}
+              start={props.start}
             />
           );
         })}

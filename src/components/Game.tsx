@@ -98,7 +98,7 @@ const ConnectedGame: React.FC = (props: any) => {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <div>
-          <div className="Game">
+          {/* <div className="Game">
             <h1>Hello World!</h1>
             <p>Code: {props.code}</p>
             <p>Status: {props.status}</p>
@@ -109,8 +109,8 @@ const ConnectedGame: React.FC = (props: any) => {
             {props.players.length >= 4 && (
               <button onClick={() => beginGame()}> Start Game </button>
             )}
-          </div>
-          <LobbySetup socket={props.socket}></LobbySetup>
+          </div> */}
+          <LobbySetup socket={props.socket} start={() => beginGame()}></LobbySetup>
         </div>
       );
     } else {
