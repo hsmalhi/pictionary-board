@@ -162,7 +162,7 @@ const ConnectedGame: React.FC = (props: any) => {
         <DrawingDisplay
           socket={props.socket}
           side="left"
-          word="star"
+          word={props.word.split(" ")[1]}
           time={45}
         />
       );
@@ -171,7 +171,7 @@ const ConnectedGame: React.FC = (props: any) => {
         <DrawingDisplay
           socket={props.socket}
           side="right"
-          word="wars"
+          word={props.word.split(" ")[1]}
           time={45}
         />
       );
