@@ -7,7 +7,7 @@ import React, {
 } from "react";
 import "../styles/Whiteboard.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { faEraser, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Toolbar from "./Toolbar/Toolbar";
 import { Socket } from "socket.io";
 
@@ -26,8 +26,6 @@ type Coordinate = {
 const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   let room = window.location.href.split("/")[3].toUpperCase();
 
-
-  console.log(room)
   let canvasRef = useRef(null);
   const [isPainting, setIsPainting] = useState<boolean>(false);
   const [mousePosition, setMousePosition] = useState<Coordinate | undefined>(
@@ -66,7 +64,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       setIsPainting(true);
       setMousePosition(coordinates);
       //Draws a dot immediately when pressed down
-      drawDot(coordinates, color);
+      // drawDot(coordinates, color);
     }
   }, []);
 
@@ -77,10 +75,16 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     }
     const canvas: HTMLCanvasElement = canvasRef.current;
     canvas.addEventListener("touchstart", startPaint);
+
     return () => {
       canvas.removeEventListener("touchstart", startPaint);
     };
   }, [startPaint]);
+
+  //command to stop scrolling on ios
+  document.ontouchmove = function(event) {
+    event.preventDefault();
+  };
 
   //Paint callback, it if is painting and the mouse is moved then we will call the drawline function with each new mouse position
   const paint = useCallback(
@@ -96,10 +100,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     [isPainting, mousePosition]
   );
 
-  //command to stop scrolling on ios
-  document.ontouchmove = function(event) {
-    event.preventDefault();
-  };
 
   useEffect(() => {
     if (!canvasRef.current) {
@@ -111,6 +111,26 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       canvas.removeEventListener("touchmove", paint);
     };
   }, [paint]);
+
+
+  const dot = useCallback(
+    event => {
+      console.log("hi");
+      drawDot(mousePosition, color);
+    },
+    [isPainting]
+  );
+
+  useEffect(() => {
+    if (!canvasRef.current) {
+      return;
+    }
+    const canvas: HTMLCanvasElement = canvasRef.current;
+    canvas.addEventListener("touchstart", dot);
+    return () => {
+      canvas.removeEventListener("touchstart", dot);
+    };
+  }, [dot]);
 
   const exitPaint = useCallback(() => {
     setIsPainting(false);
@@ -168,6 +188,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       const ctx = canvas.getContext("2d");
       if (ctx) {
         ctx.strokeStyle = color;
+        ctx.fillStyle = color;
         ctx.lineJoin = "round";
         ctx.lineWidth = 10;
         ctx.beginPath();
@@ -181,15 +202,18 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   };
   //Draw the initial dot for the painting
   const drawDot = (MousePosition: Coordinate, color: string) => {
-    if (!canvasRef.current) {
-      return;
-    }
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (ctx) {
       ctx.beginPath();
+
       ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineJoin = "round";
+      ctx.lineWidth = 5;
+      ctx.beginPath();
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
+      ctx.stroke();
       ctx.fill();
       sendCoords(MousePosition);
     }
@@ -198,8 +222,14 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   return (
     <Fragment>
       <canvas ref={canvasRef} height={height} width={width} />
-      <button className="clear-button" onClick={clearImage}>
-        <FontAwesomeIcon icon={faTimes} />
+      <button className="additional-tool-button clear" onClick={clearImage}>
+        <FontAwesomeIcon icon={faTrash} />
+      </button>
+      <button
+        className="additional-tool-button erase"
+        onClick={() => setColor("white")}
+      >
+        <FontAwesomeIcon icon={faEraser} />
       </button>
       <Toolbar onColorChange={handleColorChange} />
     </Fragment>

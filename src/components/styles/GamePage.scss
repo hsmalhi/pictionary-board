@@ -4,21 +4,33 @@
   height: 85vh;
 }
 
-.left,
-.right {
-  border-style: solid;
-}
+// .left,
+// .right {
+//   border-style: solid;
+// }
 
-.left {
-  border-width: 5px 0px 5px 5px;
-}
-.right {
-  border-style: solid;
-  border-width: 5px 5px 5px 0px;
-}
+// .left {
+//   border-width: 5px 0px 5px 5px;
+// }
+// .right {
+//   border-style: solid;
+//   border-width: 5px 5px 5px 0px;
+// }
 
 .word {
-  position: absolute;
   font-size: 3em;
   white-space: pre-wrap;
+  text-transform: uppercase;
+  margin: 0 auto;
+  position: absolute;
+  left: 50%;
+  margin-left: -50px;
+  top: 5%;
+  margin-top: -50px;
+
+}
+
+.canvas-container {
+  display: flex;
+  justify-content: center;
 }

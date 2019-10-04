@@ -94,70 +94,72 @@ const ConnectedGame: React.FC = (props: any) => {
     props.socket.emit("START_GAME", message);
   };
 
-  if (props.status == Status.Lobby) {
-    if (Number(localStorage.getItem("playerId")) === 0) {
-      return (
-        <div>
-          <div className="Game">
-            <h1>Hello World!</h1>
-            <p>Code: {props.code}</p>
-            <p>Status: {props.status}</p>
-            <p>Timer: {props.timer}</p>
-            <p>Players: {props.players.length}</p>
-            <p>Left Drawer: {props.leftDrawer}</p>
-            <p>Right Drawer: {props.rightDrawer}</p>
-            {props.players.length >= 4 && (
-              <button onClick={() => beginGame()}> Start Game </button>
-            )}
-          </div>
-          <LobbySetup socket={props.socket}></LobbySetup>
-        </div>
-      );
-    } else {
-      return (
-        <Fragment>
-          <Title />
-          <Waiting message={"waiting for other players to join"} />
-        </Fragment>
-      );
-    }
-  } else if (props.status == Status.RoundStarting) {
-    if (Number(localStorage.getItem("playerId")) === 0) {
-      return (
-        <Fragment>
-          <Title />
-          <Waiting message={"Game is starting soon"} />
-          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-        </Fragment>
-      );
-    } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
-      return (
-        <Fragment>
-          <Title />
-          <Waiting message={"You will be drawing!"} />
-          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-        </Fragment>
-      );
-    } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
-      return (
-        <Fragment>
-          <Title />
-          <Waiting message={"You will be drawing!"} />
-          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-        </Fragment>
-      );
-    } else {
-      return (
-        <Fragment>
-          <Title />
-          <Waiting message={"You will be guessing!"} />
-          <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
-        </Fragment>
-      );
-    }
-  } else if (props.status === Status.RoundInProgress) {
+  // if (props.status == Status.Lobby) {
+  //   if (Number(localStorage.getItem("playerId")) === 0) {
+  //     return (
+  //       <div>
+  //         <div className="Game">
+  //           <h1>Hello World!</h1>
+  //           <p>Code: {props.code}</p>
+  //           <p>Status: {props.status}</p>
+  //           <p>Timer: {props.timer}</p>
+  //           <p>Players: {props.players.length}</p>
+  //           <p>Left Drawer: {props.leftDrawer}</p>
+  //           <p>Right Drawer: {props.rightDrawer}</p>
+  //           {props.players.length >= 4 && (
+  //             <button onClick={() => beginGame()}> Start Game </button>
+  //           )}
+  //         </div>
+  //         <LobbySetup socket={props.socket}></LobbySetup>
+  //       </div>
+  //     );
+  //   } else {
+  //     return (
+  //       <Fragment>
+  //         <Title />
+  //         <Waiting message={"waiting for other players to join"} />
+  //       </Fragment>
+  //     );
+  //   }
+  // } else if (props.status == Status.RoundStarting) {
+  //   if (Number(localStorage.getItem("playerId")) === 0) {
+  //     return (
+  //       <Fragment>
+  //         <Title />
+  //         <Waiting message={"Game is starting soon"} />
+  //         <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+  //       </Fragment>
+  //     );
+  //   } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
+  //     return (
+  //       <Fragment>
+  //         <Title />
+  //         <Waiting message={"You will be drawing!"} />
+  //         <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+  //       </Fragment>
+  //     );
+  //   } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
+  //     return (
+  //       <Fragment>
+  //         <Title />
+  //         <Waiting message={"You will be drawing!"} />
+  //         <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+  //       </Fragment>
+  //     );
+  //   } else {
+  //     return (
+  //       <Fragment>
+  //         <Title />
+  //         <Waiting message={"You will be guessing!"} />
+  //         <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} />
+  //       </Fragment>
+  //     );
+  //   }
+  // } else 
+  if
+   (props.status === Status.Lobby) {
     console.log(props);
-    if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
+    if (1 === Number(localStorage.getItem("playerId"))) {
       return (
         <DrawingDisplay
           socket={props.socket}
