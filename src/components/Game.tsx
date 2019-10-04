@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, Fragment } from "react";
 import io from "socket.io-client";
 import {
   setup,
@@ -13,6 +13,8 @@ import LobbySetup from "./lobby/lobby.component";
 import LeftRightDisplay from "./LeftRightDisplay";
 import DrawingDisplay from "./DrawingDisplay";
 import { Status } from "../../src/models/Game";
+import Waiting from "./waiting/waiting.component";
+import Title from "./title/title.component";
 
 const mapStateToProps = (state: any) => {
   return {
@@ -82,32 +84,52 @@ const ConnectedGame: React.FC = (props: any) => {
   };
 
   if (props.status == Status.Lobby) {
-    return (
-      <div>
-        <div className="Game">
-          <h1>Hello World!</h1>
-          <p>Code: {props.code}</p>
-          <p>Status: {props.status}</p>
-          <p>Timer: {props.timer}</p>
-          <p>Players: {props.players.length}</p>
-          <p>Left Drawer: {props.leftDrawer}</p>
-          <p>Right Drawer: {props.rightDrawer}</p>
-          {props.players.length >= 4 && (
-            <button onClick={() => beginGame()}> Start Game </button>
-          )}
+    if (Number(localStorage.getItem("playerId")) === 0) {
+      return (
+        <div>
+          <div className="Game">
+            <h1>Hello World!</h1>
+            <p>Code: {props.code}</p>
+            <p>Status: {props.status}</p>
+            <p>Timer: {props.timer}</p>
+            <p>Players: {props.players.length}</p>
+            <p>Left Drawer: {props.leftDrawer}</p>
+            <p>Right Drawer: {props.rightDrawer}</p>
+            {props.players.length >= 4 && (
+              <button onClick={() => beginGame()}> Start Game </button>
+            )}
+          </div>
+          <LobbySetup socket={props.socket}></LobbySetup>
         </div>
-        <LobbySetup socket={props.socket}></LobbySetup>
-      </div>
-    );
-  }
-
-  else
-  if (props.status === Status.RoundInProgress) {
+      );
+    } else {
+      return (
+        <Fragment>
+          <Title />
+          <Waiting message={"waiting for other players to join"} />
+        </Fragment>
+      );
+    }
+  } else if (props.status === Status.RoundInProgress) {
     console.log(props);
     if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
-      return <DrawingDisplay socket={props.socket} side="left" word="star" time={45} />;
+      return (
+        <DrawingDisplay
+          socket={props.socket}
+          side="left"
+          word="star"
+          time={45}
+        />
+      );
     } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
-      return <DrawingDisplay socket={props.socket} side="right" word="wars" time={45} />;
+      return (
+        <DrawingDisplay
+          socket={props.socket}
+          side="right"
+          word="wars"
+          time={45}
+        />
+      );
     } else if (Number(localStorage.getItem("playerId")) === 0) {
       return <LeftRightDisplay {...props} socket={props.socket} time={45} />;
     } else {
