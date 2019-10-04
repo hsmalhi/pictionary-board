@@ -168,8 +168,7 @@ const ConnectedGame: React.FC = (props: any) => {
       );
     }
   } else if (props.status === Status.RoundInProgress) {
-    console.log(props);
-    if (1 === Number(localStorage.getItem("playerId"))) {
+    if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
       return (
         <DrawingDisplay
           socket={props.socket}
