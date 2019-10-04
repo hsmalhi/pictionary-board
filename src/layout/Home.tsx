@@ -1,14 +1,20 @@
 import React, { Fragment, useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import Title from "../components/title/title.component";
 import "./Home.styles.scss";
 
 const Home: any = (props: any) => {
   // localStorage.removeItem('playerId');
 
-  const [ path, setPath ] = useState(null);
-  const [ name, setName ] = useState(null);
-  const [ roomCode, setRoomCode ] = useState(null);
+  const [path, setPath] = useState(null);
+  const [name, setName] = useState(null);
+  const [roomCode, setRoomCode] = useState(null);
 
   function roomCodeChange(event: any) {
     setRoomCode(event.target.value.toUpperCase());
@@ -22,9 +28,9 @@ const Home: any = (props: any) => {
     props.socket.emit("SETUP");
 
     props.socket.on("ROOM_CREATED", (message: any) => {
-      localStorage.setItem('playerId', message.playerId);
+      localStorage.setItem("playerId", message.playerId);
       setPath(message.code);
-    })
+    });
   };
 
   const validate = function() {
@@ -32,9 +38,9 @@ const Home: any = (props: any) => {
       //TODO: SET ERROR HERE!!!
       return;
     }
-    
+
     let message = {
-      code: roomCode, 
+      code: roomCode,
       name: name
     };
 
@@ -45,14 +51,14 @@ const Home: any = (props: any) => {
         //TODO: make this visual
         console.log(message.error);
       } else {
-        localStorage.setItem('playerId', message.playerId);
+        localStorage.setItem("playerId", message.playerId);
         setPath(roomCode);
       }
-    })
+    });
   };
 
   if (path) {
-    return (<Redirect to={"/" + path}></Redirect>)
+    return <Redirect to={"/" + path}></Redirect>;
   }
 
   return (
@@ -61,11 +67,16 @@ const Home: any = (props: any) => {
         <Title />
         <div className="create-room">
           <button className="create-room_button" onClick={createRoom}>
-              Create Room
+            Create Room
           </button>
         </div>
         <div className="join-room">
-          <form className="join-room_form">
+          <form
+            className="join-room_form"
+            onSubmit={e => {
+              e.preventDefault();
+            }}
+          >
             <label className="join-room_label">
               ROOM CODE
               <input
@@ -96,7 +107,8 @@ const Home: any = (props: any) => {
               className="join-room_button"
               onTouchStart={validate}
               name="PLAY"
-              value="PLAY">
+              value="PLAY"
+            >
               PLAY
             </button>
           </form>
