@@ -64,7 +64,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       setIsPainting(true);
       setMousePosition(coordinates);
       //Draws a dot immediately when pressed down
-      // drawDot(coordinates, color);
+      drawDot(coordinates, color);
     }
   }, []);
 
@@ -112,25 +112,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     };
   }, [paint]);
 
-
-  const dot = useCallback(
-    event => {
-      console.log("hi");
-      drawDot(mousePosition, color);
-    },
-    [isPainting]
-  );
-
-  useEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener("touchstart", dot);
-    return () => {
-      canvas.removeEventListener("touchstart", dot);
-    };
-  }, [dot]);
 
   const exitPaint = useCallback(() => {
     setIsPainting(false);
