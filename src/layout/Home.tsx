@@ -95,7 +95,6 @@ const Home: any = (props: any) => {
             <button
               className="join-room_button"
               onTouchStart={validate}
-              onClick={validate}
               name="PLAY"
               value="PLAY">
               PLAY
