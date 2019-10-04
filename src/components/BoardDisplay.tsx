@@ -35,7 +35,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     socket.on(`coordinates${side}`, function(data: message) {
       drawDot(data["mousePosition"], data["color"]);
       drawingCoordinates.push(data["mousePosition"]);
-      socket.on("stop", function() {
+      socket.on(`stop${side}`, function() {
         drawingCoordinates = [];
       });
 
