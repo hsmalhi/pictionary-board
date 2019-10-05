@@ -181,6 +181,7 @@ const ConnectedGame: React.FC = (props: any) => {
           side="left"
           word={props.word.split(" ")[0]}
           time={45}
+          id={Number(localStorage.getItem("playerId"))}
         />
       );
     } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
@@ -190,10 +191,12 @@ const ConnectedGame: React.FC = (props: any) => {
           side="right"
           word={props.word.split(" ")[1]}
           time={45}
+          id={Number(localStorage.getItem("playerId"))}
         />
       );
     } else if (Number(localStorage.getItem("playerId")) === 0) {
-      return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45} />;
+      console.log(props.players)
+      return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45}/>;
     } else {
       return <GuessBoard word={props.word} onCorrect={() => score()}/>
     }

@@ -1,31 +1,42 @@
 import React from "react";
 import Avatar from "../avatar-list/avatar/avatar.component";
 import "./avatarlist.styles.scss";
+import { connect } from "react-redux";
 
-interface AvatarListProps {
-  id:number
-  guess:boolean
-  name:string
-}
+const mapStateToProps = (state: any) => {
+  return {
+    players: state.game.players,
+    leftDrawer: state.game.leftDrawer,
+    rightDrawer: state.game.rightDrawer
+  };
+};
 
-const AvatarList = () => {
-  let props = [
-    { id: 1, guess: false, name: "Ricky" },
-    { id: 2, guess: true, name: "Harjot" },
-    { id: 3, guess: true, name: "Chen" },
+const ConnectedAvatarList = (props: any) => {
+  // const players = props.players.slice(1);
+  // console.log(players);
+  const player = props.players.map(
+    (element: { id: number; correct: boolean; name: string }) => {
+  
 
-    { id: 4, guess: false, name: "Ricky" },
-    { id: 5, guess: true, name: "Harjot" },
-    { id: 6, guess: true, name: "Chen" },
-
-    { id: 7, guess: false, name: "Ricky" },
-    { id: 8, guess: true, name: "Harjot" }
-  ];
-  const player = props.map(element => {
-    return <Avatar id={element.id} guess={element.guess} name={element.name} />;
-  });
+      if (
+        element.id != 0 &&
+        element.id != Number(props.leftDrawer) &&
+        element.id != Number(props.rightDrawer)
+      ) {
+        return (
+          <Avatar
+            id={element.id}
+            correct={element.correct}
+            name={element.name}
+          />
+        );
+      }
+    }
+  );
 
   return <div className="avatar-bar">{player}</div>;
 };
+
+const AvatarList = connect(mapStateToProps)(ConnectedAvatarList);
 
 export default AvatarList;
