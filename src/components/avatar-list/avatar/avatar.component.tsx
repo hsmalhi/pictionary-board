@@ -1,16 +1,39 @@
 import React from "react";
 import "./avatar.styles.scss";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Avatar = (props: any) => {
-
-  return (
+  if (props.guess) {
+    return (
+      <div className="avatar-correct">
+        <span className="guess-check">
+          <FontAwesomeIcon icon={faCheck} />
+        </span>
+        <div className="avatar-container">
+          <img
+            className="avatar-pic"
+            alt="avatar"
+            src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
+          />
+        </div>
+        <div className="avatar-name">{props.name}</div>
+      </div>
+    );
+  } else {
+    return (
+      <div className="avatar-incorrect">
       <div className="avatar-container">
-        <img className="avatar-pic"
+        <img
+          className="avatar-pic"
           alt="avatar"
           src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
         />
       </div>
-  );
+        <div className="avatar-name">{props.name}</div>
+       </div>
+    );
+  }
 };
 
 export default Avatar;

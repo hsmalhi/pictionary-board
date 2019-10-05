@@ -32,9 +32,10 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     undefined
   );
   const [color, setColor] = useState<string>("black");
+  const [stroke, setStroke] = useState<number>(14);
 
   function sendCoords(mousePosition: Coordinate) {
-    socket.emit("coordinates", { mousePosition, room, side, color });
+    socket.emit("coordinates", { mousePosition, room, side, color, stroke });
   }
   //When the pen is lifted sends a stop message to the client
   function sendStop() {
@@ -46,6 +47,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   }
 
   function handleColorChange(event: string) {
+    setStroke(14);
     setColor(event);
   }
 
@@ -57,16 +59,23 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     sendClear();
   };
 
+  const eraser = () => {
+    setColor("white");
+    setStroke(50);
+  };
+
   //Once the mouse is pressed down, we use this callback and then if the coordinates are true we will get the mouse poistion via coordiantes and set setispainting to true
-  const startPaint = useCallback(event => {
-    const coordinates = getCoordinates(event);
-    if (coordinates) {
-      setIsPainting(true);
-      setMousePosition(coordinates);
-      //Draws a dot immediately when pressed down
-      // drawDot(coordinates, color);
-    }
-  }, []);
+  const startPaint = useCallback(
+    event => {
+      const coordinates = getCoordinates(event);
+      if (coordinates) {
+        setIsPainting(true);
+        setMousePosition(coordinates);
+        drawDot(coordinates, color);
+      }
+    },
+    [color]
+  );
 
   //This is what starts everything, once the mouse is clicked then it calls start paint which begins the paint process
   useEffect(() => {
@@ -90,6 +99,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   const paint = useCallback(
     event => {
       if (isPainting) {
+        // console.log(color);
         const newMousePosition = getCoordinates(event);
         if (mousePosition && newMousePosition) {
           drawLine(mousePosition, newMousePosition, color);
@@ -99,7 +109,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     },
     [isPainting, mousePosition]
   );
-
 
   useEffect(() => {
     if (!canvasRef.current) {
@@ -111,26 +120,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       canvas.removeEventListener("touchmove", paint);
     };
   }, [paint]);
-
-
-  const dot = useCallback(
-    event => {
-      console.log("hi");
-      drawDot(mousePosition, color);
-    },
-    [isPainting]
-  );
-
-  useEffect(() => {
-    if (!canvasRef.current) {
-      return;
-    }
-    const canvas: HTMLCanvasElement = canvasRef.current;
-    canvas.addEventListener("touchstart", dot);
-    return () => {
-      canvas.removeEventListener("touchstart", dot);
-    };
-  }, [dot]);
 
   const exitPaint = useCallback(() => {
     setIsPainting(false);
@@ -190,7 +179,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
         ctx.strokeStyle = color;
         ctx.fillStyle = color;
         ctx.lineJoin = "round";
-        ctx.lineWidth = 10;
+        ctx.lineWidth = stroke;
         ctx.beginPath();
         ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
         ctx.lineTo(newMousePosition.x, newMousePosition.y);
@@ -210,11 +199,12 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       ctx.strokeStyle = color;
       ctx.fillStyle = color;
       ctx.lineJoin = "round";
-      ctx.lineWidth = 5;
+      ctx.lineWidth = stroke/6;
       ctx.beginPath();
-      ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
-      ctx.stroke();
+      ctx.arc(MousePosition.x, MousePosition.y, 7, 0, 2 * Math.PI);
       ctx.fill();
+      ctx.stroke();
+      ctx.closePath();
       sendCoords(MousePosition);
     }
   };
@@ -225,10 +215,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       <button className="additional-tool-button clear" onClick={clearImage}>
         <FontAwesomeIcon icon={faTrash} />
       </button>
-      <button
-        className="additional-tool-button erase"
-        onClick={() => setColor("white")}
-      >
+      <button className="additional-tool-button erase" onClick={eraser}>
         <FontAwesomeIcon icon={faEraser} />
       </button>
       <Toolbar onColorChange={handleColorChange} />
@@ -237,8 +224,8 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
 };
 
 Whiteboard.defaultProps = {
-  width: window.innerWidth * 0.99,
-  height: window.innerHeight * 0.99
+  width: window.innerWidth * 1,
+  height: window.innerHeight * 0.999
 };
 
 export default Whiteboard;

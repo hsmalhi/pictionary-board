@@ -19,7 +19,8 @@ export enum ActionTypes {
   START_ROUND = 'START_ROUND',
   END_ROUND = 'END_ROUND',
   END_GAME = 'END_GAME',
-  UPDATE_SCORE = 'UPDATE_SCORE'
+  UPDATE_SCORE = 'UPDATE_SCORE',
+  RESTART = 'RESTART'
 }
 
 /*
@@ -103,6 +104,10 @@ export interface UpdateScoreAction {
   payload: {
     playerId: number
   }
+}
+
+export interface RestartAction {
+  type: ActionTypes.RESTART
 }
 
 /*
@@ -219,7 +224,7 @@ export function endGame(): EndGameAction {
   }
 }
 
-export function UpdateScoreAction(playerId: number): UpdateScoreAction {
+export function updateScore(playerId: number): UpdateScoreAction {
   return {
     type: ActionTypes.UPDATE_SCORE,
     payload: {
@@ -228,9 +233,15 @@ export function UpdateScoreAction(playerId: number): UpdateScoreAction {
   }
 }
 
+export function restart(): RestartAction {
+  return {
+    type: ActionTypes.RESTART
+  }
+}
+
 /*
  * Define the Action type
  * It can be one of the types defining in our action/todos file
  * It will be useful to tell typescript about our types in our reducer
  */
-export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction | StartRoundAction | EndRoundAction | EndGameAction | UpdateScoreAction
+export type Action = SetupAction | UpdatePlayersAction | AddPlayerAction | RemovePlayerAction | StartGameAction | StartRoundAction | EndRoundAction | EndGameAction | UpdateScoreAction | RestartAction

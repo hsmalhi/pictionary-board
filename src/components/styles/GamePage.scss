@@ -1,9 +1,3 @@
-.flex {
-  display: flex;
-  justify-content: center;
-  height: 85vh;
-}
-
 // .left,
 // .right {
 //   border-style: solid;
@@ -17,20 +11,57 @@
 //   border-width: 5px 5px 5px 0px;
 // }
 
-.word {
-  font-size: 3em;
-  white-space: pre-wrap;
-  text-transform: uppercase;
-  margin: 0 auto;
-  position: absolute;
-  left: 50%;
-  margin-left: -50px;
-  top: 5%;
-  margin-top: -50px;
-
-}
-
 .canvas-container {
   display: flex;
   justify-content: center;
+}
+.word {
+  font-family: "Bubblegum Sans", sans-serif;
+  font-size: 2.5em;
+  margin-top: .5em;
+  white-space: pre-wrap;
+  text-transform: uppercase;
+}
+
+.word-container {
+  margin-top: 7vh;
+  text-align: center;
+}
+.word {
+  text-align: center;
+}
+
+.whiteboard-display {
+  width: 100vw;
+  height: 100vh;
+}
+
+.game_page {
+  overflow: hidden;
+}
+
+.avatarlist-container,
+.countdown-container {
+  margin: 2em;
+}
+.avatarlist-container {
+  bottom: 0;
+  position: absolute;
+}
+
+// .mName {
+//   bottom: 12.5vw;
+//   height: 12.5vw;
+//   right: 0;
+//   font-size: 2em;
+//   background-color: white;
+// position: absolute;
+// }
+
+.mAvatar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin-top: 10px;
+  margin-left: 10px;
 }
