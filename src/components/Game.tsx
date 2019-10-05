@@ -12,6 +12,11 @@ import CountdownTimer from "./timer/timer.component";
 import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 
+
+document.ontouchmove = function(event){
+  event.preventDefault();
+}
+
 const mapStateToProps = (state: any) => {
   return {
     code: state.game.code,

@@ -14,6 +14,8 @@ interface DrawingDisplayProps {
 }
 
 const DrawingDisplay = (props: DrawingDisplayProps) => {
+
+
   return (
     <div className="whiteboard-display">
       <ShowWord word={props.word} />
