@@ -227,7 +227,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
 
 Whiteboard.defaultProps = {
   width: window.innerWidth * 0.8,
-  height: window.innerHeight * 0.8
+  height: window.innerHeight * 0.7
 };
 
 export default Whiteboard;
