@@ -1,6 +1,6 @@
 import React, { useEffect, Fragment } from "react";
 import io from "socket.io-client";
-import { setup, updatePlayers, startGame, startRound, endRound, endGame, UpdateScoreAction } from '../actions/game';
+import { setup, updatePlayers, startGame, startRound, endRound, endGame, updateScore, restart } from '../actions/game';
 import { connect } from "react-redux";
 import LobbySetup from "./lobby/lobby.component";
 import LeftRightDisplay from "./LeftRightDisplay";
@@ -32,7 +32,8 @@ const mapDispatchToProps = (dispatch: any) => {
     startRound: (timer: number) => dispatch(startRound(timer)),
     endRound: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
     endGame: () => dispatch(endGame()),
-    updateScore: (playerId: number) => dispatch(UpdateScoreAction(playerId))
+    updateScore: (playerId: number) => dispatch(updateScore(playerId)),
+    restart: () => dispatch(restart())
   };
 };
 
@@ -54,15 +55,6 @@ const ConnectedGame: React.FC = (props: any) => {
 
     props.socket.on("ROUND_START", (message: any) => {
       props.startRound(message.timer);
-      //TEST: This is testing the scoring aspect. Player id 1 should have a max score at the end of the game.
-      // if (Number(localStorage.getItem('playerId')) === 1) {
-      //   const message = {
-      //     playerId: 1,
-      //     code: props.code
-      //   }
-
-      //   props.socket.emit('SCORE', message);
-      // }
     });
 
     props.socket.on("ROUND_OVER", (message: any) => {
@@ -80,6 +72,10 @@ const ConnectedGame: React.FC = (props: any) => {
       props.updateScore(message.playerId);
     });
 
+    props.socket.on("RESTART_CLIENT", () => {
+      props.restart();
+    });
+
     return () => {
       props.socket.off("PLAYER_UPDATE");
       props.socket.off("STARTING_GAME");
@@ -87,6 +83,7 @@ const ConnectedGame: React.FC = (props: any) => {
       props.socket.off("ROUND_OVER");
       props.socket.off("GAME_OVER");
       props.socket.off("UPDATE_SCORE");
+      props.socket.off("RESTART_CLIENT");
     }
   });
 
@@ -95,6 +92,13 @@ const ConnectedGame: React.FC = (props: any) => {
       code: props.code
     };
     props.socket.emit("START_GAME", message);
+  };
+
+  const restart = () => {
+    const message = {
+      code: props.code
+    };
+    props.socket.emit("RESTART_SERVER", message);
   };
 
   const score = () => {
@@ -110,18 +114,6 @@ const ConnectedGame: React.FC = (props: any) => {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <div>
-          {/* <div className="Game">
-            <h1>Hello World!</h1>
-            <p>Code: {props.code}</p>
-            <p>Status: {props.status}</p>
-            <p>Timer: {props.timer}</p>
-            <p>Players: {props.players.length}</p>
-            <p>Left Drawer: {props.leftDrawer}</p>
-            <p>Right Drawer: {props.rightDrawer}</p>
-            {props.players.length >= 4 && (
-              <button onClick={() => beginGame()}> Start Game </button>
-            )}
-          </div> */}
           <LobbySetup start={() => beginGame()}></LobbySetup>
         </div>
       );
@@ -230,7 +222,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Result roomcode={props.code} players={props.players}/>
+          <Result roomcode={props.code} players={props.players} restart={() => restart()}/>
         </Fragment>
       );
     } else {
@@ -257,33 +249,6 @@ const ConnectedGame: React.FC = (props: any) => {
       </div>
     );
   }
-
-  // const renderPlayer = function(player: any) {
-  //   return (
-  //     <Fragment>
-  //       <p>player.id: {player.id}</p>
-  //       <p>   player.name: {player.name}</p>
-  //       <p>   player.score: {player.score}</p>
-  //       <p>   player.correct: {player.correct.toString()}</p>
-  //     </Fragment>
-  //   )
-  // }
-
-  // return (
-  //   <div className="Game">
-  //     <h1>Hello World!</h1>
-  //     <p>Code: {props.code}</p>
-  //     <p>Status: {props.status}</p>
-  //     <p>Timer: {props.timer}</p>
-  //     <p>Players: {props.players.length}</p>
-  //     {props.players.map((player: any) => renderPlayer(player))}
-  //     <p>Left Drawer: {props.leftDrawer}</p>
-  //     <p>Right Drawer: {props.rightDrawer}</p>
-  //     <p>Word: {props.word}</p>
-  //     {props.players.length >= 4 && <button onClick={() => beginGame()}> Start Game </button>}
-  //     <LobbySetup socket={props.socket}></LobbySetup>
-  //   </div>
-  // );
 }
 
 const Game = connect(

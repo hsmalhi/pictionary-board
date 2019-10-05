@@ -186,6 +186,29 @@ export default function reducer(state: State = initialState, action: Action) {
       }
     }
 
+    case ActionTypes.RESTART: {
+      let players = state.game.players.map((player: any) => {
+        return {
+          ...player,
+          score: 0,
+          correct: false
+        }
+      });
+
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          status: Status.Lobby,
+          timer: 0,
+          players,
+          leftDrawer: null,
+          rightDrawer: null,
+          word: null
+        }
+      }
+    }
+
     default:
       return state
   }
