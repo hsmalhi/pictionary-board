@@ -51,7 +51,6 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
 
   const handleSubmit = (event: any) => {
     event.preventDefault();
-
     value === normalise(answer) ? onCorrect() : onIncorrect();
     setValue("");
     return;

@@ -1,25 +1,21 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
 import AnswerBox from "./AnswerBox";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
-const CentreWrapper = styled.div`
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  position: absolute;
-  width: 100%;
-  height: 50vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  font-family: "Bubblegum Sans", sans-serif;
-`;
+import "./guessboard.styles.scss";
+
 
 export default (props: any) => {
 
   const onCorrect = () => {
     props.onCorrect();
+    return (
+      <div>
+        <FontAwesomeIcon icon={faCheckCircle} />
+      </div>
+    )
+
   };
 
   const onIncorrect = () => {
@@ -27,12 +23,12 @@ export default (props: any) => {
   };
 
   return (
-    <CentreWrapper>
+    <div className="center-wrapper">
       <AnswerBox
         answer={props.word}
         onCorrect={onCorrect}
         onIncorrect={onIncorrect}
       />
-    </CentreWrapper>
+    </div>
   );
 };
