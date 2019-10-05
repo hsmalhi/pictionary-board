@@ -18,7 +18,7 @@ canvas {
 }
 
 .additional-tool-button {
-  position: absolute;
+  position: fixed;
   bottom: 12.5vw;
   width: 12.5vw;
   height: 12.5vw;
@@ -75,7 +75,7 @@ canvas {
   display: flex;
   flex-direction: row;
   bottom: 0;
-  position: absolute;
+  position: fixed;
 }
 
 .whiteboard-display {

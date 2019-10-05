@@ -46,20 +46,11 @@
 }
 .avatarlist-container {
   bottom: 0;
-  position: absolute;
+  position: fixed;
 }
 
-// .mName {
-//   bottom: 12.5vw;
-//   height: 12.5vw;
-//   right: 0;
-//   font-size: 2em;
-//   background-color: white;
-// position: absolute;
-// }
-
 .mAvatar {
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
   margin-top: 10px;
