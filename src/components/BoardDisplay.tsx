@@ -13,13 +13,12 @@ interface CanvasProps {
 }
 
 type message = {
-  mousePosition:Coordinate;
-  color:string;
-}
+  mousePosition: Coordinate;
+  color: string;
+};
 
 //Initializes the whiteboard with these sizes
 const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
-
   let canvasRef = useRef<HTMLCanvasElement | null>(null);
   let drawingCoordinates: Array<Coordinate> = [];
   useEffect(() => {
@@ -29,7 +28,9 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     socket.on(`clear${side}`, function() {
       const canvas: HTMLCanvasElement = canvasRef.current;
       const ctx = canvas.getContext("2d");
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      if (ctx) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
     });
 
     socket.on(`coordinates${side}`, function(data: message) {

@@ -24,12 +24,10 @@ const LeftRightDisplay = (props: LeftRightDisplayProps) => {
         <div className="word-container">
           <Word word={props.word} />
         </div>
-        <div className="countdown-container">
-          <CountdownTimer
-            startTimeInSeconds={props.time}
-            timeRemainingInSeconds={props.time}
-          />
-        </div>
+        <CountdownTimer
+          startTimeInSeconds={props.time}
+          timeRemainingInSeconds={props.time}
+        />
         <div className="canvas-container">
           <BoardDisplay side="left" socket={props.socket}></BoardDisplay>
           <BoardDisplay side="right" socket={props.socket}></BoardDisplay>

@@ -1,31 +1,29 @@
-.countdown-timer {
+.mcountdown-timer {
   position: absolute;
   width: 52px;
   height: 52px;
   top: 0;
   right:0;
-  margin-right: 32px;
-  margin-top: 32px;
-  transform: scale(2)
+  margin-right: 10px;
+  margin-top: 10px;
 }
 
-.countdown-timer__circle circle {
+.mcountdown-timer__circle circle {
   stroke-dasharray: 151px;
   stroke-dashoffset: 151px;
   stroke-linecap: butt;
   stroke-width: 5px;
   stroke: black;
   fill: none;
-  scale:2;
 }
 
-.countdown-timer__circle svg {
+.mcountdown-timer__circle svg {
   width: 52px;
   height: 52px;
   transform: rotateZ(-90deg);
 }
 
-.countdown-timer__text {
+.mcountdown-timer__text {
   position: absolute;
   top: 17px;
   width: 52px;
@@ -35,7 +33,7 @@
   text-align: center;
 }
 
-@keyframes countdown-animation {
+@keyframes mcountdown-animation {
   from {
     stroke-dashoffset: 0px;
   }

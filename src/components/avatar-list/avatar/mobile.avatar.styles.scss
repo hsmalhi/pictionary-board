@@ -1,6 +1,6 @@
-.avatar-container {
-  width: 100px;
-  height: 100px;
+.mavatar-container {
+  width: 52px;
+  height: 52px;
   position: relative;
   overflow: hidden;
   border-radius: 50%;
@@ -8,7 +8,7 @@
     transform: scale(1.1);
   }
 }
-.avatar-pic {
+.mavatar-pic {
   display: inline;
   margin: 0 auto;
   height: 100%;
