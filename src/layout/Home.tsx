@@ -13,7 +13,7 @@ const Home: any = (props: any) => {
   // localStorage.removeItem('playerId');
 
   const [ path, setPath ] = useState(null);
-  const [ name, setName ] = useState(null);
+  const [ name, setName ] = useState("asdf");
   const [ error, setError ] = useState(null);
   const [ roomCode, setRoomCode ] = useState(null);
 
@@ -36,10 +36,6 @@ const Home: any = (props: any) => {
 
   const validate = function(event: any) {
     event.preventDefault();
-
-    console.log(roomCode);
-    console.log(name);
-    console.log("here");
 
     if (!roomCode) {
       setError("Enter the room code that's displayed on the main screen");
@@ -118,7 +114,6 @@ const Home: any = (props: any) => {
             <button
               className="join-room_button"
               onTouchStart={(event) => validate(event)}
-              onClick={validate}
               name="PLAY"
               value="PLAY"
             >

@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 
 const Avatar = (props: any) => {
-  if (props.guess) {
+  if (props.correct) {
     return (
       <div className="avatar-correct">
         <span className="guess-check">

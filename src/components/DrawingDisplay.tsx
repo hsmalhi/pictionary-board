@@ -10,6 +10,7 @@ interface DrawingDisplayProps {
   time: number;
   side: string;
   socket: Socket;
+  id: number;
 }
 
 const DrawingDisplay = (props: DrawingDisplayProps) => {
@@ -21,9 +22,8 @@ const DrawingDisplay = (props: DrawingDisplayProps) => {
         timeRemainingInSeconds={props.time}
       />
       <div className="mAvatar">
-        <MobileAvatar id="1" />
+        <MobileAvatar id={props.id} />
       </div>
-      {/* <div className="mName" >Placeholder</div> */}
       <Whiteboard side={props.side} socket={props.socket} />
     </div>
   );

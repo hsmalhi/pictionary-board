@@ -14,6 +14,7 @@ interface LeftRightDisplayProps {
 }
 
 const LeftRightDisplay = (props: LeftRightDisplayProps) => {
+
   return (
     <div className="game-page">
       <div className="game-page-flex">
@@ -30,7 +31,7 @@ const LeftRightDisplay = (props: LeftRightDisplayProps) => {
           <BoardDisplay side="right" socket={props.socket}></BoardDisplay>
         </div>
         <div className="avatarlist-container">
-          <AvatarList  />
+          <AvatarList />
         </div>
       </div>
     </div>

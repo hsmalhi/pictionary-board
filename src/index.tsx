@@ -8,7 +8,8 @@ import { Provider } from 'react-redux'
 import reducer, { initialState } from "./reducers/game"
 import Routes from './Routes';
 
-const store = createStore(reducer, initialState);
+const store = createStore(reducer, initialState, window["__REDUX_DEVTOOLS_EXTENSION__" as any] && (window["__REDUX_DEVTOOLS_EXTENSION__" as any] as any)()
+);
 
 ReactDOM.render(
   <Provider store={store}>
