@@ -12,9 +12,10 @@ import "./Home.styles.scss";
 const Home: any = (props: any) => {
   // localStorage.removeItem('playerId');
 
-  const [path, setPath] = useState(null);
-  const [name, setName] = useState(null);
-  const [roomCode, setRoomCode] = useState(null);
+  const [ path, setPath ] = useState(null);
+  const [ name, setName ] = useState(null);
+  const [ error, setError ] = useState(null);
+  const [ roomCode, setRoomCode ] = useState(null);
 
   function roomCodeChange(event: any) {
     setRoomCode(event.target.value.toUpperCase());
@@ -33,10 +34,21 @@ const Home: any = (props: any) => {
     });
   };
 
-  const validate = function() {
-    if (name === null || roomCode === null) {
-      //TODO: SET ERROR HERE!!!
+  const validate = function(event: any) {
+    event.preventDefault();
+
+    console.log(roomCode);
+    console.log(name);
+    console.log("here");
+
+    if (!roomCode) {
+      setError("Enter the room code that's displayed on the main screen");
       return;
+    } else if (!name) {
+      setError("What's your name?");
+      return;
+    } else {
+      
     }
 
     let message = {
@@ -48,8 +60,8 @@ const Home: any = (props: any) => {
 
     props.socket.on("ROOM_JOINED", (message: any) => {
       if (message.error) {
-        //TODO: make this visual
-        console.log(message.error);
+        setError(message.error);
+        return
       } else {
         localStorage.setItem("playerId", message.playerId);
         setPath(roomCode);
@@ -105,12 +117,14 @@ const Home: any = (props: any) => {
             <br />
             <button
               className="join-room_button"
-              onTouchStart={validate}
+              onTouchStart={(event) => validate(event)}
+              onClick={validate}
               name="PLAY"
               value="PLAY"
             >
               PLAY
             </button>
+            <p className="join-status-message">{error}</p>
           </form>
         </div>
       </div>

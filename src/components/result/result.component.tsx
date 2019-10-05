@@ -44,7 +44,7 @@ const Result = (props: any) => {
         </div>
       </div>
       <button>Home</button>
-      <button>Replay</button>
+      <button onClick={props.restart} >Replay</button>
     </Fragment>
   );
 };
