@@ -1,0 +1,16 @@
+.mavatar-container {
+  width: 52px;
+  height: 52px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 50%;
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+.mavatar-pic {
+  display: inline;
+  margin: 0 auto;
+  height: 100%;
+  width: auto;
+}
