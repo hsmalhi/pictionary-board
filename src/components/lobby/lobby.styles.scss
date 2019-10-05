@@ -66,17 +66,20 @@ button {
   color: black;
   font-family: "Bubblegum Sans", sans-serif;
   cursor: pointer;
-  background-color: lightpink;
+  background-color: rgb(180, 245, 164);
   border-radius: 15px;
   display:inline-block
 }
 
-button:hover:enabled{
+button:hover{
   transform: scale(1.10);
 }
 
 button:disabled{
-  opacity: 0.3;
+  opacity: 0.8;
+  background-color: rgb(250, 106, 106);
+  transform: scale(1);
+  cursor: default
 }
 
 .status-message{

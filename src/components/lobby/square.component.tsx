@@ -13,7 +13,7 @@ const Square = (props: any) => {
           <div>
             <button className="start-game-button" onClick={props.start} disabled={props.disabled}>Start Game</button>
             {props.disabled && <StatusMessage>Waiting for more players...</StatusMessage>}
-            {!props.disabled && <StatusMessage>Ready to go!</StatusMessage>}
+            {!props.disabled && <StatusMessage>Ready to go! ►</StatusMessage>}
           </div>
         </div>
       </Fragment>
