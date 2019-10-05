@@ -102,12 +102,26 @@ const ConnectedGame: React.FC = (props: any) => {
   };
 
   const score = () => {
-    const message = {
+    const guesserMessage = {
       playerId: localStorage.getItem('playerId'),
       code: props.code
     }
 
-    props.socket.emit('SCORE', message);
+    props.socket.emit('SCORE', guesserMessage);
+
+    const leftDrawerMessage = {
+      playerId: props.leftDrawer,
+      code: props.code
+    }
+
+    props.socket.emit('SCORE', leftDrawerMessage);
+
+    const rightDrawerMessage = {
+      playerId: props.rightDrawer,
+      code: props.code
+    }
+
+    props.socket.emit('SCORE', rightDrawerMessage);
   }
 
   if (props.status == Status.Lobby) {

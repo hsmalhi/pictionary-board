@@ -26,6 +26,9 @@
   align-items: center;
   height: 175px;
   width: 175px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
   &:nth-child(1) {
     height: 15vh;
     width: 25vw;
@@ -68,6 +71,14 @@ button {
   display:inline-block
 }
 
-button:hover{
+button:hover:enabled{
   transform: scale(1.10);
+}
+
+button:disabled{
+  opacity: 0.3;
+}
+
+.status-message{
+  font-size: 16px;
 }
