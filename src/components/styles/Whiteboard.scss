@@ -4,6 +4,13 @@ body {
   overscroll-behavior-y: none;
 }
 
+canvas {
+  padding: 0;
+  margin: auto;
+  display: block;
+}
+
+
 .color-box {
   width: 12.5vw;
   height: 12.5vw;

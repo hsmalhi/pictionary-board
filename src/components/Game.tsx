@@ -70,6 +70,7 @@ const ConnectedGame: React.FC = (props: any) => {
 
     props.socket.on("UPDATE_SCORE", (message: any) => {
       props.updateScore(message.playerId);
+      console.log("scoreupdate",props.players)
     });
 
     props.socket.on("RESTART_CLIENT", () => {
