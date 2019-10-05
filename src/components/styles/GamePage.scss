@@ -16,14 +16,15 @@
   justify-content: center;
 }
 .word {
-  font-size: 3em;
+  font-family: "Bubblegum Sans", sans-serif;
+  font-size: 2.5em;
+  margin-top: .5em;
   white-space: pre-wrap;
   text-transform: uppercase;
-  margin-top: 30px;
 }
 
 .word-container {
-  margin-top: 3vh;
+  margin-top: 7vh;
   text-align: center;
 }
 .word {
@@ -42,6 +43,10 @@
 .avatarlist-container,
 .countdown-container {
   margin: 2em;
+}
+.avatarlist-container {
+  bottom: 0;
+  position: absolute;
 }
 
 // .mName {

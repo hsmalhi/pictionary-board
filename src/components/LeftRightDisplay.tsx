@@ -17,10 +17,7 @@ const LeftRightDisplay = (props: LeftRightDisplayProps) => {
   return (
     <div className="game-page">
       <div className="game-page-flex">
-        <div className="avatarlist-container">
-          <AvatarList />
-        </div>
-
+       
         <div className="word-container">
           <Word word={props.word} />
         </div>
@@ -31,6 +28,9 @@ const LeftRightDisplay = (props: LeftRightDisplayProps) => {
         <div className="canvas-container">
           <BoardDisplay side="left" socket={props.socket}></BoardDisplay>
           <BoardDisplay side="right" socket={props.socket}></BoardDisplay>
+        </div>
+        <div className="avatarlist-container">
+          <AvatarList  />
         </div>
       </div>
     </div>

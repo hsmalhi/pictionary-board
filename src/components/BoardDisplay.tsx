@@ -15,6 +15,7 @@ interface CanvasProps {
 type message = {
   mousePosition: Coordinate;
   color: string;
+  stroke:string
 };
 
 //Initializes the whiteboard with these sizes
@@ -34,21 +35,21 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     });
 
     socket.on(`coordinates${side}`, function(data: message) {
-      drawDot(data["mousePosition"], data["color"]);
+      drawDot(data["mousePosition"], data["color"], data["stroke"]);
       drawingCoordinates.push(data["mousePosition"]);
       socket.on(`stop${side}`, function() {
         drawingCoordinates = [];
       });
 
       if (drawingCoordinates.length === 2) {
-        drawLine(drawingCoordinates[0], drawingCoordinates[1], data["color"]);
+        drawLine(drawingCoordinates[0], drawingCoordinates[1], data["color"], data["stroke"]);
         drawingCoordinates = [drawingCoordinates[1]];
       }
     });
   });
 
   //Draw the initial dot for the painting
-  const drawDot = (MousePosition: Coordinate, color: string) => {
+  const drawDot = (MousePosition: Coordinate, color: string, stroke:any) => {
     if (!canvasRef.current) {
       return;
     }
@@ -57,6 +58,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     if (ctx) {
       ctx.beginPath();
       ctx.strokeStyle = color;
+      ctx.lineWidth=stroke;
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
       ctx.fill();
     }
@@ -65,7 +67,8 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
   const drawLine = (
     originalMousePosition: Coordinate,
     newMousePosition: Coordinate,
-    color: string
+    color: string,
+    stroke:any
   ) => {
     if (!canvasRef.current) {
       return;
@@ -75,7 +78,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     if (ctx) {
       ctx.strokeStyle = color;
       ctx.lineJoin = "round";
-      ctx.lineWidth = 5;
+      ctx.lineWidth = stroke;
       ctx.beginPath();
       ctx.moveTo(originalMousePosition.x, originalMousePosition.y);
       ctx.lineTo(newMousePosition.x, newMousePosition.y);

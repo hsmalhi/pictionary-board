@@ -4,13 +4,38 @@
   position: relative;
   overflow: hidden;
   border-radius: 50%;
-  &:hover {
-    transform: scale(1.1);
-  }
+  bottom: 0;
 }
 .avatar-pic {
   display: inline;
   margin: 0 auto;
   height: 100%;
   width: auto;
+}
+
+.avatar-name {
+  color: black;
+  margin-left: 30px;
+  font-family: "Bubblegum Sans", sans-serif;
+  font-size: 1.25em;
+}
+
+.avatar {
+  &-incorrect {
+    color: red;
+    border-radius: 50%;
+  }
+
+  &-correct {
+    color: green;
+    border-radius: 50%;
+  }
+}
+
+.guess-check {
+  font-size: 80px;
+  z-index: 1;
+  position: absolute;
+  margin-left: 0.15em;
+  margin-top: 0.15em;
 }
