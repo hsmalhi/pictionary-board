@@ -12,7 +12,7 @@ export default (props: any) => {
     props.onCorrect();
     return (
       <div>
-        <FontAwesomeIcon icon={faCheckCircle} />
+        <FontAwesomeIcon className="checkmark-icon"icon={faCheckCircle} />
       </div>
     )
 

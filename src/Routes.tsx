@@ -18,11 +18,11 @@ const Routes: React.FC = () => {
         <Route exact path="/lobby" component={(props : any)=><LobbySetup/>} />
         <Route exact path="/result" component={(props : any)=><Result/>} />
 
-        {/* <Route
+        <Route
           exact
           path="/:id"
           component={(props: any) => <Game {...props} socket={socket} />}
-        /> */}
+        />
         <Route
           exact
           path="/"
