@@ -45,6 +45,7 @@ body {
   border: 0;
 
   &:active {
+    box-sizing: border-box;
     border: black;
     border-style: solid;
     border-width: 1px;
@@ -112,6 +113,7 @@ body {
 }
 
 .tool:active {
+  box-sizing: border-box;
   border: black;
   border-style: solid;
   border-width: 1px;
