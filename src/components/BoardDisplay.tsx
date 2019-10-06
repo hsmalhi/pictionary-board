@@ -96,7 +96,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
 
 BoardDisplay.defaultProps = {
   width: 500,
-  height: window.innerHeight * 0.8
+  height: window.innerHeight * 0.7
 };
 
 export default BoardDisplay;

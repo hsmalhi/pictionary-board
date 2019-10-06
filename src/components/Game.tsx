@@ -202,7 +202,7 @@ const ConnectedGame: React.FC = (props: any) => {
       );
     } else if (Number(localStorage.getItem("playerId")) === 0) {
       console.log(props.players)
-      return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45}/>;
+      return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45} />;
     } else {
       return <GuessBoard word={props.word} onCorrect={() => score()}/>
     }
