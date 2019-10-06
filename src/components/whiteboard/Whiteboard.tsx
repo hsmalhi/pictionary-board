@@ -212,22 +212,22 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   return (
     <Fragment>
       <div>
-      <canvas ref={canvasRef} height={height} width={width} />
+      <canvas className="phone-whiteboard" ref={canvasRef} height={height} width={width} />
       </div>
-      <button className="additional-tool-button clear" onClick={clearImage}>
+      <div className="additional-tool-button clear" onClick={clearImage}>
         <FontAwesomeIcon icon={faTrash} />
-      </button>
-      <button className="additional-tool-button erase" onClick={eraser}>
+      </div>
+      <div className="additional-tool-button erase" onClick={eraser}>
         <FontAwesomeIcon icon={faEraser} />
-      </button>
+      </div>
       <Toolbar onColorChange={handleColorChange} />
     </Fragment>
   );
 };
 
 Whiteboard.defaultProps = {
-  width: window.innerWidth * 0.8,
-  height: window.innerHeight * 0.7
+  width: window.innerWidth,
+  height: window.innerHeight * 0.9
 };
 
 export default Whiteboard;

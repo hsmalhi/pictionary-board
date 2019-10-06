@@ -13,7 +13,7 @@ const Home: any = (props: any) => {
   // localStorage.removeItem('playerId');
 
   const [ path, setPath ] = useState(null);
-  const [ name, setName ] = useState("asdf");
+  const [ name, setName ] = useState(null);
   const [ error, setError ] = useState(null);
   const [ roomCode, setRoomCode ] = useState(null);
 

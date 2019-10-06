@@ -6,9 +6,10 @@ import Game from "./components/Game";
 import LobbySetup from "./components/lobby/lobby.component";
 import Result from "./components/result/result.component";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
-// const socket :any = io("http://localhost:3001");
+import DrawingDisplay from "./components/DrawingDisplay";
+const socket :any = io("http://localhost:3001");
 
-const socket :any = io("https://pictionary-server.herokuapp.com/");
+// const socket :any = io("https://pictionary-server.herokuapp.com/");
 
 const Routes: React.FC = () => {
   return (
@@ -17,6 +18,7 @@ const Routes: React.FC = () => {
         <Route exact path="/guess" component={(props : any)=><GuessBoard word={"star wars"} onCorrect={console.log("correct")}/>} />
         <Route exact path="/lobby" component={(props : any)=><LobbySetup/>} />
         <Route exact path="/result" component={(props : any)=><Result/>} />
+        <Route exact path="/game/:id" component={(props : any)=><DrawingDisplay word="test" time={45} side="left" id={25} socket={socket}/>} />
 
         <Route
           exact

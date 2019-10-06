@@ -1,15 +1,28 @@
+html,
 body {
-  overscroll-behavior: contain;
-  overscroll-behavior-y: contain;
-  overscroll-behavior-y: none;
+  height: 100%;
 }
 
-canvas {
+body {
+  position: fixed;
+  margin: 0;
   padding: 0;
-  margin: auto;
+  border: 0;
+  outline: 0;
+  background: 0 0;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: auto;
+  overflow-y: scroll;
+  overscroll-behavior: contain;
+}
+
+.phone-whiteboard {
+  padding-left: 0;
+  padding-right: 0;
+  margin-left: auto;
+  margin-right: auto;
   display: block;
 }
-
 
 .color-box {
   width: 12.5vw;
@@ -18,6 +31,8 @@ canvas {
 }
 
 .additional-tool-button {
+  font-size: 20px;
+  text-align: center;
   position: fixed;
   bottom: 12.5vw;
   width: 12.5vw;
@@ -30,6 +45,10 @@ canvas {
 .erase {
   left: 12.5vw;
   background-color: white;
+}
+
+.fa-eraser, .fa-trash {
+  margin-top: 10px;
 }
 
 .clear {
@@ -76,4 +95,8 @@ canvas {
   flex-direction: row;
   bottom: 0;
   position: fixed;
+}
+
+.topbar-flex {
+  display: flex;
 }
