@@ -12,7 +12,7 @@ import CountdownTimer from "./timer/timer.component";
 import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component"
-
+import CorrectDisplay from "./CorrectDisplay"
 
 document.ontouchmove = function(event){
   event.preventDefault();
@@ -204,8 +204,20 @@ const ConnectedGame: React.FC = (props: any) => {
     } else if (Number(localStorage.getItem("playerId")) === 0) {
       console.log(props.players)
       return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45} />;
+    } else if (props.players[Number(localStorage.getItem("playerId"))].correct){
+      return (
+        <Fragment>
+          <Title />
+          <CorrectDisplay />
+        </Fragment>
+      )
     } else {
-      return <GuessBoard word={props.word} onCorrect={() => score()}/>
+      return (
+        <Fragment>
+          <Title />
+          <GuessBoard word={props.word} onCorrect={() => score()}/>
+        </Fragment>
+      )
     }
   } else if (props.status == Status.RoundOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
