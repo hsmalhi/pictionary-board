@@ -28,4 +28,5 @@ export default interface Game {
   leftDrawer: number,
   rightDrawer: number,
   word: string
+  prevWord: string
 }

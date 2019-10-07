@@ -46,7 +46,8 @@ const mapStateToProps = (state: any) => {
     players: state.game.players,
     leftDrawer: state.game.leftDrawer,
     rightDrawer: state.game.rightDrawer,
-    word: state.game.word
+    word: state.game.word,
+    prevWord: state.game.prevWord
   };
 };
 
@@ -182,7 +183,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"waiting for other players to join"} />
+          <Waiting message={"Waiting for other players to join"} />
         </Fragment>
       );
     }
@@ -203,7 +204,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be drawing!"} />
-          {/* <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} /> */}
         </Fragment>
       );
     } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
@@ -211,7 +211,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be drawing!"} />
-          {/* <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} /> */}
         </Fragment>
       );
     } else {
@@ -219,7 +218,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be guessing!"} />
-          {/* <CountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} /> */}
         </Fragment>
       );
     }
@@ -284,6 +282,8 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Next round is starting soon"} />
+          <div className="prev-word-sentence">The word was<strong className="prev-word">{props.prevWord}! </strong></div>
+
           <CenterCountdownTimer
             startTimeInSeconds={5}
             timeRemainingInSeconds={5}
@@ -295,7 +295,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be drawing!"} />
-          {/* <CenterCountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} size="small" /> */}
         </Fragment>
       );
     } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
@@ -303,7 +302,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be drawing!"} />
-          {/* <CenterCountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} size="small" /> */}
         </Fragment>
       );
     } else {
@@ -311,7 +309,6 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"You will be guessing!"} />
-          {/* <CenterCountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5} size="small" /> */}
         </Fragment>
       );
     }
