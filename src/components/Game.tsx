@@ -18,6 +18,18 @@ document.ontouchmove = function(event){
   event.preventDefault();
 }
 
+// window.onbeforeunload = function() {
+//     event.preventDefault();
+//     this.alert("you are leaving the page?");
+// };
+
+window.addEventListener('beforeunload', (event) => {
+  // Cancel the event as stated by the standard.
+  event.preventDefault();
+  // Chrome requires returnValue to be set.
+  event.returnValue = 'you are leaving the page';
+});
+
 const mapStateToProps = (state: any) => {
   return {
     code: state.game.code,
