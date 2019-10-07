@@ -15,7 +15,7 @@ const Credit = (props: any) => {
           <Avatar id={props.id} />
           <div className="result-display">
             Player: {props.name}
-            <br/>
+            <br />
             Score: {props.score}
           </div>
         </div>
