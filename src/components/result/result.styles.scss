@@ -64,6 +64,13 @@
   }
  }
 
+ .results-button{
+    position: fixed;
+    top: 50%;
+    left:50%;
+    z-index: 0;
+ }
+
  @keyframes credits {
   0% {
   top: 100%;
