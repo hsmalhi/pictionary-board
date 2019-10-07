@@ -2,6 +2,7 @@ html,
 body {
   height: 100%;
   width: 100%;
+  overscroll-behavior-y: contain;
 }
 
 body {
@@ -25,6 +26,10 @@ body {
   margin-left: auto;
   margin-right: auto;
   display: block;
+}
+
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
 }
 
 .color-box {
