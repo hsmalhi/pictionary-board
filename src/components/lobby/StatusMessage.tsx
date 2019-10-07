@@ -3,7 +3,7 @@ import React, { Fragment } from "react";
 const StatusMessage = (props: any) => {
   return (
     <Fragment>
-      <p className="status-message">{props.children}</p>
+      <div className="status-message">{props.children}</div>
     </Fragment>
   )
 };

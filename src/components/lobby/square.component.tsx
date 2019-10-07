@@ -10,11 +10,9 @@ const Square = (props: any) => {
       <Fragment>
         <div className="box">
           <div>Room Code: {props.roomcode}</div>
-          <div>
-            <button className="start-game-button" onClick={props.start} disabled={props.disabled}>Start Game</button>
-            {props.disabled && <StatusMessage>Waiting for more players...</StatusMessage>}
-            {!props.disabled && <StatusMessage>Ready to go! ►</StatusMessage>}
-          </div>
+          <button className="start-game-button" onClick={props.start} disabled={props.disabled}>Start Game</button>
+          {props.disabled && <StatusMessage>Waiting for more players...</StatusMessage>}
+          {!props.disabled && <StatusMessage>Ready to go! ►</StatusMessage>}
         </div>
       </Fragment>
     );

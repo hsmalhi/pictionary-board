@@ -4,7 +4,6 @@
   margin: 0 auto;
   background-image: url("https://www.wallpaperflare.com/static/51/555/676/drawing-doodle-wallpaper.jpg");
   color: #fff;
-  border: 6px solid lightpink;
   border-radius: 10px;
   display: grid;
   grid-template: repeat(3, 1fr) / repeat(3, 1fr);
@@ -24,14 +23,11 @@
   align-items: center;
   height: 175px;
   width: 175px;
-  display: flex;
   flex-direction: column;
   justify-content: space-evenly;
   &:nth-child(1) {
-    height: 15vh;
     width: 25vw;
     order: 5;
-    flex-direction:column;
   }
   &:nth-child(2) {
     order: 1;
