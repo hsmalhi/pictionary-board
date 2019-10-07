@@ -110,22 +110,17 @@ export default function reducer(state: State = initialState, action: Action) {
     }
 
     case ActionTypes.START_GAME: {
-      if (state.game.players.length >= 4 && state.game.players.length <= 9) {
-        return {
-          ...state,
-          game: {
-            ...state.game,
-            status: action.payload.status,
-            timer: action.payload.timer,
-            leftDrawer: action.payload.leftDrawer,
-            rightDrawer: action.payload.rightDrawer,
-            word: action.payload.word
-          }
-        };
-      }
-
-      //The player count is too low or too high
-      return state;
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          status: action.payload.status,
+          timer: action.payload.timer,
+          leftDrawer: action.payload.leftDrawer,
+          rightDrawer: action.payload.rightDrawer,
+          word: action.payload.word
+        }
+      };
     }
 
     case ActionTypes.START_ROUND: {
