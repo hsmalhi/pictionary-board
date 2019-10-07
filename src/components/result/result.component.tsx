@@ -37,7 +37,6 @@ const Result = (props: any) => {
                 name={player.name}
                 score={player.score}
                 id={player.id}
-                roomcode={props.roomcode}
               />
             );
           })}

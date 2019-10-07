@@ -85,6 +85,7 @@ const Home: any = (props: any) => {
               e.preventDefault();
             }}
           >
+            <br />
             <label className="join-room_label">
               ROOM CODE
               <input

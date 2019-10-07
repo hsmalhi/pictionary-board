@@ -1,6 +1,7 @@
 .result-board {
   background-color: hotpink;
   overflow-x: hidden;
+  background-image: url("https://www.wallpaperflare.com/static/51/555/676/drawing-doodle-wallpaper.jpg");
 }
 .wrapper {
   position: absolute;
@@ -12,8 +13,8 @@
   font-family: Abadi MT Condensed;
   text-align: center;
   color: #fff;
-  animation: 60s credits linear infinite;
-  animation-delay: 1s;
+  animation: 55s credits linear infinite;
+  animation-delay: 0s;
   z-index:-1;
  }
 
