@@ -263,7 +263,7 @@ const ConnectedGame: React.FC = (props: any) => {
             word={props.word}
             time={45}
             id={Number(localStorage.getItem("playerId"))}
-            namonCorrect={() => score()}
+            onCorrect={() => score()}
           />
         </Fragment>
       );
@@ -274,7 +274,7 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Next round is starting soon"} />
-          <div className="prev-word-sentence">The word was<strong className="prev-word">{props.prevWord}! </strong></div>
+          <div className="prev-word-sentence">The word was <strong className="prev-word">{props.prevWord}! </strong></div>
 
           <CenterCountdownTimer
             startTimeInSeconds={5}
