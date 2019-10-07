@@ -17,14 +17,15 @@ const Result = (props: any) => {
   //   // { id: 8, name: "Labs" }
   // ];
   let playersSorted = props.players.sort((a: any, b: any) => {
-    if (a.id === 0) {
-      return -1;
-    } else if (b.id === 0) {
-      return 1;
-    } else {
-      return a.score > b.score ? -1 : b.score > a.score ? 1 : 0;
+      if (a.id === 0) {
+        return -1
+      } else if (b.id === 0) {
+        return 1
+      } else {
+        return (a.score > b.score ? -1 : b.score > a.score ? 1 : 0)
+      }
     }
-  });
+  );
 
   return (
     <Fragment>
@@ -32,14 +33,18 @@ const Result = (props: any) => {
         <div className="wrapper">
           {playersSorted.map((player: any) => {
             return (
-              <Credit name={player.name} score={player.score} id={player.id} />
+              <Credit
+                name={player.name}
+                score={player.score}
+                id={player.id}
+              />
             );
           })}
         </div>
       </div>
       <div className="results-button">
-        <button>Home</button>
-        <button onClick={props.restart}>Replay</button>
+      <button>Home</button>
+      <button onClick={props.restart}>Replay</button>
       </div>
     </Fragment>
   );
