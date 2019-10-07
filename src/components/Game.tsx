@@ -21,6 +21,8 @@ import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component";
 import CorrectDisplay from "./CorrectDisplay";
+import MobileCountdownTimer from "./timer/mobile.timer.component";
+import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
 
 document.ontouchmove = function(event) {
   event.preventDefault();
@@ -252,7 +254,6 @@ const ConnectedGame: React.FC = (props: any) => {
     ) {
       return (
         <Fragment>
-          <Title />
           <CorrectDisplay />
         </Fragment>
       );
@@ -274,7 +275,7 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Next round is starting soon"} />
-          <div className="prev-word-sentence">The word was <strong className="prev-word">{props.prevWord}! </strong></div>
+          <div className="prev-word-sentence">The word was <strong className="prev-word">{props.prevWord.toUpperCase()}! </strong></div>
 
           <CenterCountdownTimer
             startTimeInSeconds={5}
