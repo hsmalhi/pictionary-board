@@ -259,11 +259,10 @@ const ConnectedGame: React.FC = (props: any) => {
     } else {
       return (
         <Fragment>
-          <Title />
           <GuessBoard
             word={props.word}
             time={45}
-            name={props.players[Number(localStorage.getItem("playerId"))][Number(localStorage.getItem("playerId"))].name}
+            name={props.players[Number(localStorage.getItem("playerId"))].name}
             id={Number(localStorage.getItem("playerId"))}
             namonCorrect={() => score()}
           />
