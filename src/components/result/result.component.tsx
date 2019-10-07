@@ -42,10 +42,10 @@ const Result = (props: any) => {
           })}
         </div>
       </div>
-      <div className="results-button">
+      {/* <div className="results-button"> */}
       <button>Home</button>
       <button onClick={props.restart}>Replay</button>
-      </div>
+      {/* </div> */}
     </Fragment>
   );
 };

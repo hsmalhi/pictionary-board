@@ -289,7 +289,7 @@ const ConnectedGame: React.FC = (props: any) => {
               {props.prevWord.toUpperCase()}!{" "}
             </strong>
           </div>
-
+          
           <CenterCountdownTimer
             startTimeInSeconds={5}
             timeRemainingInSeconds={5}
