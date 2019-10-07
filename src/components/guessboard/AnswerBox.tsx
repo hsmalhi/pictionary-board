@@ -64,7 +64,7 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
   const maxLength = useMemo(() => normalise(answer).length, [answer]);
 
   return (
-    <Form onSubmit={handleSubmit}>
+    <Form className="hidden-input-form" onSubmit={handleSubmit}>
       <HiddenInput
         onChange={handleChange}
         value={value}
