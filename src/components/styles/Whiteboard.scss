@@ -4,6 +4,10 @@ body {
   overscroll-behavior-y: none;
 }
 
+.disable-dbl-tap-zoom {
+  touch-action: manipulation;
+}
+
 .color-box {
   width: 12.5vw;
   height: 12.5vw;
