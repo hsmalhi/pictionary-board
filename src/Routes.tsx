@@ -21,7 +21,7 @@ const Routes: React.FC = () => {
         <Route
           exact
           path="/:id"
-          component={(props: any) => <Game {...props} socket={socket} />}
+          component={(props: any) => <Game {...props} socket={socket} android:screenOrientation="portrait" />}
         />
         <Route
           exact
