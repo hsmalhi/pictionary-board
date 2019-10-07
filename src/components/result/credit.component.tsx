@@ -6,9 +6,7 @@ import Avatar from "../avatar-list/avatar/avatar.component";
 const Credit = (props: any) => {
   if (props.id === 0) {
     return (
-      <Fragment>
-        <p className="roomcode">Room Code: {props.roomcode}</p>
-      </Fragment>
+      <Fragment/>
     );
   } else {
     return (
@@ -17,7 +15,7 @@ const Credit = (props: any) => {
           <Avatar id={props.id} />
           <div className="result-display">
             Player: {props.name}
-            <br/>
+            <br />
             Score: {props.score}
           </div>
         </div>

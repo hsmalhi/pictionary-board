@@ -21,6 +21,7 @@ import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component";
 import CorrectDisplay from "./CorrectDisplay";
+import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
 
 document.ontouchmove = function(event) {
   event.preventDefault();
@@ -86,7 +87,12 @@ const ConnectedGame: React.FC = (props: any) => {
     });
 
     props.socket.on("STARTING_GAME", (message: any) => {
-      props.startGame(message.timer, message.leftDrawer, message.rightDrawer, message.word);
+      props.startGame(
+        message.timer,
+        message.leftDrawer,
+        message.rightDrawer,
+        message.word
+      );
     });
 
     props.socket.on("ROUND_START", (message: any) => {
@@ -251,6 +257,8 @@ const ConnectedGame: React.FC = (props: any) => {
     ) {
       return (
         <Fragment>
+          <MobileAvatar id={Number(localStorage.getItem("playerId"))} />
+          {/* <ShowWord word={props.word}/> */}
           <CorrectDisplay />
         </Fragment>
       );
@@ -272,8 +280,12 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Next round is starting soon"} />
-          <div className="prev-word-sentence">The word was <strong className="prev-word">{props.prevWord.toUpperCase()}! </strong></div>
-
+          <div className="prev-word-sentence">
+            The word was{" "}
+            <strong className="prev-word">
+              {props.prevWord.toUpperCase()}!
+            </strong>
+          </div>
           <CenterCountdownTimer
             startTimeInSeconds={5}
             timeRemainingInSeconds={5}
@@ -318,7 +330,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Thanks for Playing!"} />
+          <Waiting message={"Thanks for playing!"} />
         </Fragment>
       );
     }
