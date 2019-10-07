@@ -15,7 +15,8 @@ export const initialState: State = {
     players: [],
     leftDrawer: null,
     rightDrawer: null,
-    word: ""
+    word: null,
+    prevWord: null
   }
 };
 
@@ -142,6 +143,8 @@ export default function reducer(state: State = initialState, action: Action) {
         };
       });
 
+      const prevWord = state.game.word;
+
       return {
         ...state,
         game: {
@@ -151,7 +154,8 @@ export default function reducer(state: State = initialState, action: Action) {
           leftDrawer: action.payload.leftDrawer,
           rightDrawer: action.payload.rightDrawer,
           word: action.payload.word,
-          players
+          prevWord,
+          players,
         }
       };
     }
