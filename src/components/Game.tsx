@@ -204,7 +204,7 @@ const ConnectedGame: React.FC = (props: any) => {
     } else if (Number(localStorage.getItem("playerId")) === 0) {
       console.log(props.players)
       return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45} />;
-    } else if (props.players[Number(localStorage.getItem("playerId"))].correct){
+    } else if (props.players[Number(localStorage.getItem("playerId"))] && props.players[Number(localStorage.getItem("playerId"))].correct){
       return (
         <Fragment>
           <Title />
