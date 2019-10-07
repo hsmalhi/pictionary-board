@@ -7,7 +7,6 @@ import "./guessboard.styles.scss";
 const GuessBoard = (props: any) => {
   return (
     <Fragment>
-      <Title />
       <Game word={props.word} onCorrect={props.onCorrect} />
     </Fragment>
   );

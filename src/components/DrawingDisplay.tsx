@@ -17,7 +17,7 @@ const DrawingDisplay = (props: DrawingDisplayProps) => {
 
 
   return (
-    <div className="whiteboard-display">
+    <div className="whiteboard-display disable-dbl-tap-zoom">
       <ShowWord word={props.word} />
       <MobileCountdownTimer
         startTimeInSeconds={props.time}

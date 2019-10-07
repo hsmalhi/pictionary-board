@@ -9,44 +9,9 @@
       name="description"
       content="Web site created using create-react-app"
     />
-    <script
-      src="https://use.fontawesome.com/releases/v5.11.2/js/all.js"
-      data-auto-replace-svg="nest"
-    ></script>
-    <script>
-      function preventPullToRefresh(element) {
-        var prevent = false;
-
-        document
-          .querySelector(element)
-          .addEventListener("touchstart", function(e) {
-            if (e.touches.length !== 1) {
-              return;
-            }
-
-            var scrollY =
-              window.pageYOffset ||
-              document.body.scrollTop ||
-              document.documentElement.scrollTop;
-            prevent = scrollY === 0;
-          });
-
-        document
-          .querySelector(element)
-          .addEventListener("touchmove", function(e) {
-            if (prevent) {
-              prevent = false;
-              e.preventDefault();
-            }
-          });
-      }
-
-      preventPullToRefresh(html); // pass #id or html tag into the method
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <script src="https://use.fontawesome.com/releases/v5.11.2/js/all.js" data-auto-replace-svg="nest"></script>
+    <link href="https://fonts.googleapis.com/css?family=Bubblegum+Sans&display=swap" rel="stylesheet">
     <link rel="apple-touch-icon" href="logo192.png" />
     <!--
       manifest.json provides metadata used when your web app is installed on a
