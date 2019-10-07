@@ -171,14 +171,13 @@ export default function reducer(state: State = initialState, action: Action) {
     }
 
     case ActionTypes.UPDATE_SCORE: {
-      const { playerId } = action.payload;
-      const player = state.game.players.find(p => p.id === playerId);
+      const { playerId, points } = action.payload;
 
       const players = state.game.players.map(player => {
         if (player.id === playerId) {
           return {
             ...player,
-            score: player.score + 1,
+            score: player.score + points,
             correct: true
           };
         } else {

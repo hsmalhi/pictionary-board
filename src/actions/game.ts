@@ -102,7 +102,8 @@ export interface EndGameAction {
 export interface UpdateScoreAction {
   type: ActionTypes.UPDATE_SCORE,
   payload: {
-    playerId: number
+    playerId: number,
+    points: number
   }
 }
 
@@ -224,11 +225,12 @@ export function endGame(): EndGameAction {
   }
 }
 
-export function updateScore(playerId: number): UpdateScoreAction {
+export function updateScore(playerId: number, points: number): UpdateScoreAction {
   return {
     type: ActionTypes.UPDATE_SCORE,
     payload: {
-      playerId
+      playerId,
+      points
     }
   }
 }
