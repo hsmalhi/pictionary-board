@@ -6,7 +6,7 @@ import { faTimes, faCheck } from "@fortawesome/free-solid-svg-icons";
 const Avatar = (props: any) => {
   if (props.correct) {
     return (
-      <div className="avatar-correct">
+      <div className="avatar-flex avatar-correct">
         <span className="guess-check">
           <FontAwesomeIcon icon={faCheck} />
         </span>
@@ -22,16 +22,16 @@ const Avatar = (props: any) => {
     );
   } else {
     return (
-      <div className="avatar-incorrect">
-      <div className="avatar-container">
-        <img
-          className="avatar-pic"
-          alt="avatar"
-          src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
-        />
-      </div>
+      <div className="avatar-flex avatar-incorrect">
+        <div className="avatar-container">
+          <img
+            className="avatar-pic"
+            alt="avatar"
+            src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
+          />
+        </div>
         <div className="avatar-name">{props.name}</div>
-       </div>
+      </div>
     );
   }
 };

@@ -90,10 +90,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     };
   }, [startPaint]);
 
-  //command to stop scrolling on ios
-  document.ontouchmove = function(event) {
-    event.preventDefault();
-  };
 
   //Paint callback, it if is painting and the mouse is moved then we will call the drawline function with each new mouse position
   const paint = useCallback(
