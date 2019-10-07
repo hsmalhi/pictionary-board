@@ -1,6 +1,15 @@
 import React, { useEffect, Fragment } from "react";
 import io from "socket.io-client";
-import { setup, updatePlayers, startGame, startRound, endRound, endGame, updateScore, restart } from '../actions/game';
+import {
+  setup,
+  updatePlayers,
+  startGame,
+  startRound,
+  endRound,
+  endGame,
+  updateScore,
+  restart
+} from "../actions/game";
 import { connect } from "react-redux";
 import LobbySetup from "./lobby/lobby.component";
 import LeftRightDisplay from "./LeftRightDisplay";
@@ -10,23 +19,23 @@ import Waiting from "./waiting/waiting.component";
 import Title from "./title/title.component";
 import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
-import CenterCountdownTimer from "./timer/center.time.component"
-import CorrectDisplay from "./CorrectDisplay"
+import CenterCountdownTimer from "./timer/center.time.component";
+import CorrectDisplay from "./CorrectDisplay";
 
-document.ontouchmove = function(event){
+document.ontouchmove = function(event) {
   event.preventDefault();
-}
+};
 
 // window.onbeforeunload = function() {
 //     event.preventDefault();
 //     this.alert("you are leaving the page?");
 // };
 
-window.addEventListener('beforeunload', (event) => {
+window.addEventListener("beforeunload", event => {
   // Cancel the event as stated by the standard.
   event.preventDefault();
   // Chrome requires returnValue to be set.
-  event.returnValue = 'you are leaving the page';
+  event.returnValue = "you are leaving the page";
 });
 
 const mapStateToProps = (state: any) => {
@@ -44,10 +53,20 @@ const mapStateToProps = (state: any) => {
 const mapDispatchToProps = (dispatch: any) => {
   return {
     setup: (code: string) => dispatch(setup(code)),
-    updatePlayers: (players: any []) => dispatch(updatePlayers(players)),
-    startGame: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
+    updatePlayers: (players: any[]) => dispatch(updatePlayers(players)),
+    startGame: (
+      timer: number,
+      leftDrawer: number,
+      rightDrawer: number,
+      word: string
+    ) => dispatch(startGame(timer, leftDrawer, rightDrawer, word)),
     startRound: (timer: number) => dispatch(startRound(timer)),
-    endRound: (timer: number, leftDrawer: number, rightDrawer: number, word: string) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
+    endRound: (
+      timer: number,
+      leftDrawer: number,
+      rightDrawer: number,
+      word: string
+    ) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
     endGame: () => dispatch(endGame()),
     updateScore: (playerId: number) => dispatch(updateScore(playerId)),
     restart: () => dispatch(restart())
@@ -67,7 +86,12 @@ const ConnectedGame: React.FC = (props: any) => {
 
     props.socket.on("STARTING_GAME", (message: any) => {
       console.log(props.players);
-      props.startGame(message.timer, message.leftDrawer, message.rightDrawer, message.word);
+      props.startGame(
+        message.timer,
+        message.leftDrawer,
+        message.rightDrawer,
+        message.word
+      );
     });
 
     props.socket.on("ROUND_START", (message: any) => {
@@ -77,7 +101,12 @@ const ConnectedGame: React.FC = (props: any) => {
     props.socket.on("ROUND_OVER", (message: any) => {
       console.log("ending round");
       console.log(message);
-      props.endRound(message.timer, message.leftDrawer, message.rightDrawer, message.word);
+      props.endRound(
+        message.timer,
+        message.leftDrawer,
+        message.rightDrawer,
+        message.word
+      );
       console.log("ended round");
     });
 
@@ -87,7 +116,7 @@ const ConnectedGame: React.FC = (props: any) => {
 
     props.socket.on("UPDATE_SCORE", (message: any) => {
       props.updateScore(message.playerId);
-      console.log("scoreupdate",props.players)
+      console.log("scoreupdate", props.players);
     });
 
     props.socket.on("RESTART_CLIENT", () => {
@@ -102,7 +131,7 @@ const ConnectedGame: React.FC = (props: any) => {
       props.socket.off("GAME_OVER");
       props.socket.off("UPDATE_SCORE");
       props.socket.off("RESTART_CLIENT");
-    }
+    };
   });
 
   const beginGame = () => {
@@ -121,26 +150,26 @@ const ConnectedGame: React.FC = (props: any) => {
 
   const score = () => {
     const guesserMessage = {
-      playerId: localStorage.getItem('playerId'),
+      playerId: localStorage.getItem("playerId"),
       code: props.code
-    }
+    };
 
-    props.socket.emit('SCORE', guesserMessage);
+    props.socket.emit("SCORE", guesserMessage);
 
     const leftDrawerMessage = {
       playerId: props.leftDrawer,
       code: props.code
-    }
+    };
 
-    props.socket.emit('SCORE', leftDrawerMessage);
+    props.socket.emit("SCORE", leftDrawerMessage);
 
     const rightDrawerMessage = {
       playerId: props.rightDrawer,
       code: props.code
-    }
+    };
 
-    props.socket.emit('SCORE', rightDrawerMessage);
-  }
+    props.socket.emit("SCORE", rightDrawerMessage);
+  };
 
   if (props.status == Status.Lobby) {
     if (Number(localStorage.getItem("playerId")) === 0) {
@@ -163,7 +192,10 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Game is starting soon"} />
-          <CenterCountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5}/>
+          <CenterCountdownTimer
+            startTimeInSeconds={5}
+            timeRemainingInSeconds={5}
+          />
         </Fragment>
       );
     } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
@@ -213,22 +245,38 @@ const ConnectedGame: React.FC = (props: any) => {
         />
       );
     } else if (Number(localStorage.getItem("playerId")) === 0) {
-      console.log(props.players)
-      return <LeftRightDisplay {...props} socket={props.socket} word={props.word} time={45} />;
-    } else if (props.players[Number(localStorage.getItem("playerId"))] && props.players[Number(localStorage.getItem("playerId"))].correct){
+      console.log(props.players);
+      return (
+        <LeftRightDisplay
+          {...props}
+          socket={props.socket}
+          word={props.word}
+          time={45}
+        />
+      );
+    } else if (
+      props.players[Number(localStorage.getItem("playerId"))] &&
+      props.players[Number(localStorage.getItem("playerId"))].correct
+    ) {
       return (
         <Fragment>
           <Title />
           <CorrectDisplay />
         </Fragment>
-      )
+      );
     } else {
       return (
         <Fragment>
           <Title />
-          <GuessBoard word={props.word} onCorrect={() => score()}/>
+          <GuessBoard
+            word={props.word}
+            time={45}
+            name={props.players[Number(localStorage.getItem("playerId"))][Number(localStorage.getItem("playerId"))].name}
+            id={Number(localStorage.getItem("playerId"))}
+            namonCorrect={() => score()}
+          />
         </Fragment>
-      )
+      );
     }
   } else if (props.status == Status.RoundOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
@@ -236,7 +284,10 @@ const ConnectedGame: React.FC = (props: any) => {
         <Fragment>
           <Title />
           <Waiting message={"Next round is starting soon"} />
-          <CenterCountdownTimer startTimeInSeconds={5} timeRemainingInSeconds={5}/>
+          <CenterCountdownTimer
+            startTimeInSeconds={5}
+            timeRemainingInSeconds={5}
+          />
         </Fragment>
       );
     } else if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
@@ -269,7 +320,11 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Result roomcode={props.code} players={props.players} restart={() => restart()}/>
+          <Result
+            roomcode={props.code}
+            players={props.players}
+            restart={() => restart()}
+          />
         </Fragment>
       );
     } else {
@@ -296,7 +351,7 @@ const ConnectedGame: React.FC = (props: any) => {
       </div>
     );
   }
-}
+};
 
 const Game = connect(
   mapStateToProps,
