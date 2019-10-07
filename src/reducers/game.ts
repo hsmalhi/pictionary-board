@@ -15,7 +15,8 @@ export const initialState: State = {
     players: [],
     leftDrawer: null,
     rightDrawer: null,
-    word: null
+    word: null,
+    prevWord: null
   }
 };
 
@@ -110,22 +111,17 @@ export default function reducer(state: State = initialState, action: Action) {
     }
 
     case ActionTypes.START_GAME: {
-      if (state.game.players.length >= 4 && state.game.players.length <= 9) {
-        return {
-          ...state,
-          game: {
-            ...state.game,
-            status: action.payload.status,
-            timer: action.payload.timer,
-            leftDrawer: action.payload.leftDrawer,
-            rightDrawer: action.payload.rightDrawer,
-            word: action.payload.word
-          }
-        };
-      }
-
-      //The player count is too low or too high
-      return state;
+      return {
+        ...state,
+        game: {
+          ...state.game,
+          status: action.payload.status,
+          timer: action.payload.timer,
+          leftDrawer: action.payload.leftDrawer,
+          rightDrawer: action.payload.rightDrawer,
+          word: action.payload.word
+        }
+      };
     }
 
     case ActionTypes.START_ROUND: {
@@ -147,6 +143,8 @@ export default function reducer(state: State = initialState, action: Action) {
         };
       });
 
+      const prevWord = state.game.word;
+
       return {
         ...state,
         game: {
@@ -156,7 +154,8 @@ export default function reducer(state: State = initialState, action: Action) {
           leftDrawer: action.payload.leftDrawer,
           rightDrawer: action.payload.rightDrawer,
           word: action.payload.word,
-          players
+          prevWord,
+          players,
         }
       };
     }
