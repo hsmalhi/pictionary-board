@@ -259,7 +259,6 @@ const ConnectedGame: React.FC = (props: any) => {
     } else {
       return (
         <Fragment>
-          <Title />
           <GuessBoard
             word={props.word}
             time={45}
