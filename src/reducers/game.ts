@@ -15,7 +15,7 @@ export const initialState: State = {
     players: [],
     leftDrawer: null,
     rightDrawer: null,
-    word: ""
+    word: null
   }
 };
 

@@ -5,13 +5,19 @@ import "./guessboard.styles.scss";
 
 
 export default (props: any) => {
+  const [ shake, setShake ] = useState(false);
+  const [ error, setError ] = useState(false);
 
   const onCorrect = () => {
     props.onCorrect();
   };
 
   const onIncorrect = () => {
-    // setScore(Math.max(0, score - 1));
+    setShake(true);
+    setError(true);
+    setTimeout(() => {
+      setShake(false);
+    }, 500)
   };
 
   return (
@@ -20,7 +26,10 @@ export default (props: any) => {
         answer={props.word}
         onCorrect={onCorrect}
         onIncorrect={onIncorrect}
+        shake={shake}
       />
+      {!error && <p className="incorrect-placeholder">EMPTY</p>}
+      {error && <p className="incorrect-guess">That's not right!</p>}
     </div>
   );
 };

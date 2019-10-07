@@ -13,6 +13,7 @@ import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component"
 import CorrectDisplay from "./CorrectDisplay"
+import { render } from "react-dom";
 
 document.ontouchmove = function(event){
   event.preventDefault();
@@ -23,12 +24,12 @@ document.ontouchmove = function(event){
 //     this.alert("you are leaving the page?");
 // };
 
-window.addEventListener('beforeunload', (event) => {
-  // Cancel the event as stated by the standard.
-  event.preventDefault();
-  // Chrome requires returnValue to be set.
-  event.returnValue = 'you are leaving the page';
-});
+// window.addEventListener('beforeunload', (event) => {
+//   // Cancel the event as stated by the standard.
+//   event.preventDefault();
+//   // Chrome requires returnValue to be set.
+//   event.returnValue = 'you are leaving the page';
+// });
 
 const mapStateToProps = (state: any) => {
   return {
@@ -67,7 +68,6 @@ const ConnectedGame: React.FC = (props: any) => {
     });
 
     props.socket.on("STARTING_GAME", (message: any) => {
-      console.log(props.players);
       props.startGame(message.timer, message.leftDrawer, message.rightDrawer, message.word);
     });
 
@@ -154,7 +154,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"waiting for other players to join"} />
+          <Waiting message={"Waiting for other players to join"} />
         </Fragment>
       );
     }

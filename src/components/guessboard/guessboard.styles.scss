@@ -15,6 +15,41 @@
   font-family: "Bubblegum Sans", sans-serif;
 }
 
+.shake {
+  animation: shake 0.5s infinite;
+}
+
 .hidden-input {
   z-index: 999;
+}
+
+@keyframes shake {
+  0% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(2em);
+  }
+  40% {
+    transform: translate(-2em);
+  }
+  60% {
+    transform: translate(2em);
+  }
+  80% {
+    transform: translate(-2em);
+  }
+  100% {
+    transform: translate(0);
+  }
+}
+
+.incorrect-guess {
+  font-size: 18px;
+  color: rgb(226, 23, 23)
+}
+
+.incorrect-placeholder {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0)
 }

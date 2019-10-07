@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useMemo } from "react";
 import styled from "styled-components";
+import classNames from "classnames";
 
 const toPlaceholder = (value: any, answer: any) =>
   [...value].reduce((placeholder, char) => {
@@ -38,6 +39,7 @@ interface AnswerProps {
   answer: any;
   onCorrect: any;
   onIncorrect: any;
+  shake: boolean
 }
 
 export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
@@ -63,8 +65,10 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
 
   const maxLength = useMemo(() => normalise(answer).length, [answer]);
 
+  const formClass = classNames('hidden-input-form', { shake: props.shake});
+
   return (
-    <Form className="hidden-input-form" onSubmit={handleSubmit}>
+    <Form className={formClass} onSubmit={handleSubmit}>
       <HiddenInput
         onChange={handleChange}
         value={value}
