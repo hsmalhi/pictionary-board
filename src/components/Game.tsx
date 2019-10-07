@@ -17,7 +17,6 @@ import DrawingDisplay from "./DrawingDisplay";
 import { Status } from "../../src/models/Game";
 import Waiting from "./waiting/waiting.component";
 import Title from "./title/title.component";
-import CountdownTimer from "./timer/timer.component";
 import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component";
@@ -261,7 +260,13 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <GuessBoard word={props.word} onCorrect={() => score()} />
+          <GuessBoard
+            word={props.word}
+            time={45}
+            name={props.players[Number(localStorage.getItem("playerId"))][Number(localStorage.getItem("playerId"))].name}
+            id={Number(localStorage.getItem("playerId"))}
+            namonCorrect={() => score()}
+          />
         </Fragment>
       );
     }
