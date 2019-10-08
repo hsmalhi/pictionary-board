@@ -1,9 +1,13 @@
 .game-title {
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  border:   6px solid lightpink;
   font-family: "Bubblegum Sans", sans-serif;
   background-color: hotpink;
-  border: 6px solid lightpink;
   font-size: 100px;
-  display: flex;  
+  display: flex;
   justify-content: center;
-  z-index:1
+  z-index: 1;
+  width:100%
 }

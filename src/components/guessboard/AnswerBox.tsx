@@ -17,7 +17,7 @@ const Placeholder = styled.span`
   font-family: "Bubblegum Sans", sans-serif;
   padding: 0 0 0.2em 0.2em;
   font-size: 2em;
-  letter-spacing: 0.2em;    
+  letter-spacing: 0.2em;
   outline: 0 none;
 `;
 
@@ -25,7 +25,7 @@ const HiddenInput = styled.input`
   opacity: 0;
   position: absolute;
   width: 100%;
-  top: 0;
+  top: 50%;
   right: 0;
   bottom: 0;
   left: 0;
@@ -39,7 +39,7 @@ interface AnswerProps {
   answer: any;
   onCorrect: any;
   onIncorrect: any;
-  shake: boolean
+  shake: boolean;
 }
 
 export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
@@ -65,7 +65,7 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
 
   const maxLength = useMemo(() => normalise(answer).length, [answer]);
 
-  const formClass = classNames('hidden-input-form', { shake: props.shake});
+  const formClass = classNames("hidden-input-form", { shake: props.shake });
 
   return (
     <Form className={formClass} onSubmit={handleSubmit}>

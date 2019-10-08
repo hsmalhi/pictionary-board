@@ -8,14 +8,15 @@ import {
 } from "react-router-dom";
 import Title from "../components/title/title.component";
 import "./Home.styles.scss";
+import MyVerticallyCenteredModal from "./Modal";
+import { ButtonToolbar, Button, Modal } from "react-bootstrap";
 
 const Home: any = (props: any) => {
-  // localStorage.removeItem('playerId');
-
-  const [ path, setPath ] = useState(null);
-  const [ name, setName ] = useState(null);
-  const [ error, setError ] = useState(null);
-  const [ roomCode, setRoomCode ] = useState(null);
+  const [modalShow, setModalShow] = React.useState(false);
+  const [path, setPath] = useState(null);
+  const [name, setName] = useState(null);
+  const [error, setError] = useState(null);
+  const [roomCode, setRoomCode] = useState(null);
 
   function roomCodeChange(event: any) {
     setRoomCode(event.target.value.toUpperCase());
@@ -34,6 +35,10 @@ const Home: any = (props: any) => {
     });
   };
 
+  const closeModal = function() {
+    if (modalShow) setModalShow(false);
+  };
+
   const validate = function(event: any) {
     event.preventDefault();
 
@@ -44,7 +49,6 @@ const Home: any = (props: any) => {
       setError("What's your name?");
       return;
     } else {
-      
     }
 
     let message = {
@@ -57,7 +61,7 @@ const Home: any = (props: any) => {
     props.socket.on("ROOM_JOINED", (message: any) => {
       if (message.error) {
         setError(message.error);
-        return
+        return;
       } else {
         localStorage.setItem("playerId", message.playerId);
         setPath(roomCode);
@@ -71,12 +75,29 @@ const Home: any = (props: any) => {
 
   return (
     <Fragment>
-      <div className="home-page">
+      <div className="home-page" >
         <Title />
-        <div className="create-room">
-          <button className="create-room_button" onClick={createRoom}>
-            Create Room
-          </button>
+        <div className="buttons-flex">
+          <div className="create-room">
+            <button className="create create-room_button" onClick={createRoom}>
+              Create Room
+            </button>
+          </div>
+          <div className="create-room">
+            <ButtonToolbar>
+              <button
+                className="instructions create-room_button"
+                onClick={() => setModalShow(true)}
+              >
+                Instructions
+              </button>
+
+              <MyVerticallyCenteredModal
+                show={modalShow}
+                onHide={() => setModalShow(false)}
+              />
+            </ButtonToolbar>
+          </div>
         </div>
         <div className="join-room">
           <form
@@ -85,7 +106,6 @@ const Home: any = (props: any) => {
               e.preventDefault();
             }}
           >
-            <br />
             <label className="join-room_label">
               ROOM CODE
               <input
@@ -98,7 +118,7 @@ const Home: any = (props: any) => {
                 value={roomCode}
               />
             </label>
-            <br />
+    
             <label className="join-room_label">
               NAME
               <input
@@ -114,7 +134,7 @@ const Home: any = (props: any) => {
             <br />
             <button
               className="join-room_button"
-              onTouchStart={(event) => validate(event)}
+              onTouchStart={event => validate(event)}
               name="PLAY"
               value="PLAY"
             >
