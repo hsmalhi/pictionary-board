@@ -75,7 +75,7 @@
 
 .results-header {
   font-family: "Bubblegum Sans", sans-serif;
-  font-size: 5em;
+  font-size: 3.5em;
   display: flex;
   justify-content: center;
 }
@@ -104,6 +104,57 @@
 .results-avatar {
   display: flex;
   align-items: center;
+}
+
+.results-content {
+  margin: 0 250px;
+}
+
+.input-group-btn {
+  font-size: 25px;
+  color: black;
+  font-family: "Bubblegum Sans", sans-serif;
+  cursor: pointer;
+  background-color: rgb(180, 245, 164);
+  border-radius: 15px;
+  display: inline-block;
+  overflow: visible;
+}
+.link-home {
+  font-size: 25px;
+  padding: 0 6px;
+  color: black;
+  font-family: "Bubblegum Sans", sans-serif;
+  cursor: pointer;
+  background-color: rgb(180, 245, 164);
+  border-radius: 15px;
+  display: inline-block;
+  overflow: visible;
+  border-width: 2px;
+  border-top-width: 2px;
+  border-right-width: 2px;
+  border-bottom-width: 2px;
+  border-left-width: 2px;
+  border-style: outset;
+  border-top-style: outset;
+  border-right-style: outset;
+  border-bottom-style: outset;
+  border-left-style: outset;
+  border-color: buttonface;
+  border-top-color: buttonface;
+  border-right-color: buttonface;
+  border-bottom-color: buttonface;
+  border-left-color: buttonface;
+  border-image: initial;
+  border-image-source: initial;
+  border-image-slice: initial;
+  border-image-width: initial;
+  border-image-outset: initial;
+  border-image-repeat: initial;
+}
+
+.link-home:hover{
+  transform: scale(1.10);
 }
 
 @keyframes credits {
