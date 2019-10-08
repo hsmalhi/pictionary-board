@@ -65,7 +65,8 @@ const mapDispatchToProps = (dispatch: any) => {
       word: string
     ) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
     endGame: () => dispatch(endGame()),
-    updateScore: (playerId: number, points: number) => dispatch(updateScore(playerId, points)),
+    updateScore: (playerId: number, points: number) =>
+      dispatch(updateScore(playerId, points)),
     restart: () => dispatch(restart())
   };
 };
@@ -78,7 +79,8 @@ const ConnectedGame: React.FC = (props: any) => {
 
   useEffect(() => {
     props.socket.on("PLAYER_UPDATE", (message: any) => {
-      props.updatePlayers(message.players);
+      console.log(message.p);
+      props.updatePlayers(message.p);
     });
 
     props.socket.on("STARTING_GAME", (message: any) => {
@@ -177,7 +179,10 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Waiting for other players to join"} status="lobby"/>
+          <Waiting
+            message={"Waiting for other players to join"}
+            status="lobby"
+          />
         </Fragment>
       );
     }
@@ -186,7 +191,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Game is starting soon"} status="starting"/>
+          <Waiting message={"Game is starting soon"} status="starting" />
           <CenterCountdownTimer
             startTimeInSeconds={5}
             timeRemainingInSeconds={5}
@@ -197,25 +202,27 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"You will be drawing!"} status="drawing"/>
+          <Waiting message={"You will be drawing!"} status="drawing" />
         </Fragment>
       );
     } else if (props.rightDrawer === Number(localStorage.getItem("playerId"))) {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"You will be drawing!"} status="drawing"/>
+          <Waiting message={"You will be drawing!"} status="drawing" />
         </Fragment>
       );
     } else {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"You will be guessing!"} status="guessing"/>
+          <Waiting message={"You will be guessing!"} status="guessing" />
         </Fragment>
       );
     }
   } else if (props.status === Status.RoundInProgress) {
+    // return <p>{JSON.stringify(props.players)}</p>;
+
     if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
       return (
         <DrawingDisplay
@@ -247,7 +254,7 @@ const ConnectedGame: React.FC = (props: any) => {
         />
       );
     } else if (
-      // props.players[Number(localStorage.getItem("playerId"))] &&
+      props.players[Number(localStorage.getItem("playerId"))] &&
       props.players[Number(localStorage.getItem("playerId"))].correct
     ) {
       return (
@@ -274,7 +281,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Next round is starting soon"} status="starting"/>
+          <Waiting message={"Next round is starting soon"} status="starting" />
           <div className="prev-word-sentence">
             The word was{" "}
             <strong className="prev-word">
@@ -305,7 +312,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"You will be guessing!"} status="guessing"/>
+          <Waiting message={"You will be guessing!"} status="guessing" />
         </Fragment>
       );
     }
@@ -325,7 +332,7 @@ const ConnectedGame: React.FC = (props: any) => {
       return (
         <Fragment>
           <Title />
-          <Waiting message={"Thanks for playing!"} status="done"/>
+          <Waiting message={"Thanks for playing!"} status="done" />
         </Fragment>
       );
     }
