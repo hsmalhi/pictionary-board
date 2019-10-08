@@ -152,6 +152,8 @@ const ConnectedGame: React.FC = (props: any) => {
       points: 200
     };
 
+    updateScore(Number(localStorage.getItem("playerId")), 0);
+
     props.socket.emit("SCORE", guesserMessage);
 
     const leftDrawerMessage = {
