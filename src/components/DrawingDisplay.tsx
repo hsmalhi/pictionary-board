@@ -27,6 +27,9 @@ const DrawingDisplay = (props: DrawingDisplayProps) => {
         <MobileAvatar id={props.id} />
       </div>
       <Whiteboard side={props.side} socket={props.socket} />
+      <div>
+        <button>Submit</button>
+      </div>
     </div>
   );
 };

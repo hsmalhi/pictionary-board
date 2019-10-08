@@ -43,7 +43,7 @@ const Result = (props: any) => {
             })}
           </div>
         </div>
-        <div className="results-table">
+        <span className="results-table">
           <table>
             <thead>
               <tr>
@@ -64,10 +64,10 @@ const Result = (props: any) => {
               })}
             </tbody>
           </table>
-          <div className="results-button">
-            <button>Home</button>
-            <button onClick={props.restart}>Replay</button>
-          </div>
+        </span>
+        <div className="results-button">
+          <button>Home</button>
+          <button onClick={props.restart}>Replay</button>
         </div>
       </div>
     </Fragment>
