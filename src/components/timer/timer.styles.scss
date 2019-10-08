@@ -10,8 +10,8 @@
 }
 
 .countdown-timer__circle circle {
-  stroke-dasharray: 151px;
-  stroke-dashoffset: 151px;
+  stroke-dasharray: 138px;
+  stroke-dashoffset: 138px;
   stroke-linecap: butt;
   stroke-width: 5px;
   stroke: black;
@@ -29,7 +29,6 @@
   position: absolute;
   top: 17px;
   width: 52px;
-
   font-size: 14px;
   font-weight: 600;
   text-align: center;
@@ -40,6 +39,6 @@
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 151px;
+    stroke-dashoffset: 138px;
   }
 }

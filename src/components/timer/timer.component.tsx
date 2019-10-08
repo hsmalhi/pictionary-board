@@ -43,7 +43,7 @@ export class CountdownTimer extends React.Component<Props, State> {
         <div className="countdown-timer__circle">
           <svg>
             <circle
-              r="24"
+              r="22"
               cx="26"
               cy="26"
               style={{

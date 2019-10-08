@@ -11,6 +11,7 @@ import LeftRightDisplay from "./components/LeftRightDisplay";
 import Waiting from "./components/waiting/waiting.component"
 import Title from "./components/title/title.component"
 import CenterCountdownTimer from "./components/timer/center.time.component"
+import CountdownTimer from "./components/timer/timer.component"
 // const socket :any = io("http://localhost:3001");
 
 const socket :any = io("https://pictionary-server.herokuapp.com/");
@@ -29,6 +30,8 @@ const Routes: React.FC = () => {
             startTimeInSeconds={5}
             timeRemainingInSeconds={5}
           />
+          // <CountdownTimer  startTimeInSeconds={5}
+          // timeRemainingInSeconds={5} />
     
       } />
 

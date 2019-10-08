@@ -9,8 +9,8 @@
 }
 
 .mcountdown-timer__circle circle {
-  stroke-dasharray: 151px;
-  stroke-dashoffset: 151px;
+  stroke-dasharray: 138px;
+  stroke-dashoffset: 138px;
   stroke-linecap: butt;
   stroke-width: 5px;
   stroke: black;
@@ -37,6 +37,6 @@
     stroke-dashoffset: 0px;
   }
   to {
-    stroke-dashoffset: 151px;
+    stroke-dashoffset: 138px;
   }
 }
