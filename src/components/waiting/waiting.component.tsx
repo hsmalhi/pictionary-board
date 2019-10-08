@@ -7,7 +7,11 @@ import "./waiting.styles.scss";
 const Waiting = (props: any) => {
   return (
     <Fragment>
+      <div>
       <div className="waiting-message">{props.message}</div>
+      <div className="lds-grid scaled y-transformed x-transformed"><div></div><div></div><div></  div><div></div><div></div><div></div><div></div><div></div><div></div>
+      </div>
+      </div>
     </Fragment>
   );
 };
