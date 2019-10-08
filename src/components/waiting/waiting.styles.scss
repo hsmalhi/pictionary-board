@@ -18,12 +18,38 @@
   font-style: italic;
 }
 
+.fa-question-circle {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: scale(15);
+  color: lightpink;
+}
+
+.fa-pencil-alt {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: scale(15);
+  color: lightpink;
+}
+
+.done-icon {
+  display: inline-block;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: scale(5);
+}
+
 .lds-grid {
   display: inline-block;
   position: absolute;
-  top: 50%;
   left: 50%;
-  transform: scale(4) translateY(-10%) translateX(-10%);
+  top: 50%;
+  transform: scale(4) translateY(-8%) translateX(-8%);
   width: 64px;
   height: 64px;
 }
