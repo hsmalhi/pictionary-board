@@ -5,6 +5,8 @@ import Title from "../title/title.component";
 import "./lobby.styles.scss";
 import { connect } from "react-redux";
 
+
+
 const mapStateToProps = (state: any) => {
   return {
       code: state.game.code,
@@ -15,8 +17,6 @@ const mapStateToProps = (state: any) => {
 const ConnectedLobbySetup = (props: any) => {
 
   const empty = Array(9 - props.players.length).fill("");
-
-  console.log(props.players);
 
   return (
     <Fragment>
@@ -34,7 +34,7 @@ const ConnectedLobbySetup = (props: any) => {
           );
         })}
         {empty.map(() => {
-          return <Square />;
+          return <Square id={null} name={null} roomcode={null} start={null} disabled={null} />;
         })}
       </div>
     </Fragment>

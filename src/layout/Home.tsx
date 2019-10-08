@@ -6,32 +6,38 @@ import Title from "../components/title/title.component";
 import "./Home.styles.scss";
 import MyVerticallyCenteredModal from "./Modal";
 import { ButtonToolbar } from "react-bootstrap";
+import { Socket } from "socket.io";
 
-const Home: any = (props: any) => {
+
+interface HomeProps {
+  socket: Socket;
+}
+
+const Home = (props: HomeProps) => {
   const [modalShow, setModalShow] = React.useState(false);
   const [path, setPath] = useState(null);
   const [name, setName] = useState(null);
   const [error, setError] = useState(null);
   const [roomCode, setRoomCode] = useState(null);
 
-  function roomCodeChange(event: any) {
+  function roomCodeChange(event: { target: { value: { toUpperCase: () => void; }; }; }) {
     setRoomCode(event.target.value.toUpperCase());
   }
 
-  function nameChange(event: any) {
+  function nameChange(event: { target: { value: string; }; }) {
     setName(event.target.value);
   }
 
   const createRoom = function() {
     props.socket.emit("SETUP");
 
-    props.socket.on("ROOM_CREATED", (message: any) => {
+    props.socket.on("ROOM_CREATED", (message) => {
       localStorage.setItem("playerId", message.playerId);
       setPath(message.code);
     });
   };
 
-  const validate = function(event: any) {
+  const validate = function(event: React.TouchEvent<HTMLButtonElement>) {
     event.preventDefault();
 
     if (!roomCode) {
@@ -50,7 +56,7 @@ const Home: any = (props: any) => {
 
     props.socket.emit("JOIN", message);
 
-    props.socket.on("ROOM_JOINED", (message: any) => {
+    props.socket.on("ROOM_JOINED", (message) => {
       if (message.error) {
         setError(message.error);
         return;

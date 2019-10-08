@@ -3,8 +3,15 @@ import React, { Fragment } from "react";
 import "./result.styles.scss";
 import Avatar from "../avatar-list/avatar/avatar.component";
 
-const Credit = (props: any) => {
-  if (props.id === 0) {
+
+interface CreditProps {
+  id:number
+  name:string
+  score:number
+}
+
+const Credit = ({id, name, score}: CreditProps) => {
+  if (id === 0) {
     return (
       <Fragment/>
     );
@@ -12,11 +19,11 @@ const Credit = (props: any) => {
     return (
       <Fragment>
         <div className="result">
-          <Avatar id={props.id} />
+          <Avatar id={id} name={null} correct={null} />
           <div className="result-display">
-            Player: {props.name}
+            Player: {name}
             <br />
-            Score: {props.score}
+            Score: {score}
           </div>
         </div>
       </Fragment>

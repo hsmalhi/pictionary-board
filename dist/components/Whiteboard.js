@@ -122,7 +122,6 @@ const Whiteboard = ({ width, height }) => {
             ctx.beginPath();
             ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
             ctx.fill();
-            console.log(MousePosition.x, MousePosition.y);
         }
     };
     return (<react_1.Fragment>

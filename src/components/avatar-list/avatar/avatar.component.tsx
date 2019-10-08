@@ -3,8 +3,15 @@ import "./avatar.styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-function Avatar (props: any) {
-  if (props.correct) {
+interface AvatarProps {
+  id: number;
+  name: string | null;
+  correct:boolean | null;
+}
+
+
+const Avatar = ({id, name, correct}:AvatarProps) =>{
+  if (correct) {
     return (
       <div className="avatar-flex avatar-correct">
         <span className="guess-check">
@@ -14,10 +21,10 @@ function Avatar (props: any) {
           <img
             className="avatar-pic"
             alt="avatar"
-            src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
+            src={`https://robohash.org/${id}?set=set1&size=180x180`}
           />
         </div>
-        <div className="avatar-name">{props.name}</div>
+        <div className="avatar-name">{name}</div>
       </div>
     );
   } else {
@@ -27,10 +34,10 @@ function Avatar (props: any) {
           <img
             className="avatar-pic"
             alt="avatar"
-            src={`https://robohash.org/${props.id}?set=set1&size=180x180`}
+            src={`https://robohash.org/${id}?set=set1&size=180x180`}
           />
         </div>
-        <div className="avatar-name">{props.name}</div>
+        <div className="avatar-name">{name}</div>
       </div>
     );
   }

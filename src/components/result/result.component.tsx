@@ -5,18 +5,8 @@ import Credit from "./credit.component";
 import "./result.styles.scss";
 import Table from "./table.component";
 
-const Result = (props: any) => {
-  // const props: any = [
-  //   { id: 0, roomcode: "KXY" },
-  //   { id: 1, name: "Harjot", score: 5 },
-  //   { id: 2, name: "Ricky", score: 2 },
-  //   { id: 3, name: "Chen", score: 6 },
-  //   { id: 4, name: "Chris", score: 10 },
-  //   { id: 5, name: "Luke", score: 25 },
-  //   { id: 6, name: "Martin", score: 20 }
-  //   // { id: 7, name: "Lighthouse" },
-  //   // { id: 8, name: "Labs" }
-  // ];
+const Result = (props:any) => {
+
   let playersSorted = props.players.sort((a: any, b: any) => {
     if (a.id === 0) {
       return -1;
@@ -33,7 +23,7 @@ const Result = (props: any) => {
       <div>
         <div className="result-board">
           <div className="wrapper">
-            {playersSorted.map((player: any) => {
+            {playersSorted.map((player: { name: string; score: number; id: number; }) => {
               return (
                 <Credit
                   name={player.name}
@@ -55,7 +45,7 @@ const Result = (props: any) => {
               </tr>
             </thead>
             <tbody className="results-body">
-              {topThree.map((player: any) => {
+              {topThree.map((player: { name: React.ReactNode; score: React.ReactNode; id: number; }) => {
                 return (
                   <Table
                     name={player.name}

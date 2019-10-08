@@ -13,7 +13,7 @@ interface State {
 }
 
 export class CenterCountdownTimer extends React.Component<Props, State> {
-  private timer: any;
+  private timer: number;
 
   constructor(props: Props) {
     super(props);

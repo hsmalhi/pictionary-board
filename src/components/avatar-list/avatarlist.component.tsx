@@ -3,7 +3,7 @@ import Avatar from "../avatar-list/avatar/avatar.component";
 import "./avatarlist.styles.scss";
 import { connect } from "react-redux";
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: { game: { players: any; leftDrawer: number; rightDrawer: number; }; }) => {
   return {
     players: state.game.players,
     leftDrawer: state.game.leftDrawer,
@@ -11,7 +11,14 @@ const mapStateToProps = (state: any) => {
   };
 };
 
-const ConnectedAvatarList = (props: any) => {
+interface ConnectedAvatarList {
+players: any
+leftDrawer: number
+rightDrawer:number
+
+}
+
+const ConnectedAvatarList = (props: ConnectedAvatarList) => {
   const player = props.players.map(
     (element: { id: number; correct: boolean; name: string }) => {
       if (
