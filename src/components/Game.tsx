@@ -76,11 +76,10 @@ const ConnectedGame: React.FC = (props: any) => {
   useEffect(() => {
     const code = window.location.pathname.split("/")[1];
     props.setup(code);
-  }, [props]);
+  }, []);
 
   useEffect(() => {
     props.socket.on("PLAYER_UPDATE", (message: any) => {
-      console.log(message.p);
       props.updatePlayers(message.p);
     });
 
@@ -245,7 +244,6 @@ const ConnectedGame: React.FC = (props: any) => {
         />
       );
     } else if (Number(localStorage.getItem("playerId")) === 0) {
-      console.log(props.players);
       return (
         <LeftRightDisplay
           {...props}

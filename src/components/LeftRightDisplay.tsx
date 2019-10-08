@@ -7,14 +7,9 @@ import { Socket } from "socket.io";
 import AvatarList from "./avatar-list/avatarlist.component";
 import { connect } from "react-redux";
 
-interface LeftRightDisplayProps {
-  word: string;
-  time: number;
-  side: string;
-  socket: Socket;
-}
 
-const mapStateToProps = (state: any) => {
+
+const mapStateToProps = (state: { game: { players: any; leftDrawer: number; rightDrawer: number; }; }) => {
   return {
     players: state.game.players,
     leftDrawer: state.game.leftDrawer,

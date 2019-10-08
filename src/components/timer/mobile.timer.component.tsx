@@ -12,7 +12,7 @@ interface State {
 }
 
 export class CountdownTimer extends React.Component<Props, State> {
-  private timer: any;
+  private timer: number;
 
   constructor(props: Props) {
     super(props);

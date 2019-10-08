@@ -1,6 +1,10 @@
 import React, { Fragment } from "react";
 
-const StatusMessage = (props: any) => {
+interface StatusMessageProps{
+  children:string
+}
+
+const StatusMessage = (props:StatusMessageProps) => {
   return (
     <Fragment>
       <div className="status-message">{props.children}</div>

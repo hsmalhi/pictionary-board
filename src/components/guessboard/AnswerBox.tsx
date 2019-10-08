@@ -3,7 +3,7 @@ import styled from "styled-components";
 import classNames from "classnames";
 import "./guessboard.styles.scss";
 
-const toPlaceholder = (value: any, answer: any) =>
+const toPlaceholder = (value: string, answer: any) =>
   [...value].reduce((placeholder, char) => {
     return placeholder.replace("_", char);
   }, answer.replace(/[^\s]/g, "_"));
@@ -37,7 +37,7 @@ const HiddenInput = styled.input`
 `;
 
 interface AnswerProps {
-  answer: any;
+  answer: any
   onCorrect: any;
   onIncorrect: any;
   shake: boolean;
@@ -48,11 +48,11 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
 
   useEffect(() => setValue(""), [answer]);
 
-  const handleChange = (event: any) => {
+  const handleChange = (event: { target: { value: any; }; }) => {
     setValue(normalise(event.target.value));
   };
 
-  const handleSubmit = (event: any) => {
+  const handleSubmit = (event: { preventDefault: () => void; }) => {
     event.preventDefault();
     value === normalise(answer) ? onCorrect() : onIncorrect();
     setValue("");

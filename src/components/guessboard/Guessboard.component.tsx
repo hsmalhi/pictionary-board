@@ -5,7 +5,14 @@ import "./guessboard.styles.scss";
 import MobileCountdownTimer from "../timer/mobile.timer.component";
 import MobileAvatar from "../avatar-list/avatar/mobile.avatar.component";
 
-const GuessBoard = (props: any) => {
+interface GuessBoardProps {
+  time: number;
+  id: number;
+  word: string;
+  onCorrect: any;
+}
+
+const GuessBoard = (props: GuessBoardProps) => {
   return (
     <Fragment>
       <MobileCountdownTimer

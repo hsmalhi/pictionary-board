@@ -8,7 +8,7 @@ import "./header.styles.scss";
 
 //Customizabe canvas
 
-const Header = (props: any) => {
+const Header = () => {
   return (
     <Fragment>
       <div className="header">

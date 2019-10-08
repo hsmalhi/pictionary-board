@@ -39,7 +39,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
     color: string,
     stroke: number
   ) {
-    console.log(color, stroke);
     socket.emit("coordinates", { mousePosition, room, side, color, stroke });
   }
   //When the pen is lifted sends a stop message to the client
@@ -99,7 +98,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   const paint = useCallback(
     event => {
       if (isPainting) {
-        // console.log(color);
         const newMousePosition = getCoordinates(event);
         if (mousePosition && newMousePosition) {
           drawLine(mousePosition, newMousePosition, color);

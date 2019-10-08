@@ -6,7 +6,7 @@ import { faPencilAlt, faQuestionCircle} from "@fortawesome/free-solid-svg-icons"
 import "./waiting.styles.scss";
 //Customizabe canvas
 
-const Waiting = (props: any) => {
+const Waiting = (props: { message: React.ReactNode; status: string; }) => {
   return (
     <Fragment>
       <div className="waiting-screen">
