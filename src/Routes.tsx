@@ -8,9 +8,9 @@ import Result from "./components/result/result.component";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
 import DrawingDisplay from "./components/DrawingDisplay";
 import LeftRightDisplay from "./components/LeftRightDisplay";
-const socket :any = io("http://localhost:3001");
+// const socket :any = io("http://localhost:3001");
 
-// const socket :any = io("https://pictionary-server.herokuapp.com/");
+const socket :any = io("https://pictionary-server.herokuapp.com/");
 
 const Routes: React.FC = () => {
   return (
