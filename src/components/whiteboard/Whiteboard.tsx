@@ -107,7 +107,7 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
         }
       }
     },
-    [isPainting, mousePosition]
+    [isPainting, mousePosition, color]
   );
 
   useEffect(() => {

@@ -21,8 +21,9 @@ type message = {
 //Initializes the whiteboard with these sizes
 const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
   let canvasRef = useRef<HTMLCanvasElement | null>(null);
-  let drawingCoordinates: Array<Coordinate> = [];
   useEffect(() => {
+    let drawingCoordinates: Array<Coordinate> = [];
+
     if (!canvasRef.current) {
       return;
     }

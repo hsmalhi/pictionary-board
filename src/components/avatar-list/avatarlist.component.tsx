@@ -14,10 +14,6 @@ const mapStateToProps = (state: any) => {
 const ConnectedAvatarList = (props: any) => {
   const player = props.players.map(
     (element: { id: number; correct: boolean; name: string }) => {
-      console.log(props.players, "props");
-      console.log(props.leftDrawer);
-      console.log(props.rightDrawer);
-      console.log(element.id);
       if (
         element.id !== 0 &&
         Number(element.id) !== Number(props.leftDrawer) &&
@@ -30,7 +26,7 @@ const ConnectedAvatarList = (props: any) => {
             name={element.name}
           />
         );
-      }
+      } else return null;
     }
   );
 
