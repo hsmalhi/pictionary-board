@@ -73,15 +73,19 @@
   visibility: hidden;
 }
 
-.results-header{
+.results-header {
   font-family: "Bubblegum Sans", sans-serif;
+  font-size: 5em;
+  display: flex;
+  justify-content: center;
 }
 
 .results-table {
-  animation: cssAnimation 0s 20s forwards;
+  animation: cssAnimation 0s 15s forwards;
   visibility: hidden;
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 .results-heading {
@@ -94,6 +98,12 @@
 
 .results-output {
   padding: 0px 20px;
+  text-align: center;
+}
+
+.results-avatar {
+  display: flex;
+  align-items: center;
 }
 
 @keyframes credits {

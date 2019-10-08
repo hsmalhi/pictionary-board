@@ -12,7 +12,7 @@ const Table = (props: any) => {
     return (
       <Fragment>
         <tr>
-          <td className="results-output"><Avatar id={props.id} /></td>
+          <td className="results-output"><Avatar className="results-avatar"id={props.id} /></td>
           <td className="results-output">{props.name}</td>
           <td className="results-output">{props.score}</td>
         </tr>

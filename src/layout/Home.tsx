@@ -106,7 +106,7 @@ const Home: any = (props: any) => {
                 type="text"
                 name="roomcode"
                 maxLength={Number(3)}
-                placeholder="ENTER THE ROOM CODE"
+                placeholder="ENTER ROOM CODE"
                 value={roomCode}
               />
             </label>

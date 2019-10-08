@@ -76,7 +76,7 @@ const ConnectedGame: React.FC = (props: any) => {
   useEffect(() => {
     const code = window.location.pathname.split("/")[1];
     props.setup(code);
-  }, []);
+  }, [props]);
 
   useEffect(() => {
     props.socket.on("PLAYER_UPDATE", (message: any) => {

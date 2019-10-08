@@ -25,7 +25,7 @@ const Result = (props: any) => {
       return a.score > b.score ? -1 : b.score > a.score ? 1 : 0;
     }
   });
-  let topThree = playersSorted.slice(0,3);
+  let topThree = playersSorted.slice(0,4);
 
   return (
     <Fragment>
@@ -44,7 +44,7 @@ const Result = (props: any) => {
           </div>
         </div>
         <span className="results-table">
-          <h1 className="results-header">Top 3 Players</h1>
+          <div className="results-header">Top 3 Players</div>
           <table>
             <thead className="results-heading">
               <tr>
