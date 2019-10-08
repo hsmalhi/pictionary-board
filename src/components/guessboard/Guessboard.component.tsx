@@ -15,11 +15,7 @@ const GuessBoard = (props: any) => {
       <div className="mAvatar">
         <MobileAvatar id={props.id} />
       </div>
-
       <Game word={props.word} onCorrect={props.onCorrect} />
-      <div className="checking-button">
-        <button onTouchStart={props.onCorrect}> Submit</button>
-      </div>
     </Fragment>
   );
 };

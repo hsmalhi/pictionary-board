@@ -1,6 +1,7 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, Fragment } from "react";
 import styled from "styled-components";
 import classNames from "classnames";
+import "./guessboard.styles.scss";
 
 const toPlaceholder = (value: any, answer: any) =>
   [...value].reduce((placeholder, char) => {
@@ -25,7 +26,7 @@ const HiddenInput = styled.input`
   opacity: 0;
   position: absolute;
   width: 100%;
-  top: 50%;
+  top: 0;
   right: 0;
   bottom: 0;
   left: 0;
@@ -68,14 +69,19 @@ export default ({ answer, onCorrect, onIncorrect, ...props }: AnswerProps) => {
   const formClass = classNames("hidden-input-form", { shake: props.shake });
 
   return (
-    <Form className={formClass} onSubmit={handleSubmit}>
-      <HiddenInput
-        onChange={handleChange}
-        value={value}
-        maxLength={maxLength}
-        autoFocus
-      />
-      <Placeholder>{placeholder}</Placeholder>
-    </Form>
+    <Fragment>
+      <Form className={formClass} onSubmit={handleSubmit}>
+        <HiddenInput
+          onChange={handleChange}
+          value={value}
+          maxLength={maxLength}
+          autoFocus
+        />
+        <Placeholder>{placeholder}</Placeholder>
+      </Form>
+      <div className="checking-button">
+        <button onTouchStart={handleSubmit}> Submit</button>
+      </div>
+    </Fragment>
   );
 };
