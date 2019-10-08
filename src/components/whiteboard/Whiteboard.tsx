@@ -34,7 +34,12 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
   const [color, setColor] = useState<string>("black");
   const [stroke, setStroke] = useState<number>(14);
 
-  function sendCoords(mousePosition: Coordinate) {
+  function sendCoords(
+    mousePosition: Coordinate,
+    color: string,
+    stroke: number
+  ) {
+    console.log(color, stroke);
     socket.emit("coordinates", { mousePosition, room, side, color, stroke });
   }
   //When the pen is lifted sends a stop message to the client
@@ -71,10 +76,10 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       if (coordinates) {
         setIsPainting(true);
         setMousePosition(coordinates);
-        drawDot(coordinates, color);
+        drawDot(coordinates, color, stroke);
       }
     },
-    [color]
+    [mousePosition, color, stroke]
   );
 
   //This is what starts everything, once the mouse is clicked then it calls start paint which begins the paint process
@@ -89,7 +94,6 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
       canvas.removeEventListener("touchstart", startPaint);
     };
   }, [startPaint]);
-
 
   //Paint callback, it if is painting and the mouse is moved then we will call the drawline function with each new mouse position
   const paint = useCallback(
@@ -181,34 +185,42 @@ const Whiteboard = ({ width, height, socket, side }: CanvasProps) => {
         ctx.lineTo(newMousePosition.x, newMousePosition.y);
         ctx.closePath();
         ctx.stroke();
-        sendCoords(newMousePosition);
+        sendCoords(newMousePosition, color, stroke);
       }
     }
   };
   //Draw the initial dot for the painting
-  const drawDot = (MousePosition: Coordinate, color: string) => {
+  const drawDot = (
+    MousePosition: Coordinate,
+    color: string,
+    stroke: number
+  ) => {
     const canvas: HTMLCanvasElement = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (ctx) {
       ctx.beginPath();
-
       ctx.strokeStyle = color;
       ctx.fillStyle = color;
       ctx.lineJoin = "round";
-      ctx.lineWidth = stroke/6;
+      ctx.lineWidth = stroke / 6;
       ctx.beginPath();
       ctx.arc(MousePosition.x, MousePosition.y, 7, 0, 2 * Math.PI);
       ctx.fill();
       ctx.stroke();
       ctx.closePath();
-      sendCoords(MousePosition);
+      sendCoords(MousePosition, color, stroke);
     }
   };
 
   return (
     <Fragment>
       <div>
-      <canvas className="phone-whiteboard" ref={canvasRef} height={height} width={width} />
+        <canvas
+          className="phone-whiteboard"
+          ref={canvasRef}
+          height={height}
+          width={width}
+        />
       </div>
       <div className="additional-tool-button clear" onClick={clearImage}>
         <FontAwesomeIcon icon={faTrash} />

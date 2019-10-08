@@ -3,7 +3,7 @@ import "./avatar.styles.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheck } from "@fortawesome/free-solid-svg-icons";
 
-const Avatar = (props: any) => {
+function Avatar (props: any) {
   if (props.correct) {
     return (
       <div className="avatar-flex avatar-correct">

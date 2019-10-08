@@ -36,6 +36,7 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
 
     socket.on(`coordinates${side}`, function(data: message) {
       drawDot(data["mousePosition"], data["color"], data["stroke"]);
+
       drawingCoordinates.push(data["mousePosition"]);
       socket.on(`stop${side}`, function() {
         drawingCoordinates = [];
@@ -58,9 +59,14 @@ const BoardDisplay = ({ width, height, side, socket }: CanvasProps) => {
     if (ctx) {
       ctx.beginPath();
       ctx.strokeStyle = color;
-      ctx.lineWidth=stroke;
+      ctx.fillStyle = color;
+      ctx.lineWidth=stroke/20;
       ctx.arc(MousePosition.x, MousePosition.y, 2, 0, 2 * Math.PI);
+      ctx.lineJoin = "round";
+      ctx.arc(MousePosition.x, MousePosition.y, 7, 0, 2 * Math.PI);
       ctx.fill();
+      ctx.stroke();
+      ctx.closePath();
     }
   };
 
