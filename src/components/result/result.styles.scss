@@ -5,7 +5,7 @@
 }
 .wrapper {
   position: absolute;
-  
+
   top: 100%;
   left: 50%;
   width: 600px;
@@ -13,13 +13,13 @@
   font-family: Abadi MT Condensed;
   text-align: center;
   color: #fff;
-  animation: 55s credits linear infinite;
+  animation: 50s credits linear;
   animation-delay: 0s;
-  z-index:-1;
- }
+  z-index: -1;
+}
 
- .roomcode{
-  background-color:hotpink;
+.roomcode {
+  background-color: hotpink;
   border: 6px solid lightpink;
   justify-self: center;
   align-self: center;
@@ -37,9 +37,9 @@
   text-decoration: none;
   font-family: "Bubblegum Sans", sans-serif;
 }
- 
- .result{
-  background-color:hotpink;
+
+.result {
+  background-color: hotpink;
   border: 6px solid lightpink;
   justify-self: center;
   align-self: center;
@@ -51,31 +51,44 @@
   align-items: center;
   margin-bottom: 50px;
   font-size: 50px;
-  font-variant:small-caps;
+  font-variant: small-caps;
   height: 15vh;
   text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
   font-family: "Bubblegum Sans", sans-serif;
 
-  &-display{
-    display:flex;
+  &-display {
+    display: flex;
     justify-content: center;
     align-items: center;
-    flex-direction:column;
+    flex-direction: column;
   }
- }
+}
 
- .results-button{
-    position: fixed;
-    top: 50%;
-    left:50%;
-    z-index: -1;
- }
+.results-button {
+  position: fixed;
+  top: 90%;
+  left: calc(50vw - 75.9px);
+  z-index: -1;
+  animation: cssAnimation 0s 25s forwards;
+  visibility: hidden;
+}
 
- @keyframes credits {
+.results-table {
+  animation: cssAnimation 0s 25s forwards;
+  visibility: hidden;
+  display:flex;
+  justify-content: center;
+}
+
+@keyframes credits {
   0% {
-  top: 100%;
+    top: 100%;
   }
   100% {
-  top: -500%;
+    top: -500%;
   }
- }
+}
+
+@keyframes cssAnimation {
+  to   { visibility: visible; }
+}
