@@ -6,7 +6,7 @@ import MobileCountdownTimer from "../timer/mobile.timer.component";
 import MobileAvatar from "../avatar-list/avatar/mobile.avatar.component";
 
 const GuessBoard = (props: any) => {
-  return (  
+  return (
     <Fragment>
       <MobileCountdownTimer
         startTimeInSeconds={props.time}
@@ -15,7 +15,11 @@ const GuessBoard = (props: any) => {
       <div className="mAvatar">
         <MobileAvatar id={props.id} />
       </div>
+
       <Game word={props.word} onCorrect={props.onCorrect} />
+      <div className="checking-button">
+        <button onTouchStart={props.onCorrect}> Submit</button>
+      </div>
     </Fragment>
   );
 };
