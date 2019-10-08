@@ -152,7 +152,7 @@ const ConnectedGame: React.FC = (props: any) => {
       points: 200
     };
 
-    updateScore(Number(localStorage.getItem("playerId")), 0);
+    // updateScore(Number(localStorage.getItem("playerId")), 0);
 
     props.socket.emit("SCORE", guesserMessage);
 
@@ -254,7 +254,7 @@ const ConnectedGame: React.FC = (props: any) => {
         />
       );
     } else if (
-      props.players[Number(localStorage.getItem("playerId"))] &&
+      // props.players[Number(localStorage.getItem("playerId"))] &&
       props.players[Number(localStorage.getItem("playerId"))].correct
     ) {
       return (
