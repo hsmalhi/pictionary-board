@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -7,7 +8,6 @@ import { createStore } from 'redux';
 import { Provider } from 'react-redux'
 import reducer, { initialState } from "./reducers/game"
 import Routes from './Routes';
-import 'bootstrap/dist/css/bootstrap.min.css';
 
 const store = createStore(reducer, initialState, window["__REDUX_DEVTOOLS_EXTENSION__" as any] && (window["__REDUX_DEVTOOLS_EXTENSION__" as any] as any)()
 );
