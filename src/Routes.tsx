@@ -8,8 +8,6 @@ import Result from "./components/result/result.component";
 import GuessBoard from "../src/components/guessboard/Guessboard.component";
 import DrawingDisplay from "./components/DrawingDisplay";
 import LeftRightDisplay from "./components/LeftRightDisplay";
-import Waiting from "./components/waiting/waiting.component"
-import Title from "./components/title/title.component"
 import CenterCountdownTimer from "./components/timer/center.time.component"
 import CountdownTimer from "./components/timer/timer.component"
 // const socket :any = io("http://localhost:3001");
