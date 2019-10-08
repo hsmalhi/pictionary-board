@@ -73,6 +73,10 @@
   visibility: hidden;
 }
 
+.results-header{
+  font-family: "Bubblegum Sans", sans-serif;
+}
+
 .results-table {
   animation: cssAnimation 0s 20s forwards;
   visibility: hidden;
@@ -85,11 +89,11 @@
   font-size: 2em;
 }
 .results-body {
-  font-size: 2em;
+  font-size: 1.5em;
 }
 
 .results-output {
-  padding: 20px;
+  padding: 0px 20px;
 }
 
 @keyframes credits {
