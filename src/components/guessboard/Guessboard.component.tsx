@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 import Game from "./Game";
-import Title from "../title/title.component";
 
 import "./guessboard.styles.scss";
 import MobileCountdownTimer from "../timer/mobile.timer.component";

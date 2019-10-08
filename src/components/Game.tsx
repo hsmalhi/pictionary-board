@@ -21,9 +21,7 @@ import GuessBoard from "./guessboard/Guessboard.component";
 import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component";
 import CorrectDisplay from "./CorrectDisplay";
-import MobileCountdownTimer from "./timer/mobile.timer.component";
 import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
-import ShowWord from "./ShowWord";
 
 document.ontouchmove = function(event) {
   event.preventDefault();
@@ -72,7 +70,7 @@ const mapDispatchToProps = (dispatch: any) => {
       word: string
     ) => dispatch(endRound(timer, leftDrawer, rightDrawer, word)),
     endGame: () => dispatch(endGame()),
-    updateScore: (playerId: number) => dispatch(updateScore(playerId)),
+    updateScore: (playerId: number, points: number) => dispatch(updateScore(playerId, points)),
     restart: () => dispatch(restart())
   };
 };
@@ -102,15 +100,12 @@ const ConnectedGame: React.FC = (props: any) => {
     });
 
     props.socket.on("ROUND_OVER", (message: any) => {
-      console.log("ending round");
-      console.log(message);
       props.endRound(
         message.timer,
         message.leftDrawer,
         message.rightDrawer,
         message.word
       );
-      console.log("ended round");
     });
 
     props.socket.on("GAME_OVER", () => {
@@ -118,8 +113,7 @@ const ConnectedGame: React.FC = (props: any) => {
     });
 
     props.socket.on("UPDATE_SCORE", (message: any) => {
-      props.updateScore(message.playerId);
-      console.log("scoreupdate", props.players);
+      props.updateScore(String(message.playerId), message.points);
     });
 
     props.socket.on("RESTART_CLIENT", () => {
@@ -154,21 +148,26 @@ const ConnectedGame: React.FC = (props: any) => {
   const score = () => {
     const guesserMessage = {
       playerId: localStorage.getItem("playerId"),
-      code: props.code
+      code: props.code,
+      points: 200
     };
+
+    // updateScore(Number(localStorage.getItem("playerId")), 0);
 
     props.socket.emit("SCORE", guesserMessage);
 
     const leftDrawerMessage = {
       playerId: props.leftDrawer,
-      code: props.code
+      code: props.code,
+      points: 100
     };
 
     props.socket.emit("SCORE", leftDrawerMessage);
 
     const rightDrawerMessage = {
       playerId: props.rightDrawer,
-      code: props.code
+      code: props.code,
+      points: 100
     };
 
     props.socket.emit("SCORE", rightDrawerMessage);
@@ -255,7 +254,7 @@ const ConnectedGame: React.FC = (props: any) => {
         />
       );
     } else if (
-      props.players[Number(localStorage.getItem("playerId"))] &&
+      // props.players[Number(localStorage.getItem("playerId"))] &&
       props.players[Number(localStorage.getItem("playerId"))].correct
     ) {
       return (
