@@ -1,5 +1,7 @@
 import React from "react";
 import { Fragment } from "react";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faPencilAlt, faQuestionCircle} from "@fortawesome/free-solid-svg-icons";
 
 import "./waiting.styles.scss";
 //Customizabe canvas
@@ -12,9 +14,9 @@ const Waiting = (props: any) => {
         {props.status === "lobby" &&
         <div className="lds-grid"><div></div><div></div><div></  div><div></div><div></div><div></div><div></div><div></div><div></div> </div>}
         {props.status === "starting" && <p></p>}
-        {props.status === "drawing" && <i className="fas fa-pencil-alt"></i>}
-        {props.status === "guessing" && <i className="fas fa-question-circle"></i>}
-        {props.status === "done" && <p className="done-icon" >🎉</p>}
+        {props.status === "drawing" && <FontAwesomeIcon className="fas fa-pencil-alt" icon={faPencilAlt} />}
+        {props.status === "guessing" && <FontAwesomeIcon className="fas fa-question-circle" icon={faQuestionCircle} />}
+        {props.status === "done" && <span role="img" aria-label="party-popper"className="done-icon" >🎉</span>}
       </div>
     </Fragment>
   );

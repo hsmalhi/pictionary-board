@@ -1,5 +1,4 @@
 import React, { useEffect, Fragment } from "react";
-import io from "socket.io-client";
 import {
   setup,
   updatePlayers,
@@ -22,6 +21,8 @@ import Result from "./result/result.component";
 import CenterCountdownTimer from "./timer/center.time.component";
 import CorrectDisplay from "./CorrectDisplay";
 import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
+
+import "./styles/GamePage.scss";
 
 document.ontouchmove = function(event) {
   event.preventDefault();
@@ -168,7 +169,7 @@ const ConnectedGame: React.FC = (props: any) => {
     props.socket.emit("SCORE", rightDrawerMessage);
   };
 
-  if (props.status == Status.Lobby) {
+  if (props.status === Status.Lobby) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <div>
@@ -186,7 +187,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.RoundStarting) {
+  } else if (props.status === Status.RoundStarting) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>
@@ -259,7 +260,9 @@ const ConnectedGame: React.FC = (props: any) => {
     ) {
       return (
         <Fragment>
-          <MobileAvatar id={Number(localStorage.getItem("playerId"))} />
+          <div className="mAvatar">
+            <MobileAvatar id={Number(localStorage.getItem("playerId"))} />
+          </div>
           {/* <ShowWord word={props.word}/> */}
           <CorrectDisplay />
         </Fragment>
@@ -276,7 +279,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.RoundOver) {
+  } else if (props.status === Status.RoundOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>
@@ -316,7 +319,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.GameOver) {
+  } else if (props.status === Status.GameOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>

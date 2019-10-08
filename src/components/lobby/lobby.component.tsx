@@ -1,9 +1,8 @@
-import React, { Fragment, useEffect } from "react";
+import React, { Fragment } from "react";
 import Square from "./square.component";
 import Title from "../title/title.component";
 
 import "./lobby.styles.scss";
-import { updatePlayers, startGame } from "../../actions/game";
 import { connect } from "react-redux";
 
 const mapStateToProps = (state: any) => {

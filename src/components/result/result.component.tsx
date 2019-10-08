@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Title from "../title/title.component";
 import Credit from "./credit.component";
 
 import "./result.styles.scss";
@@ -26,6 +25,7 @@ const Result = (props: any) => {
       return a.score > b.score ? -1 : b.score > a.score ? 1 : 0;
     }
   });
+  let topThree = playersSorted.slice(0,3);
 
   return (
     <Fragment>
@@ -44,16 +44,17 @@ const Result = (props: any) => {
           </div>
         </div>
         <span className="results-table">
+          <h1 className="results-header">Top 3 Players</h1>
           <table>
-            <thead>
+            <thead className="results-heading">
               <tr>
                 <th>Avatar</th>
                 <th>Name</th>
                 <th>Score</th>
               </tr>
             </thead>
-            <tbody>
-              {playersSorted.map((player: any) => {
+            <tbody className="results-body">
+              {topThree.map((player: any) => {
                 return (
                   <Table
                     name={player.name}

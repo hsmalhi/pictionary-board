@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 
 import "./result.styles.scss";
 import Avatar from "../avatar-list/avatar/avatar.component";
@@ -12,9 +12,9 @@ const Table = (props: any) => {
     return (
       <Fragment>
         <tr>
-          <td><Avatar id={props.id} /></td>
-          <td>{props.name}</td>
-          <td>{props.score}</td>
+          <td className="results-output"><Avatar id={props.id} /></td>
+          <td className="results-output">{props.name}</td>
+          <td className="results-output">{props.score}</td>
         </tr>
       </Fragment>
     );

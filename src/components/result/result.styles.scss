@@ -69,15 +69,31 @@
   top: 90%;
   left: calc(50vw - 75.9px);
   z-index: -1;
-  animation: cssAnimation 0s 20s forwards;
+  animation: cssAnimation 0s 15s forwards;
   visibility: hidden;
 }
 
+.results-header{
+  font-family: "Bubblegum Sans", sans-serif;
+}
+
 .results-table {
-  animation: cssAnimation 0s 15s forwards;
+  animation: cssAnimation 0s 20s forwards;
   visibility: hidden;
-  display:flex;
+  display: flex;
   justify-content: center;
+}
+
+.results-heading {
+  text-align: center;
+  font-size: 2em;
+}
+.results-body {
+  font-size: 1.5em;
+}
+
+.results-output {
+  padding: 0px 20px;
 }
 
 @keyframes credits {
@@ -90,5 +106,7 @@
 }
 
 @keyframes cssAnimation {
-  to   { visibility: visible; }
+  to {
+    visibility: visible;
+  }
 }

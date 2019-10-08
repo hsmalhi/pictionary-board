@@ -16,12 +16,10 @@ const ConnectedAvatarList = (props: any) => {
   // console.log(players);
   const player = props.players.map(
     (element: { id: number; correct: boolean; name: string }) => {
-  
-
       if (
-        element.id != 0 &&
-        element.id != Number(props.leftDrawer) &&
-        element.id != Number(props.rightDrawer)
+        element.id !== 0 &&
+        element.id !== Number(props.leftDrawer) &&
+        element.id !== Number(props.rightDrawer)
       ) {
         return (
           <Avatar
