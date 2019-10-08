@@ -12,14 +12,16 @@ const mapStateToProps = (state: any) => {
 };
 
 const ConnectedAvatarList = (props: any) => {
-  // const players = props.players.slice(1);
-  // console.log(players);
   const player = props.players.map(
     (element: { id: number; correct: boolean; name: string }) => {
+      console.log(props.players, "props");
+      console.log(props.leftDrawer);
+      console.log(props.rightDrawer);
+      console.log(element.id);
       if (
         element.id !== 0 &&
-        element.id !== Number(props.leftDrawer) &&
-        element.id !== Number(props.rightDrawer)
+        Number(element.id) !== Number(props.leftDrawer) &&
+        Number(element.id) !== Number(props.rightDrawer)
       ) {
         return (
           <Avatar
