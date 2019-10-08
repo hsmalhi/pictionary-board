@@ -1,15 +1,11 @@
 import React, { Fragment, useState } from "react";
 import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
   Redirect
 } from "react-router-dom";
 import Title from "../components/title/title.component";
 import "./Home.styles.scss";
 import MyVerticallyCenteredModal from "./Modal";
-import { ButtonToolbar, Button, Modal } from "react-bootstrap";
+import { ButtonToolbar } from "react-bootstrap";
 
 const Home: any = (props: any) => {
   const [modalShow, setModalShow] = React.useState(false);
@@ -33,10 +29,6 @@ const Home: any = (props: any) => {
       localStorage.setItem("playerId", message.playerId);
       setPath(message.code);
     });
-  };
-
-  const closeModal = function() {
-    if (modalShow) setModalShow(false);
   };
 
   const validate = function(event: any) {

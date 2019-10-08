@@ -16,7 +16,7 @@ const Waiting = (props: any) => {
         {props.status === "starting" && <p></p>}
         {props.status === "drawing" && <FontAwesomeIcon className="fas fa-pencil-alt" icon={faPencilAlt} />}
         {props.status === "guessing" && <FontAwesomeIcon className="fas fa-question-circle" icon={faQuestionCircle} />}
-        {props.status === "done" && <p className="done-icon" >🎉</p>}
+        {props.status === "done" && <span role="img" aria-label="party-popper"className="done-icon" >🎉</span>}
       </div>
     </Fragment>
   );

@@ -1,5 +1,4 @@
 import React, { Fragment } from "react";
-import Title from "../title/title.component";
 import Credit from "./credit.component";
 
 import "./result.styles.scss";

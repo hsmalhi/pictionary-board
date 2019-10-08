@@ -1,5 +1,4 @@
 import React, { useEffect, Fragment } from "react";
-import io from "socket.io-client";
 import {
   setup,
   updatePlayers,
@@ -169,7 +168,7 @@ const ConnectedGame: React.FC = (props: any) => {
     props.socket.emit("SCORE", rightDrawerMessage);
   };
 
-  if (props.status == Status.Lobby) {
+  if (props.status === Status.Lobby) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <div>
@@ -187,7 +186,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.RoundStarting) {
+  } else if (props.status === Status.RoundStarting) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>
@@ -277,7 +276,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.RoundOver) {
+  } else if (props.status === Status.RoundOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>
@@ -317,7 +316,7 @@ const ConnectedGame: React.FC = (props: any) => {
         </Fragment>
       );
     }
-  } else if (props.status == Status.GameOver) {
+  } else if (props.status === Status.GameOver) {
     if (Number(localStorage.getItem("playerId")) === 0) {
       return (
         <Fragment>

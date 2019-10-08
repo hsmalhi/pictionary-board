@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { Fragment } from "react";
 
 import "./result.styles.scss";
 import Avatar from "../avatar-list/avatar/avatar.component";
