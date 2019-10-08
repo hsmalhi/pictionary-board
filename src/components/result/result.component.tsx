@@ -45,14 +45,14 @@ const Result = (props: any) => {
         </div>
         <span className="results-table">
           <table>
-            <thead>
+            <thead className="results-heading">
               <tr>
                 <th>Avatar</th>
                 <th>Name</th>
                 <th>Score</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody className="results-body">
               {playersSorted.map((player: any) => {
                 return (
                   <Table
