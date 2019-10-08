@@ -69,12 +69,12 @@
   top: 90%;
   left: calc(50vw - 75.9px);
   z-index: -1;
-  animation: cssAnimation 0s 50s forwards;
+  animation: cssAnimation 0s 25s forwards;
   visibility: hidden;
 }
 
 .results-table {
-  animation: cssAnimation 0s 50s forwards;
+  animation: cssAnimation 0s 25s forwards;
   visibility: hidden;
   display:flex;
   justify-content: center;
