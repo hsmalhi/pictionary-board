@@ -33,14 +33,15 @@ const ConnectedLeftRightDisplay = (props: any) => {
         <div className="word-container">
           <Word word={props.word} />
         </div>
-        <CountdownTimer
+        {!props.skip && <CountdownTimer
           startTimeInSeconds={props.time}
           timeRemainingInSeconds={props.time}
-        /> <div className="drawer-name-left"> {leftDrawer}</div>
-          <div className="drawer-name-right">{rightDrawer}</div>
+        />}
+        {props.skip && <p>Next Round Starting Soon...</p>}
+        <div className="drawer-name-left"> {leftDrawer}</div>
+        <div className="drawer-name-right">{rightDrawer}</div>
         <div className="canvas-container">
           <BoardDisplay side="left" socket={props.socket}></BoardDisplay>
-      
           <BoardDisplay side="right" socket={props.socket}></BoardDisplay>
         </div>
         <div className="avatarlist-container">

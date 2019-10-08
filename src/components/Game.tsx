@@ -1,4 +1,4 @@
-import React, { useEffect, Fragment } from "react";
+import React, { useEffect, Fragment, useState } from "react";
 import {
   setup,
   updatePlayers,
@@ -73,6 +73,8 @@ const mapDispatchToProps = (dispatch: any) => {
 };
 
 const ConnectedGame: React.FC = (props: any) => {
+  const [ skip, setSkip ] = useState(false);
+
   useEffect(() => {
     const code = window.location.pathname.split("/")[1];
     props.setup(code);
@@ -94,6 +96,7 @@ const ConnectedGame: React.FC = (props: any) => {
     });
 
     props.socket.on("ROUND_START", (message: any) => {
+      setSkip(false);
       props.startRound(message.timer);
     });
 
@@ -112,6 +115,20 @@ const ConnectedGame: React.FC = (props: any) => {
 
     props.socket.on("UPDATE_SCORE", (message: any) => {
       props.updateScore(String(message.playerId), message.points);
+      
+      let skip = true;
+
+      props.players.forEach((p: any) => {
+        if(p.id != 0 && p.id != props.leftDrawer && p.id != props.rightDrawer && !p.correct) skip = false
+      });
+    
+      setSkip(skip);
+
+      const outMessage = {
+        code: props.code
+      };
+
+      if(skip && (Number(localStorage.getItem("playerId")) === 0)) props.socket.emit("SKIP", outMessage);
     });
 
     props.socket.on("RESTART_CLIENT", () => {
@@ -252,6 +269,7 @@ const ConnectedGame: React.FC = (props: any) => {
           socket={props.socket}
           word={props.word}
           time={45}
+          skip={skip}
         />
       );
     } else if (
