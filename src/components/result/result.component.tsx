@@ -3,6 +3,7 @@ import Title from "../title/title.component";
 import Credit from "./credit.component";
 
 import "./result.styles.scss";
+import Table from "./table.component";
 
 const Result = (props: any) => {
   // const props: any = [
@@ -28,18 +29,46 @@ const Result = (props: any) => {
 
   return (
     <Fragment>
-      <div className="result-board">
-        <div className="wrapper">
-          {playersSorted.map((player: any) => {
-            return (
-              <Credit name={player.name} score={player.score} id={player.id} />
-            );
-          })}
+      <div>
+        <div className="result-board">
+          <div className="wrapper">
+            {playersSorted.map((player: any) => {
+              return (
+                <Credit
+                  name={player.name}
+                  score={player.score}
+                  id={player.id}
+                />
+              );
+            })}
+          </div>
         </div>
-      </div>
-      <div className="results-button">
-        <button>Home</button>
-        <button onClick={props.restart}>Replay</button>
+        <div className="results-table">
+          <table>
+            <thead>
+              <tr>
+                <th>Avatar</th>
+                <th>Name</th>
+                <th>Score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {playersSorted.map((player: any) => {
+                return (
+                  <Table
+                    name={player.name}
+                    score={player.score}
+                    id={player.id}
+                  />
+                );
+              })}
+            </tbody>
+          </table>
+          <div className="results-button">
+            <button>Home</button>
+            <button onClick={props.restart}>Replay</button>
+          </div>
+        </div>
       </div>
     </Fragment>
   );
