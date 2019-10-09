@@ -39,7 +39,7 @@ const Result = (props:any) => {
           <table className="results-content">
             <thead className="results-heading">
               <tr>
-                <th>Avatar</th>
+                <th></th>
                 <th>Name</th>
                 <th>Score</th>
               </tr>
