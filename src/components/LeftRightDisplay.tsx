@@ -3,7 +3,6 @@ import BoardDisplay from "./BoardDisplay";
 import Word from "./Word";
 import "../components/styles/GamePage.scss";
 import CountdownTimer from "./timer/timer.component";
-import { Socket } from "socket.io";
 import AvatarList from "./avatar-list/avatarlist.component";
 import { connect } from "react-redux";
 

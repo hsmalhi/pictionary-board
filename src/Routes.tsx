@@ -6,7 +6,7 @@ import Game from "./components/Game";
 
 // const socket :any = io("http://localhost:3001");
 
-const socket :any = io("https://pictionary-server.herokuapp.com/");
+const socket :any = io("http://partypic-server.herokuapp.com/");
 
 const Routes: React.FC = () => {
   return (
