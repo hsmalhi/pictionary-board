@@ -49,7 +49,7 @@ function MyVerticallyCenteredModal(props: any) {
 
           </Carousel.Item>
           <Carousel.Item>
-            <Modal.Title className="modal-title">You either be DRAWING or GUESSING</Modal.Title>
+            <Modal.Title className="modal-title">You will either be DRAWING or GUESSING</Modal.Title>
             <Modal.Body>
               <div className="grid-container-2">
                 <div className="grid-item left-item">
