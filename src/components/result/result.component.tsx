@@ -1,4 +1,5 @@
 import React, { Fragment } from "react";
+import { Link } from "react-router-dom";
 import Credit from "./credit.component";
 
 import "./result.styles.scss";
@@ -15,7 +16,7 @@ const Result = (props:any) => {
       return a.score > b.score ? -1 : b.score > a.score ? 1 : 0;
     }
   });
-  let topThree = playersSorted.slice(0,4);
+  let topThree = playersSorted.slice(0, 4);
 
   return (
     <Fragment>
@@ -35,7 +36,7 @@ const Result = (props:any) => {
         </div>
         <span className="results-table">
           <div className="results-header">Top 3 Players</div>
-          <table>
+          <table className="results-content">
             <thead className="results-heading">
               <tr>
                 <th>Avatar</th>
@@ -57,7 +58,9 @@ const Result = (props:any) => {
           </table>
         </span>
         <div className="results-button">
-          <button>Home</button>
+          <span className="input-group-btn">
+            <Link className="link-home" to="/">Home</Link>
+          </span>
           <button onClick={props.restart}>Replay</button>
         </div>
       </div>
