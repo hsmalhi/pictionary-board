@@ -1,5 +1,5 @@
 import React, { Fragment } from "react";
-import Avatar from "../avatar-list/avatar/avatar.component";
+import Avatar from "../Avatar-list/avatar/avatar.component";
 import "./lobby.styles.scss";
 import "./loadingSpinner.scss";
 import StatusMessage from "./StatusMessage";

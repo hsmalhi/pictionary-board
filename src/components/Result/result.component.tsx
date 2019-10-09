@@ -1,7 +1,6 @@
 import React, { Fragment } from "react";
 import { Link } from "react-router-dom";
 import Credit from "./credit.component";
-
 import "./result.styles.scss";
 import Table from "./table.component";
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "../components/styles/Whiteboard.scss";
+import "../components/Styles/Whiteboard.scss";
 
 interface WordProps {
   word: string;

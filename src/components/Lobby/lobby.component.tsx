@@ -1,6 +1,6 @@
 import React, { Fragment } from "react";
 import Square from "./square.component";
-import Title from "../title/title.component";
+import Title from "../Title/title.component";
 
 import "./lobby.styles.scss";
 import { connect } from "react-redux";

@@ -1,8 +1,6 @@
 import React, { Fragment } from "react";
-
 import "./result.styles.scss";
-import Avatar from "../avatar-list/avatar/avatar.component";
-
+import Avatar from "../Avatar-list/avatar/avatar.component";
 
 interface CreditProps {
   id:number

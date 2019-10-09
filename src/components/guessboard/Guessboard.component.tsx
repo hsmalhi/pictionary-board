@@ -2,8 +2,8 @@ import React, { Fragment } from "react";
 import Game from "./Game";
 
 import "./guessboard.styles.scss";
-import MobileCountdownTimer from "../timer/mobile.timer.component";
-import MobileAvatar from "../avatar-list/avatar/mobile.avatar.component";
+import MobileCountdownTimer from "../Timer/mobile.timer.component";
+import MobileAvatar from "../Avatar-list/avatar/mobile.avatar.component";
 
 interface GuessBoardProps {
   time: number;

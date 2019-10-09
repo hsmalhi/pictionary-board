@@ -1,9 +1,9 @@
 import React from "react";
-import Whiteboard from "./whiteboard/Whiteboard";
-import ShowWord from "./ShowWord";
-import MobileCountdownTimer from "./timer/mobile.timer.component";
+import Whiteboard from "../components/Whiteboard/Whiteboard";
+import ShowWord from "../components/ShowWord";
+import MobileCountdownTimer from "../components/Timer/mobile.timer.component";
+import MobileAvatar from "../components/Avatar-list/avatar/mobile.avatar.component";
 import { Socket } from "socket.io";
-import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
 
 interface DrawingDisplayProps {
   word: string;

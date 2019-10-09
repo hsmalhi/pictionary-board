@@ -1,5 +1,5 @@
 import React from "react";
-import Avatar from "../avatar-list/avatar/avatar.component";
+import Avatar from "./avatar/avatar.component";
 import "./avatarlist.styles.scss";
 import { connect } from "react-redux";
 

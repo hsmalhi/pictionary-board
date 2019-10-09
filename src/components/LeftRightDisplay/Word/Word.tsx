@@ -1,6 +1,5 @@
 import React from "react";
-import "../components/styles/GamePage.scss";
-
+import"../../Styles/GamePage.scss";
 interface WordProps {
   word: string;
 }

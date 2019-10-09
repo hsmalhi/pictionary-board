@@ -1,9 +1,9 @@
 import React from "react";
-import BoardDisplay from "./BoardDisplay";
-import Word from "./Word";
-import "../components/styles/GamePage.scss";
-import CountdownTimer from "./timer/timer.component";
-import AvatarList from "./avatar-list/avatarlist.component";
+import BoardDisplay from "../components/LeftRightDisplay/BoardDisplay"
+import Word from "../components/LeftRightDisplay/Word/Word";
+import "../components/Styles/GamePage.scss";
+import CountdownTimer from "../components/Timer/timer.component";
+import AvatarList from "../components/Avatar-list/avatarlist.component";
 import { connect } from "react-redux";
 
 

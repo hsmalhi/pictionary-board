@@ -5,7 +5,7 @@ import React, {
   useState,
   Fragment
 } from "react";
-import "../styles/Whiteboard.scss";
+import "../Styles/Whiteboard.scss"
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEraser, faTrash } from "@fortawesome/free-solid-svg-icons";
 import Toolbar from "./Toolbar/Toolbar";
