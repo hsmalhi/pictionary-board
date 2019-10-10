@@ -18,7 +18,7 @@ The backend to this project is served by this project here: https://github.com/h
 
 ## Screenshots
 
-![Main Screen] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Game.png)
-![Lobby] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Lobby.png)
-![Drawer Screen] (https://i.imgur.com/QHMbUsj.png)
-![Guesser Screen] (https://i.imgur.com/u3LXdz8.png)
+!["Main Screen"] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Game.png)
+!["Lobby"] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Lobby.png)
+!["Drawer Screen"] (https://i.imgur.com/QHMbUsj.png)
+!["Guesser Screen"] (https://i.imgur.com/u3LXdz8.png)
