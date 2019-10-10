@@ -18,7 +18,14 @@ The backend to this project is served by this project here: https://github.com/h
 
 ## Screenshots
 
+Main Screen
 !["Main Screen"] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Game.png)
+
+Lobby
 !["Lobby"] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Lobby.png)
+
+Drawer Screen
 !["Drawer Screen"] (https://i.imgur.com/QHMbUsj.png)
+
+Guesser Screen
 !["Guesser Screen"] (https://i.imgur.com/u3LXdz8.png)
