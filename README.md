@@ -19,13 +19,13 @@ The backend to this project is served by this project here: https://github.com/h
 ## Screenshots
 
 Main Screen
-!["Main Screen"] (https://github.com/hsmalhi/pictionary-board/blob/master/public/Game.png)
+![Main Screen](https://github.com/hsmalhi/pictionary-board/blob/master/public/Game.png)
 
 Lobby
-!["Lobby"] (https://github.com/hsmalhi/pictionary-board/blob/master/public/Lobby.png)
+![Lobby](https://github.com/hsmalhi/pictionary-board/blob/master/public/Lobby.png)
 
 Drawer Screen
-!["Drawer Screen"] (https://i.imgur.com/QHMbUsj.png)
+![Drawer Screen](https://i.imgur.com/QHMbUsj.png)
 
 Guesser Screen
-!["Guesser Screen"] (https://i.imgur.com/u3LXdz8.png)
+![Guesser Screen](https://i.imgur.com/u3LXdz8.png)
