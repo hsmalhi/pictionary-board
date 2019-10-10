@@ -1,5 +1,5 @@
 # Party Pic
-A react-redux application that allows players to join rooms together and play Party Pic, the classic pictionary game with a co-operative play aspect.
+A react-redux and Socket.IO based application that allows players to join rooms together and play Party Pic, the classic pictionary game with a co-operative play aspect.
 
 ## Getting Started
 
