@@ -18,4 +18,7 @@ The backend to this project is served by this project here: https://github.com/h
 
 ## Screenshots
 
-![Scheduler Demo] (https://media.giphy.com/media/ibAgIvmVrJ2Nsuly4H/giphy.gif)
+![Main Screen] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Game.png)
+![Lobby] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Lobby.png)
+![Drawer Screen] (https://i.imgur.com/QHMbUsj.png)
+![Guesser Screen] (https://i.imgur.com/u3LXdz8.png)
