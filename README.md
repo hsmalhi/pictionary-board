@@ -21,8 +21,6 @@ The backend to this project is served by this project here: https://github.com/h
 Main Screen
 !["Main Screen"] (https://github.com/hsmalhi/pictionary-board/master/public/Game.png)
 
-!["Screenshot of the tweet box and tweets on a desktop screen"](https://github.com/hsmalhi/tweeter/blob/master/docs/tweet-box.png)
-
 Lobby
 !["Lobby"] (https://raw.githubusercontent.com/hsmalhi/pictionary-board/master/public/Lobby.png)
 
