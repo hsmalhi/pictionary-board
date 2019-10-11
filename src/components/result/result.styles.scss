@@ -126,8 +126,6 @@
   color: black;
   font-family: "Bubblegum Sans", sans-serif;
   cursor: pointer;
-  text-decoration: inherit;
-  color: inherit;
   background-color: rgb(180, 245, 164);
   border-radius: 15px;
   display: inline-block;
@@ -142,6 +140,8 @@
 
 .link-home:hover{
   transform: scale(1.10);
+  text-decoration: inherit;
+  color: inherit;
 }
 
 @keyframes credits {
