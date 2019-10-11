@@ -1,9 +1,8 @@
 import React from "react";
 import { Fragment } from "react";
-import AvatarList from "./avatar-list/avatarlist.component";
-import Title from "./title/title.component";
-import CountdownTimer from "./timer/timer.component";
-
+import AvatarList from "../components/Avatar-list/avatarlist.component"
+import Title from "./Title/title.component";
+import CountdownTimer from "./Timer/timer.component";
 import "./header.styles.scss";
 
 //Customizabe canvas

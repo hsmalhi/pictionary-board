@@ -1,0 +1,43 @@
+.cbcountdown-timer {
+  position: fixed;
+  width: 52px;
+  height: 52px;
+  top: 50%;
+  left: 50%;
+  margin-right: 10px;
+  margin-top: 16px;
+  transform: scale(5);
+}
+
+.cbcountdown-timer__circle circle {
+  stroke-dasharray: 138px;
+  stroke-dashoffset: 138px;
+  stroke-linecap: butt;
+  stroke-width: 5px;
+  stroke: black;
+  fill: none;
+}
+
+.cbcountdown-timer__circle svg {
+  width: 52px;
+  height: 52px;
+  transform: rotateZ(-90deg);
+}
+
+.cbcountdown-timer__text {
+  position: fixed;
+  top: 17px;
+  width: 52px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+
+@keyframes mcountdown-animation {
+  from {
+    stroke-dashoffset: 0px;
+  }
+  to {
+    stroke-dashoffset: 138px;
+  }
+}

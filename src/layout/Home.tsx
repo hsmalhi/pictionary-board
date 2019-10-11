@@ -2,9 +2,9 @@ import React, { Fragment, useState } from "react";
 import {
   Redirect
 } from "react-router-dom";
-import Title from "../components/title/title.component";
-import "./Home.styles.scss";
-import MyVerticallyCenteredModal from "./Modal";
+import Title from "../components/Title/title.component";
+import "../components/Styles/Home.styles.scss"
+import MyVerticallyCenteredModal from "../components/Home/Modal";
 import { ButtonToolbar } from "react-bootstrap";
 import { Socket } from "socket.io";
 

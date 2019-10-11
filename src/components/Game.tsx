@@ -10,19 +10,19 @@ import {
   restart
 } from "../actions/game";
 import { connect } from "react-redux";
-import LobbySetup from "./lobby/lobby.component";
-import LeftRightDisplay from "./LeftRightDisplay";
-import DrawingDisplay from "./DrawingDisplay";
+import LobbySetup from "./Lobby/lobby.component";
+import LeftRightDisplay from "../layout/LeftRightDisplay";
+import DrawingDisplay from "../layout/DrawingDisplay"
 import { Status } from "../../src/models/Game";
-import Waiting from "./waiting/waiting.component";
-import Title from "./title/title.component";
+import Waiting from "./Waiting/waiting.component";
+import Title from "./Title/title.component";
 import GuessBoard from "./guessboard/Guessboard.component";
-import Result from "./result/result.component";
-import CenterCountdownTimer from "./timer/center.time.component";
+import Result from "./Result/result.component";
+import CenterCountdownTimer from "./Timer/center.time.component";
 import CorrectDisplay from "./CorrectDisplay";
-import MobileAvatar from "./avatar-list/avatar/mobile.avatar.component";
+import MobileAvatar from "./Avatar-list/avatar/mobile.avatar.component";
 
-import "./styles/GamePage.scss";
+import "./Styles/GamePage.scss";
 
 document.ontouchmove = function(event) {
   event.preventDefault();
@@ -221,7 +221,6 @@ const ConnectedGame: React.FC = (props: any) => {
       );
     }
   } else if (props.status === Status.RoundInProgress) {
-    // return <p>{JSON.stringify(props.players)}</p>;
 
     if (props.leftDrawer === Number(localStorage.getItem("playerId"))) {
       return (
